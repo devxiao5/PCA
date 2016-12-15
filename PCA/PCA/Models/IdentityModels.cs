@@ -29,5 +29,7 @@ namespace PCA.Models
         {
             return new ApplicationDbContext();
         }
+
+        public virtual DbSet<Project> Projects { get; set; }
     }
 }
