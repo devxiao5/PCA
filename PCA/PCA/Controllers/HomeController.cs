@@ -3,28 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PCA.Models;
 
 namespace PCA.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        [AllowAnonymous]
+        public ActionResult Index(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
-        public ActionResult About()
+        // POST: /Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(Account user)
         {
-            ViewBag.Message = "Your application description page.";
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var usr =
+                    db.Accounts.Where(m => m.Username == user.Username && m.Password == user.Password).FirstOrDefault();
+                if (usr != null)
+                {
+                    Session["UserId"] = user.AccountId.ToString();
+                    Session["Username"] = user.Username.ToString();
+                    return RedirectToAction("Select", "Dashboard");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Username or Password is incorrect.");
+                }
+            }
 
             return View();
-        }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
         }
     }
 }

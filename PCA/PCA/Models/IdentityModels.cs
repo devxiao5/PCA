@@ -31,5 +31,6 @@ namespace PCA.Models
         }
 
         public virtual DbSet<Project> Projects { get; set; }
-    }
+        public virtual DbSet<Account> Accounts { get; set; }
+    } 
 }
