@@ -27,6 +27,8 @@ namespace PCA.Models
         [Compare("Password", ErrorMessage = "Please confirm your password.")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public string Type { get; set; }
 
     }
 }

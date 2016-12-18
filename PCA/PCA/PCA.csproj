@@ -231,12 +231,17 @@
     <Compile Include="Migrations\201612182153282_accountinitial.Designer.cs">
       <DependentUpon>201612182153282_accountinitial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612182243067_accountinitiall.cs" />
+    <Compile Include="Migrations\201612182243067_accountinitiall.Designer.cs">
+      <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612182153282_accountinitial.resx">
       <DependentUpon>201612182153282_accountinitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612182243067_accountinitiall.resx">
+      <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
