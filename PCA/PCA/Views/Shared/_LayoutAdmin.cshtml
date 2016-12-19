@@ -1,0 +1,66 @@
+﻿<!-- Layout Page for PCA Dashboard-->
+<!-- Head Elements -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("css", false)
+
+
+</head>
+<!-- End Head -->
+<!-- Body -->
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Navigation</div>
+                    <div class="panel-body">
+                        <a href="/Admin/Index">Admin</a>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Model Name
+                    </div>
+                    <div class="panel-body">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Planning & Construction Associates Inc.</p>
+        </footer>
+    </div>
+</div>
+
+
+   
+
+
+
+        
+        <!-- End Body -->
+        <!-- Footer -->
+        
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Layout.js"></script>
+</body>
+</html>

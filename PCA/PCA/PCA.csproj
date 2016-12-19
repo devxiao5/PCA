@@ -210,8 +210,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +237,22 @@
     <Compile Include="Migrations\201612182243067_accountinitiall.cs" />
     <Compile Include="Migrations\201612182243067_accountinitiall.Designer.cs">
       <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190202509_etst1.cs" />
+    <Compile Include="Migrations\201612190202509_etst1.Designer.cs">
+      <DependentUpon>201612190202509_etst1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190205527_statess.cs" />
+    <Compile Include="Migrations\201612190205527_statess.Designer.cs">
+      <DependentUpon>201612190205527_statess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190215471_cleintens.cs" />
+    <Compile Include="Migrations\201612190215471_cleintens.Designer.cs">
+      <DependentUpon>201612190215471_cleintens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612190223146_cleintnullfk.cs" />
+    <Compile Include="Migrations\201612190223146_cleintnullfk.Designer.cs">
+      <DependentUpon>201612190223146_cleintnullfk.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -293,6 +312,18 @@
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -321,6 +352,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612182243067_accountinitiall.resx">
       <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190202509_etst1.resx">
+      <DependentUpon>201612190202509_etst1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190205527_statess.resx">
+      <DependentUpon>201612190205527_statess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190215471_cleintens.resx">
+      <DependentUpon>201612190215471_cleintens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612190223146_cleintnullfk.resx">
+      <DependentUpon>201612190223146_cleintnullfk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
