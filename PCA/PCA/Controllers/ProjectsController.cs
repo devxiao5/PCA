@@ -17,7 +17,8 @@ namespace PCA.Controllers
         // GET: Projects
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            var projects = db.Projects.Include(p => p.Clients).Include(p => p.States);
+            return View(projects.ToList());
         }
 
         // GET: Projects/Details/5
@@ -38,6 +39,8 @@ namespace PCA.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name");
+            ViewBag.StateId = new SelectList(db.States, "StateId", "Name");
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjectId,Name")] Project project)
+        public ActionResult Create([Bind(Include = "ProjectId,ClientId,Name,Class,Address,City,StateId,Zip,TotalSquareFoot,BillingOptionIsOne,PreFeeIsFlat,PreFeeValue,ConstFeeIsFlat,ConstFeeValue,MarkupValue,PaymentDueDay,Notes")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name", project.ClientId);
+            ViewBag.StateId = new SelectList(db.States, "StateId", "Name", project.StateId);
             return View(project);
         }
 
@@ -70,6 +75,8 @@ namespace PCA.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name", project.ClientId);
+            ViewBag.StateId = new SelectList(db.States, "StateId", "Name", project.StateId);
             return View(project);
         }
 
@@ -78,7 +85,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProjectId,Name")] Project project)
+        public ActionResult Edit([Bind(Include = "ProjectId,ClientId,Name,Class,Address,City,StateId,Zip,TotalSquareFoot,BillingOptionIsOne,PreFeeIsFlat,PreFeeValue,ConstFeeIsFlat,ConstFeeValue,MarkupValue,PaymentDueDay,Notes")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +93,8 @@ namespace PCA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name", project.ClientId);
+            ViewBag.StateId = new SelectList(db.States, "StateId", "Name", project.StateId);
             return View(project);
         }
 

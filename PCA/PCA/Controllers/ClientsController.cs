@@ -17,7 +17,7 @@ namespace PCA.Controllers
         // GET: Clients
         public ActionResult Index()
         {
-            var clients = db.Clients.Include(c => c.Clients).Include(c => c.States);
+            var clients = db.Clients.Include(c => c.States);
             return View(clients.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace PCA.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
-            ViewBag.ParentId = new SelectList(db.Clients, "ClientId", "Name");
             ViewBag.StateId = new SelectList(db.States, "StateId", "Name");
             return View();
         }
@@ -49,7 +48,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,Name,ParentId,Address,City,StateId,Zip,Phone,Website,ContactPerson,Notes,ClientSinceDate,AppAccess,Status")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,Name,Address,City,StateId,Zip,Phone,Website,Notes,ClientSinceDate,Status")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +57,6 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ParentId = new SelectList(db.Clients, "ClientId", "Name", client.ParentId);
             ViewBag.StateId = new SelectList(db.States, "StateId", "Name", client.StateId);
             return View(client);
         }
@@ -75,7 +73,6 @@ namespace PCA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ParentId = new SelectList(db.Clients, "ClientId", "Name", client.ParentId);
             ViewBag.StateId = new SelectList(db.States, "StateId", "Name", client.StateId);
             return View(client);
         }
@@ -85,7 +82,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,Name,ParentId,Address,City,StateId,Zip,Phone,Website,ContactPerson,Notes,ClientSinceDate,AppAccess,Status")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,Name,Address,City,StateId,Zip,Phone,Website,Notes,ClientSinceDate,Status")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +90,6 @@ namespace PCA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ParentId = new SelectList(db.Clients, "ClientId", "Name", client.ParentId);
             ViewBag.StateId = new SelectList(db.States, "StateId", "Name", client.StateId);
             return View(client);
         }

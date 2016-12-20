@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PCA.Models.WorkItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DailyReportId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Performance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenWorked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoursWorked)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DailyReportId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Summary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MenWorked)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoursWorked)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkItemId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkItemId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkItemId })
+        </td>
+    </tr>
+}
+
+</table>

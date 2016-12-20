@@ -1,0 +1,43 @@
+﻿@model PCA.Models.Assignment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Assignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Accounts.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Accounts.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Positions.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Positions.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AssignmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

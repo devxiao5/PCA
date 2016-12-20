@@ -29,11 +29,20 @@ namespace PCA.Models
         {
             return new ApplicationDbContext();
         }
-
-        public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<Assignment> Assignments { get; set; }
+        public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Contractor> Contractors { get; set; }
+        public virtual DbSet<DailyReport> DailyReport { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Phase> Phases { get; set; }
+        public virtual DbSet<Position> Positions { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<SubPhase> SubPhases { get; set; }
+        public virtual DbSet<WorkItem> WorkItems { get; set; }
+
 
     } 
 }

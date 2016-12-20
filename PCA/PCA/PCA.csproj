@@ -210,57 +210,50 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AssignmentsController.cs" />
+    <Compile Include="Controllers\BudgetsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\ContractorsController.cs" />
+    <Compile Include="Controllers\DailyReportsController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\PhasesController.cs" />
+    <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
+    <Compile Include="Controllers\SubPhasesController.cs" />
+    <Compile Include="Controllers\SystemController.cs" />
+    <Compile Include="Controllers\WorkItemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612150518306_inital.cs" />
-    <Compile Include="Migrations\201612150518306_inital.Designer.cs">
-      <DependentUpon>201612150518306_inital.cs</DependentUpon>
+    <Compile Include="Migrations\201612191939067_init.cs" />
+    <Compile Include="Migrations\201612191939067_init.Designer.cs">
+      <DependentUpon>201612191939067_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612150529590_2.cs" />
-    <Compile Include="Migrations\201612150529590_2.Designer.cs">
-      <DependentUpon>201612150529590_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612172024113_test.cs" />
-    <Compile Include="Migrations\201612172024113_test.Designer.cs">
-      <DependentUpon>201612172024113_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612182153282_accountinitial.cs" />
-    <Compile Include="Migrations\201612182153282_accountinitial.Designer.cs">
-      <DependentUpon>201612182153282_accountinitial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612182243067_accountinitiall.cs" />
-    <Compile Include="Migrations\201612182243067_accountinitiall.Designer.cs">
-      <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612190202509_etst1.cs" />
-    <Compile Include="Migrations\201612190202509_etst1.Designer.cs">
-      <DependentUpon>201612190202509_etst1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612190205527_statess.cs" />
-    <Compile Include="Migrations\201612190205527_statess.Designer.cs">
-      <DependentUpon>201612190205527_statess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612190215471_cleintens.cs" />
-    <Compile Include="Migrations\201612190215471_cleintens.Designer.cs">
-      <DependentUpon>201612190215471_cleintens.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612190223146_cleintnullfk.cs" />
-    <Compile Include="Migrations\201612190223146_cleintnullfk.Designer.cs">
-      <DependentUpon>201612190223146_cleintnullfk.cs</DependentUpon>
+    <Compile Include="Migrations\201612202003398_abunchofstuff.cs" />
+    <Compile Include="Migrations\201612202003398_abunchofstuff.Designer.cs">
+      <DependentUpon>201612202003398_abunchofstuff.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Contractor.cs" />
+    <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Phase.cs" />
+    <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\State.cs" />
+    <Compile Include="Models\SubPhase.cs" />
+    <Compile Include="Models\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -306,28 +299,80 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Projects\Create.cshtml" />
-    <Content Include="Views\Projects\Delete.cshtml" />
-    <Content Include="Views\Projects\Details.cshtml" />
-    <Content Include="Views\Projects\Edit.cshtml" />
-    <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\States\Create.cshtml" />
-    <Content Include="Views\States\Delete.cshtml" />
-    <Content Include="Views\States\Details.cshtml" />
-    <Content Include="Views\States\Edit.cshtml" />
-    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Assignments\Create.cshtml" />
+    <Content Include="Views\Assignments\Delete.cshtml" />
+    <Content Include="Views\Assignments\Details.cshtml" />
+    <Content Include="Views\Assignments\Edit.cshtml" />
+    <Content Include="Views\Assignments\Index.cshtml" />
+    <Content Include="Views\Budgets\Create.cshtml" />
+    <Content Include="Views\Budgets\Delete.cshtml" />
+    <Content Include="Views\Budgets\Details.cshtml" />
+    <Content Include="Views\Budgets\Edit.cshtml" />
+    <Content Include="Views\Budgets\Index.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Delete.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Contractors\Create.cshtml" />
+    <Content Include="Views\Contractors\Delete.cshtml" />
+    <Content Include="Views\Contractors\Details.cshtml" />
+    <Content Include="Views\Contractors\Edit.cshtml" />
+    <Content Include="Views\Contractors\Index.cshtml" />
+    <Content Include="Views\DailyReports\Create.cshtml" />
+    <Content Include="Views\DailyReports\Delete.cshtml" />
+    <Content Include="Views\DailyReports\Details.cshtml" />
+    <Content Include="Views\DailyReports\Edit.cshtml" />
+    <Content Include="Views\DailyReports\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Phases\Create.cshtml" />
+    <Content Include="Views\Phases\Delete.cshtml" />
+    <Content Include="Views\Phases\Details.cshtml" />
+    <Content Include="Views\Phases\Edit.cshtml" />
+    <Content Include="Views\Phases\Index.cshtml" />
+    <Content Include="Views\Positions\Create.cshtml" />
+    <Content Include="Views\Positions\Delete.cshtml" />
+    <Content Include="Views\Positions\Details.cshtml" />
+    <Content Include="Views\Positions\Edit.cshtml" />
+    <Content Include="Views\Positions\Index.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\States\Create.cshtml" />
+    <Content Include="Views\States\Delete.cshtml" />
+    <Content Include="Views\States\Details.cshtml" />
+    <Content Include="Views\States\Edit.cshtml" />
+    <Content Include="Views\States\Index.cshtml" />
+    <Content Include="Views\SubPhases\Create.cshtml" />
+    <Content Include="Views\SubPhases\Delete.cshtml" />
+    <Content Include="Views\SubPhases\Details.cshtml" />
+    <Content Include="Views\SubPhases\Edit.cshtml" />
+    <Content Include="Views\SubPhases\Index.cshtml" />
+    <Content Include="Views\WorkItems\Create.cshtml" />
+    <Content Include="Views\WorkItems\Delete.cshtml" />
+    <Content Include="Views\WorkItems\Details.cshtml" />
+    <Content Include="Views\WorkItems\Edit.cshtml" />
+    <Content Include="Views\WorkItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\System\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -338,36 +383,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612150518306_inital.resx">
-      <DependentUpon>201612150518306_inital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612150529590_2.resx">
-      <DependentUpon>201612150529590_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612172024113_test.resx">
-      <DependentUpon>201612172024113_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612182153282_accountinitial.resx">
-      <DependentUpon>201612182153282_accountinitial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612182243067_accountinitiall.resx">
-      <DependentUpon>201612182243067_accountinitiall.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612190202509_etst1.resx">
-      <DependentUpon>201612190202509_etst1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612190205527_statess.resx">
-      <DependentUpon>201612190205527_statess.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612190215471_cleintens.resx">
-      <DependentUpon>201612190215471_cleintens.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612190223146_cleintnullfk.resx">
-      <DependentUpon>201612190223146_cleintnullfk.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201612191939067_init.resx">
+      <DependentUpon>201612191939067_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612202003398_abunchofstuff.resx">
+      <DependentUpon>201612202003398_abunchofstuff.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
