@@ -17,7 +17,8 @@ namespace PCA.Controllers
         // GET: WorkItems
         public ActionResult Index()
         {
-            return View(db.WorkItems.ToList());
+            var workItems = db.WorkItems.Include(w => w.Contractors).Include(w => w.DailyReports);
+            return View(workItems.ToList());
         }
 
         // GET: WorkItems/Details/5
@@ -38,6 +39,8 @@ namespace PCA.Controllers
         // GET: WorkItems/Create
         public ActionResult Create()
         {
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary");
             return View();
         }
 
@@ -55,6 +58,8 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
             return View(workItem);
         }
 
@@ -70,6 +75,8 @@ namespace PCA.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
             return View(workItem);
         }
 
@@ -86,6 +93,8 @@ namespace PCA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
             return View(workItem);
         }
 
