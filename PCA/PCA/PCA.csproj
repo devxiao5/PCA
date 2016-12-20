@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201612202003398_abunchofstuff.Designer.cs">
       <DependentUpon>201612202003398_abunchofstuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612202023352_abunchofstufffiexed.cs" />
+    <Compile Include="Migrations\201612202023352_abunchofstufffiexed.Designer.cs">
+      <DependentUpon>201612202023352_abunchofstufffiexed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -391,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612202003398_abunchofstuff.resx">
       <DependentUpon>201612202003398_abunchofstuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612202023352_abunchofstufffiexed.resx">
+      <DependentUpon>201612202023352_abunchofstufffiexed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

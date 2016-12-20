@@ -18,5 +18,11 @@ namespace PCA.Models
         public int Performance { get; set; }
         public int MenWorked { get; set; }
         public double HoursWorked { get; set; }
+
+        // Constraint / Relationships
+        [ForeignKey("DailyReportId")]
+        public virtual DailyReport DailyReports { get; set; }
+        [ForeignKey("ContractorId")]
+        public virtual Contractor Contractors { get; set; }
     }
 }
