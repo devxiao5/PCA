@@ -1,0 +1,2 @@
+﻿File Uploads
+http://www.mikesdotnetting.com/Article/259/asp-net-mvc-5-with-ef-6-working-with-files

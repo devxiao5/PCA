@@ -22,6 +22,7 @@ namespace PCA.Models
         public DateTime DateReceived { get; set; }
         public DateTime DateOfInvoice { get; set; }
         public string Status { get; set; }
+        public virtual ICollection<File> Files { get; set; }
 
         // Constraint / Relationships
         [ForeignKey("ProjectId")]

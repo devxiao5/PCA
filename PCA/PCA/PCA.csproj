@@ -225,7 +225,9 @@
     <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\PhasesController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
@@ -253,6 +255,14 @@
     <Compile Include="Migrations\201612221711152_12-22initial.Designer.cs">
       <DependentUpon>201612221711152_12-22initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612221953213_invoiceimage.cs" />
+    <Compile Include="Migrations\201612221953213_invoiceimage.Designer.cs">
+      <DependentUpon>201612221953213_invoiceimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612222046346_fileinvoice.cs" />
+    <Compile Include="Migrations\201612222046346_fileinvoice.Designer.cs">
+      <DependentUpon>201612222046346_fileinvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -266,6 +276,8 @@
     <Compile Include="Models\ContractorType.cs" />
     <Compile Include="Models\ContractorTypeUnion.cs" />
     <Compile Include="Models\DailyReport.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Phase.cs" />
@@ -287,6 +299,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="References\Links.txt" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -357,11 +370,6 @@
     <Content Include="Views\DailyReports\Details.cshtml" />
     <Content Include="Views\DailyReports\Edit.cshtml" />
     <Content Include="Views\DailyReports\Index.cshtml" />
-    <Content Include="Views\Invoices\Create.cshtml" />
-    <Content Include="Views\Invoices\Delete.cshtml" />
-    <Content Include="Views\Invoices\Details.cshtml" />
-    <Content Include="Views\Invoices\Edit.cshtml" />
-    <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Phases\Create.cshtml" />
     <Content Include="Views\Phases\Delete.cshtml" />
     <Content Include="Views\Phases\Details.cshtml" />
@@ -420,10 +428,17 @@
     <Content Include="Views\ContractExhibits\Edit.cshtml" />
     <Content Include="Views\ContractExhibits\Index.cshtml" />
     <Content Include="Views\Budget\Index.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\File\" />
     <Folder Include="Views\System\" />
   </ItemGroup>
   <ItemGroup>
@@ -449,6 +464,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612221711152_12-22initial.resx">
       <DependentUpon>201612221711152_12-22initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612221953213_invoiceimage.resx">
+      <DependentUpon>201612221953213_invoiceimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612222046346_fileinvoice.resx">
+      <DependentUpon>201612222046346_fileinvoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

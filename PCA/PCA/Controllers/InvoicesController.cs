@@ -28,7 +28,7 @@ namespace PCA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoices.Include(s => s.Files).SingleOrDefault(s => s.InvoiceId == id);
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -49,10 +49,26 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,ProjectId,ContractorId,AIANumber,InvoiceNumber,AccountNumber,OrderNumber,TotalAmount,TermInDays,DateReceived,DateOfInvoice,Status")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "InvoiceId,ProjectId,ContractorId,AIANumber,InvoiceNumber,AccountNumber,OrderNumber,TotalAmount,TermInDays,DateReceived,DateOfInvoice,Status")] Invoice invoice, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                if (upload !=null && upload.ContentLength > 0)
+                {
+                    var invoiceUpload = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.InvoiceImage,
+                        ContentType = upload.ContentType
+                    };
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        invoiceUpload.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    invoice.Files = new List<File> { invoiceUpload };
+
+                }
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");

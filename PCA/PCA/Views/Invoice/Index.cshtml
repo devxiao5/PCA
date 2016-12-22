@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section sideNavInvoices
+{
+    sideNavItemSelected
+}
+
+
+<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
+<span class="dropdown">
+    <button class="btn btn-success" type="button">
+        Create New Invoice
+    </button>
+</span>
+<br />
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Invoices</h4>
+    </div>
+    <div class="panel-body">
+        Invoices GO HERE
+        
+    </div>
+</div>
