@@ -1,0 +1,81 @@
+﻿@model PCA.Models.Contract
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clients.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clients.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorAccount.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorAccount.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerAccount.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerAccount.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerSignDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerSignDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorSignDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorSignDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

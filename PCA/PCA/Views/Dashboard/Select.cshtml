@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PCA.Models.Project>
+
+@{
+    ViewBag.Title = "Select";
+    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+}
+
+<h2>Index</h2>
+
+@foreach (var project in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">[@project.ProjectId] @project.Name</div>
+        <div class="panel-body"><a href="/Dashboard/Index/@project.ProjectId">[Project Information Here]</a></div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-heading">Admin</div>
+    <div class="panel-body"><a href="/Contractors/">Admin Links Here</a></div>
+
+</div>

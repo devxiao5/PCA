@@ -213,9 +213,16 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AssignmentsController.cs" />
+    <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\BudgetsController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\ContractController.cs" />
+    <Compile Include="Controllers\ContractCostPhasesController.cs" />
+    <Compile Include="Controllers\ContractExhibitsController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
+    <Compile Include="Controllers\ContractorTypesController.cs" />
+    <Compile Include="Controllers\ContractorTypeUnionsController.cs" />
+    <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -242,13 +249,22 @@
     <Compile Include="Migrations\201612202023352_abunchofstufffiexed.Designer.cs">
       <DependentUpon>201612202023352_abunchofstufffiexed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612221711152_12-22initial.cs" />
+    <Compile Include="Migrations\201612221711152_12-22initial.Designer.cs">
+      <DependentUpon>201612221711152_12-22initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\ContractCostPhase.cs" />
+    <Compile Include="Models\ContractExhibit.cs" />
     <Compile Include="Models\Contractor.cs" />
+    <Compile Include="Models\ContractorType.cs" />
+    <Compile Include="Models\ContractorTypeUnion.cs" />
     <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -260,10 +276,13 @@
     <Compile Include="Models\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BudgetPhaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Budget.css" />
+    <Content Include="Content\Layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -285,6 +304,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Layout.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -372,6 +392,34 @@
     <Content Include="Views\WorkItems\Details.cshtml" />
     <Content Include="Views\WorkItems\Edit.cshtml" />
     <Content Include="Views\WorkItems\Index.cshtml" />
+    <Content Include="Views\Dashboard\Select.cshtml" />
+    <Content Include="Views\Contract\Index.cshtml" />
+    <Content Include="Views\ContractorTypes\Create.cshtml" />
+    <Content Include="Views\ContractorTypes\Delete.cshtml" />
+    <Content Include="Views\ContractorTypes\Details.cshtml" />
+    <Content Include="Views\ContractorTypes\Edit.cshtml" />
+    <Content Include="Views\ContractorTypes\Index.cshtml" />
+    <Content Include="Views\ContractorTypeUnions\Create.cshtml" />
+    <Content Include="Views\ContractorTypeUnions\Delete.cshtml" />
+    <Content Include="Views\ContractorTypeUnions\Details.cshtml" />
+    <Content Include="Views\ContractorTypeUnions\Edit.cshtml" />
+    <Content Include="Views\ContractorTypeUnions\Index.cshtml" />
+    <Content Include="Views\Contracts\Create.cshtml" />
+    <Content Include="Views\Contracts\Delete.cshtml" />
+    <Content Include="Views\Contracts\Details.cshtml" />
+    <Content Include="Views\Contracts\Edit.cshtml" />
+    <Content Include="Views\Contracts\Index.cshtml" />
+    <Content Include="Views\ContractCostPhases\Create.cshtml" />
+    <Content Include="Views\ContractCostPhases\Delete.cshtml" />
+    <Content Include="Views\ContractCostPhases\Details.cshtml" />
+    <Content Include="Views\ContractCostPhases\Edit.cshtml" />
+    <Content Include="Views\ContractCostPhases\Index.cshtml" />
+    <Content Include="Views\ContractExhibits\Create.cshtml" />
+    <Content Include="Views\ContractExhibits\Delete.cshtml" />
+    <Content Include="Views\ContractExhibits\Details.cshtml" />
+    <Content Include="Views\ContractExhibits\Edit.cshtml" />
+    <Content Include="Views\ContractExhibits\Index.cshtml" />
+    <Content Include="Views\Budget\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -398,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612202023352_abunchofstufffiexed.resx">
       <DependentUpon>201612202023352_abunchofstufffiexed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612221711152_12-22initial.resx">
+      <DependentUpon>201612221711152_12-22initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

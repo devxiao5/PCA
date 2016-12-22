@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PCA.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Clients.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractorAccount.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerAccount.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerSignDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContractorSignDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clients.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractorAccount.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerAccount.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Projects.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerSignDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContractorSignDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ContractId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ContractId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ContractId })
+        </td>
+    </tr>
+}
+
+</table>

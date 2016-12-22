@@ -30,7 +30,7 @@ namespace PCA.Controllers
                 {
                     Session["UserId"] = user.AccountId.ToString();
                     Session["Username"] = user.Username.ToString();
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Select", "Dashboard");
                 }
                 else
                 {

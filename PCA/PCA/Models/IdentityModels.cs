@@ -33,7 +33,12 @@ namespace PCA.Models
         public virtual DbSet<Assignment> Assignments { get; set; }
         public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<ContractCostPhase> ContractCostPhases { get; set; }
+        public virtual DbSet<ContractExhibit> ContractExhibits { get; set; }
         public virtual DbSet<Contractor> Contractors { get; set; }
+        public virtual DbSet<ContractorType> ContractorType { get; set; }
+        public virtual DbSet<ContractorTypeUnion> ContractorTypeUnions { get; set; }
         public virtual DbSet<DailyReport> DailyReport { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Phase> Phases { get; set; }

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section sideNavContracts
+{
+    sideNavItemSelected
+}
+
+
+<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
+<span class="dropdown">
+    <button class="btn btn-success dropdown-toggle" type="button" id="reportDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Create New Contract...
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="reportDropDown">
+        <li class="dropdown-header">Primary Contracts</li>
+        <li><a href="/Contract/General" target="_blank">General Conditions</a></li>
+        <li><a href="#">Materials Purchase Order</a></li>
+        <li><a href="#">Budget Change Order</a></li>
+        <li class="dropdown-header">Sub Contracts</li>
+        <li><a href="#">Modification of Contract</a></li>
+        <li><a href="#">Change Order</a></li>
+        @*<li role="separator" class="divider"></li>*@
+
+    </ul>
+</span>
+<br />
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Contracts</h4>
+    </div>
+    <div class="panel-body">
+        CONTRACTS GO HERE
+        
+    </div>
+</div>

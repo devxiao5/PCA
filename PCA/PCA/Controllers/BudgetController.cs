@@ -1,0 +1,237 @@
+﻿/* Title: Budget Contoller
+ * Description: Manages budget information for selected project
+ * Location: /Budget/
+*/
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Web;
+using System.Web.Mvc;
+using PCA.Models;
+using PCA.ViewModels;
+
+namespace PCA.Controllers
+{
+    public class BudgetController : Controller
+    {
+        // Database instance object
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        /* Title: Budget Index
+         * Description: Collection of all phases and budget for each phase for project
+         * Location: /Budget/Index
+        */
+        public ActionResult Index()
+        {
+            // Navbar Dependencies
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+
+            // Creates collection of viewmodel
+            List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
+
+            // Declarations
+            int currentProjectNumber = ViewBag.CurrentProjectNumber;
+            double budgetSummaryTotal = 0;
+            double runningTotal = 0;
+            int runningPhaseId;
+            string runningPhaseName;
+            string runningPhaseNumber;
+
+            // Pulls information from database
+            List<Phase> phases = new List<Phase>(db.Phases);
+            List<Budget> budgets = new List<Budget>(from budget in db.Budgets
+                                                    where budget.ProjectId == currentProjectNumber
+                                                    select budget);
+
+            // Calculates total budget for each phase
+            foreach (var phase in phases)
+            {
+                runningPhaseId = phase.PhaseId;
+                runningPhaseName = phase.Name;
+                runningPhaseNumber = phase.Number;
+
+                foreach (var budget in budgets)
+                {
+                    if (phase.PhaseId == budget.PhaseId)
+                    {
+                        runningTotal += budget.TotalCost;
+                        budgetSummaryTotal += budget.TotalCost;
+                    }
+                }
+                viewModel.Add(new BudgetPhaseViewModel(runningPhaseId, runningPhaseName, runningPhaseNumber, runningTotal));
+                runningTotal = 0;
+            }
+
+            // Budget Summary - Toal Budgeted
+            ViewBag.BudgetSummaryTotal = budgetSummaryTotal;
+
+            return View(viewModel);
+        }
+
+
+        /* Title: Budget Create
+         * Description: Creates new budget item. Can be used from within the index controller or within phase detail
+         * Location: /Budget/Create
+        */
+        public ActionResult Create()
+        {
+            // Navbar Dependencies
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+
+            // Gets lists of options for dropdown boxes
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Name");
+
+            return View();
+        }
+
+
+        /* Title: Budget Create POST
+         * Description: Posts submitted information from the budget create controller
+         * Location: /Budget/Create
+        */
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "BudgetId,Description,ProjectId,PhaseId," +
+                                                   "Quantity,Unit,Cost,TotalCost,Status")] Budget budget)
+        {
+            // Current project / Navbar dependencies
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+
+            // Validate input then add to database
+            if (ModelState.IsValid)
+            {
+                db.Budgets.Add(budget);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // Gets lists of options for dropdown boxes
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Name");
+            return View(budget);
+        }
+
+
+        /* Title: Budget Edit
+         * Description: Loads current budget item information for user to edit
+         * Location: /Budget/Edit/1
+        */
+        public ActionResult Edit(int? id)
+        {
+            // Access current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
+
+            // Verify id given by user
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Pulls budget item from database
+            Budget budget = db.Budgets.Find(id);
+
+            // Checks it budget item exists
+            if (budget == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Gets lists of options for dropdown boxes
+            ViewBag.BudgetId = new SelectList(db.Budgets, "BudgetId", "Description", budget.BudgetId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", budget.ProjectId);
+            return View(budget);
+        }
+
+
+        /* Title: Budget Edit POST
+         * Description: POSTS updated information to database
+         * Location: /Budget/Edit/1
+        */
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "BudgetId,Description,ProjectId,PhaseId,Quantity,Unit,Cost,TotalCost,Status")] Budget budget)
+        {
+            // Access current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
+
+            // Gets current phase to return user to correct phase page
+            int returnPhase = budget.PhaseId;
+
+            // Checks if edited information is valid & saves to database
+            if (ModelState.IsValid)
+            {
+                db.Entry(budget).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Phase", "Budget", new { id = returnPhase });
+            }
+            return View();
+        }
+
+
+        /* Title: Budget Phase
+         * Description: Displays detailed budget information about a specific phase
+         * Location: /Budget/Phase/15
+        */
+        public ActionResult Phase(int id)
+        {
+            // Access current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
+            int currentProjectNumber = int.Parse(ViewBag.CurrentProjectNumber);
+
+            // Pulls information from database
+            var budgets = new List<Budget>(db.Budgets.Where(i => i.ProjectId == currentProjectNumber));
+            var budgetss = from budget in db.Budgets
+                           where budget.ProjectId == currentProjectNumber
+                           where budget.PhaseId == id
+                           select budget;
+
+            // Checks if objects exists
+            if (budgets.Count == 0)
+            {
+                return HttpNotFound();
+            }
+
+            // ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Name", budget.);
+            // ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", budget.ProjectId);
+
+            var currentPhase = from phase in db.Phases
+                               where phase.PhaseId == id
+                               select phase;
+
+            foreach (var item in currentPhase)
+            {
+                var currentPhaseNumber = item.Number;
+                var currentPhaseName = item.Name;
+                ViewBag.currentPhase = currentPhaseNumber + " - " + currentPhaseName;
+            }
+
+            ViewBag.Budgets = budgetss;
+            return View(budgets);
+        }
+    }
+}

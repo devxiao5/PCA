@@ -1,0 +1,48 @@
+﻿#sideNav{
+    background-color: #2B3643;
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 25px;
+
+}
+
+#content {
+    margin-left: 15%;
+    padding-top: 25px;
+}
+
+.sideNavItem {
+    padding-top: 5px;
+    height: 40px;
+    text-align: right;
+    font-size: 1.4em;
+}
+
+.sideNavItem:hover {
+    background-color:#696969;
+}
+
+.sideNavItem a {
+    padding: 25px;
+    color: #eee;
+    text-decoration: none;
+}
+
+.sideNavItemSelected {
+    background-color: #6F86A2;
+}
+
+body {
+    background-image: url('Images/squared_metal_@2X.png');
+    background-repeat: repeat;
+}
+
+img {
+    max-width: 100%;
+}
+
+.dashboardpanel {
+    height: 300px;
+}
