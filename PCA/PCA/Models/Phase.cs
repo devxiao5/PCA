@@ -10,7 +10,11 @@ namespace PCA.Models
     {
         [Key]
         public int PhaseId { get; set; }
+
+        [StringLength(255)]
         public string Number { get; set; }
+
+        [StringLength(255)]
         public string Name { get; set; }
         public bool IsMarkup { get; set; }
 

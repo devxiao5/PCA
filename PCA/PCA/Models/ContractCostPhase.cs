@@ -11,12 +11,20 @@ namespace PCA.Models
     {
         [Key]
         public int ContractCostPhaseId { get; set; }
+
         public int ContractId { get; set; }
+
         public int PhaseId { get; set; }
+
         public int SubPhaseId { get; set; }
+
         public double Amount { get; set; }
+
+        [StringLength(255)]
         public string Description { get; set; }
-        public string DepreceatonPhase { get; set; }
+
+        [StringLength(255)]
+        public string DepreciationPhase { get; set; }
 
         [ForeignKey("ContractId")]
         public virtual Contract Contracts { get; set; }

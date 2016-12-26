@@ -21,5 +21,17 @@ namespace PCA.Controllers
 
             return View();
         }
+
+        public ActionResult GeneralCondition()
+        {
+            return View();
+
+        }
+
+        public ActionResult MaterialPurchaseOrder()
+        {
+            return View();
+
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<PCA.Models.DailyReport>
+@{
+    ViewBag.Title = "Index";
+}
+@section sideNavDailyReport
+{
+    sideNavItemSelected
+}
+
+<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
+<a href="/DailyReport/Create" class="btn btn-success">Create Daily Report</a>
+<br />
+<hr />
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Select Daily Report:</h4>
+    </div>
+    <div class="panel-body">
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var report in Model)
+                {
+                    <tr>
+                        <td>@report.Date</td>
+                        <td><a href="\DailyReport\Detail\@report.DailyReportId">@report.Summary</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

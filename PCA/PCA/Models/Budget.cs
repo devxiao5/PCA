@@ -11,15 +11,29 @@ namespace PCA.Models
     {
         [Key]
         public int BudgetId { get; set; }
+
         public int ProjectId { get; set; }
+
         public int PhaseId { get; set; }
+
         public int SubPhaseId { get; set; }
+
+        [StringLength(255)]
         public string Type { get; set; }
+
+        [StringLength(1000)]
         public string Description { get; set; }
+
         public double Quantity { get; set; }
+
+        [StringLength(10)]
         public string Unit { get; set; }
+
         public double UnitCost { get; set; }
+
         public double TotalCost { get; set; }
+
+        [StringLength(255)]
         public string Status { get; set; }
 
         // Constraints / Relationships

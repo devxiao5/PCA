@@ -14,6 +14,8 @@ namespace PCA.Models
         public int ContractId { get; set; }
         public int Number { get; set; }
         public int SubNumber { get; set; }
+
+        [StringLength(1000)]
         public string Description { get; set; }
 
         [ForeignKey("ContractId")]

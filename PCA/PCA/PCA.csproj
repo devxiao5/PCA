@@ -223,6 +223,7 @@
     <Compile Include="Controllers\ContractorTypesController.cs" />
     <Compile Include="Controllers\ContractorTypeUnionsController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
+    <Compile Include="Controllers\DailyReportController.cs" />
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileController.cs" />
@@ -263,6 +264,14 @@
     <Compile Include="Migrations\201612222046346_fileinvoice.Designer.cs">
       <DependentUpon>201612222046346_fileinvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612231517215_accountlength.cs" />
+    <Compile Include="Migrations\201612231517215_accountlength.Designer.cs">
+      <DependentUpon>201612231517215_accountlength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612231532546_lengths.cs" />
+    <Compile Include="Migrations\201612231532546_lengths.Designer.cs">
+      <DependentUpon>201612231532546_lengths.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -294,6 +303,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Budget.css" />
+    <Content Include="Content\GC.css" />
+    <Content Include="Content\Images\Plann_LetterHead.png" />
     <Content Include="Content\Layout.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -434,6 +445,13 @@
     <Content Include="Views\Invoices\Details.cshtml" />
     <Content Include="Views\Invoices\Edit.cshtml" />
     <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Contract\GC.cfm" />
+    <Content Include="Views\Contract\GeneralCondition.cshtml" />
+    <Content Include="Views\Contract\MaterialPurchaseOrder.cshtml" />
+    <Content Include="Views\DailyReport\Index.cshtml" />
+    <Content Include="Views\DailyReport\Detail.cshtml" />
+    <Content Include="Views\DailyReport\CreateWork.cshtml" />
+    <Content Include="Views\DailyReport\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -470,6 +488,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612222046346_fileinvoice.resx">
       <DependentUpon>201612222046346_fileinvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612231517215_accountlength.resx">
+      <DependentUpon>201612231517215_accountlength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612231532546_lengths.resx">
+      <DependentUpon>201612231532546_lengths.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

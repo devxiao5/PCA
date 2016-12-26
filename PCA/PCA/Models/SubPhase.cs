@@ -10,6 +10,8 @@ namespace PCA.Models
     {
         [Key]
         public int SubPhaseId { get; set; }
+
+        [StringLength(255)]
         public string Name { get; set; }
     }
 }
