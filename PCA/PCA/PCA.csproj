@@ -233,6 +233,7 @@
     <Compile Include="Controllers\PhasesController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\StatesController.cs" />
     <Compile Include="Controllers\SubPhasesController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="Models\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BudgetDetailReportViewModel.cs" />
     <Compile Include="ViewModels\BudgetPhaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -452,6 +454,13 @@
     <Content Include="Views\DailyReport\Detail.cshtml" />
     <Content Include="Views\DailyReport\CreateWork.cshtml" />
     <Content Include="Views\DailyReport\Create.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Report\BudgetDetail.cshtml" />
+    <Content Include="Views\Budget\Create.cshtml" />
+    <Content Include="Views\Budget\Edit.cshtml" />
+    <Content Include="Views\Budget\New.cshtml" />
+    <Content Include="Views\Budget\Phase.cshtml" />
+    <Content Include="Views\Invoice\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

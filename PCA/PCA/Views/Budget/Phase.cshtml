@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PCA.Models.Budget>
+            
+@{
+    ViewBag.Title = "Edit";
+}
+@section sideNavBudgets
+{
+    sideNavItemSelected
+}
+
+<a href="/Budget/" class="btn btn-default">Back</a>
+<a href="/Budget/Create" class="btn btn-success">Create Budget Items</a>
+
+
+<br />
+<hr />
+
+<div class="panel panel-default">
+
+    <div class="panel-heading">@ViewBag.currentPhase</div>
+    <div class="panel-body">
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>QTY</th>
+                    <th>Unit</th>
+                    <th>Cost</th>
+                    <th>Total Cost</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var budget in @ViewBag.Budgets)
+            {
+                    <tr>
+                        <td>@budget.Description</td>
+                        <td>@budget.Quantity</td>
+                        <td>@budget.Unit</td>
+                        <td>@string.Format("{0:C}", @budget.UnitCost)</td>
+                        <td><a href="\Budget\Edit\@budget.BudgetId">@string.Format("{0:C}", @budget.TotalCost)</a></td>
+                        <td>@budget.Status</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

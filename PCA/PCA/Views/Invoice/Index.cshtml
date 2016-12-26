@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model IEnumerable<PCA.Models.Invoice>
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section sideNavInvoices
@@ -9,11 +10,7 @@
 
 
 <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<span class="dropdown">
-    <button class="btn btn-success" type="button">
-        Create New Invoice
-    </button>
-</span>
+<a href="/Invoice/Create" class="btn btn-success">Create Invoice</a>
 <br />
 <br />
 
@@ -22,7 +19,29 @@
         <h4>Invoices</h4>
     </div>
     <div class="panel-body">
-        Invoices GO HERE
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inv in Model)
+            {
+                    <tr>
+                        <td>@inv.InvoiceId</td>
+                        <td>@string.Format("{0:C}", @inv.TotalAmount)</td>
+                        <td>@inv.DateOfInvoice</td>
+                        <td>@inv.Status</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
         
     </div>
 </div>
