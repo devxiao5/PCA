@@ -19,7 +19,9 @@ namespace PCA.Models
         public string OrderNumber { get; set; }
         public double TotalAmount { get; set; }
         public int TermInDays { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateReceived { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfInvoice { get; set; }
         public string Status { get; set; }
         public virtual ICollection<File> Files { get; set; }

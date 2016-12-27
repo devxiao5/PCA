@@ -1,28 +1,62 @@
-﻿@{
+﻿@*@model IEnumerable<PCA.Models.Phase>*@
+@model IEnumerable<PCA.ViewModels.InvoiceViewModel>
+@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+    <link rel="stylesheet" href="~/Content/Budget.css" />
 }
 @section sideNavInvoices
 {
     sideNavItemSelected
 }
 
-
 <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<span class="dropdown">
-    <button class="btn btn-success" type="button">
-        Create New Invoice
-    </button>
-</span>
+<a href="/Budget/Create" class="btn btn-success">Create New Invoice</a>
+
 <br />
-<br />
+<hr />
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Invoices</h4>
+        <h4>Invoice Summary</h4>
     </div>
     <div class="panel-body">
-        Invoices GO HERE
-        
+        Total Budgeted: @string.Format("{0:C}", 1400)
+        <br />
+        Total Contracted: [ToDo]
     </div>
 </div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Select Phase:</h4>
+    </div>
+    <div class="panel-body">
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Contractor</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+            {
+                    <tr>
+                        <td>@m.InvoiceId</td>
+                        <td><a href="\Budget\Phase\@m.ContractorId">@m.ContractorName</a></td>
+                        <td>@string.Format("{0:C}", @m.InvoiceTotal)</td>
+                        <td>@m.InvoiceDate</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
