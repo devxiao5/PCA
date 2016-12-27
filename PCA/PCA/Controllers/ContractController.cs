@@ -32,8 +32,9 @@ namespace PCA.Controllers
             return View(contracts);
         }
 
-        public ActionResult GeneralCondition()
+        public ActionResult GeneralCondition(int? id)
         {
+
             return View();
 
         }
@@ -119,7 +120,7 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ContractId = new SelectList(db.Contracts, "ContractId", "Type", contractGeneralCondition.ContractId);
+            ViewBag.ContractId = new SelectList(db.Contracts, "ContractId", "ContractId", contractGeneralCondition.ContractId);
             return View(contractGeneralCondition);
         }
     }

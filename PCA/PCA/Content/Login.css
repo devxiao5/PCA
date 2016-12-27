@@ -1,0 +1,9 @@
+﻿body {
+    background-image: url('Images/loginbkrd.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+#login {
+    margin-top: 10%;
+}

@@ -326,11 +326,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapOG.css" />
+    <Content Include="Content\bootstrapOG.min.css" />
     <Content Include="Content\Budget.css" />
     <Content Include="Content\GC.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\loginbkrd.jpg" />
     <Content Include="Content\Images\Plann_LetterHead.png" />
     <Content Include="Content\Layout.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
