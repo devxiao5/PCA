@@ -11,6 +11,8 @@ namespace PCA.Models
     {
         [Key]
         public int ContractorTypeId { get; set; }
+
+        [StringLength(255)]
         public string Name { get; set; }
 
     }

@@ -1,0 +1,115 @@
+﻿@model PCA.Models.Invoice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        @*@if (Model.Files.Any(f => f.FileType == FileType.InvoiceImage))
+        {
+            <dt>
+                Image
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.InvoiceImage).FileId" alt="invoice" />
+            </dd>
+        }*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractors.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contractors.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AIANumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AIANumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TermInDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TermInDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReceived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReceived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfInvoice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfInvoice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

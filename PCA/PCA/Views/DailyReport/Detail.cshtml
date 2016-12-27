@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PCA.Models.WorkItem>
+@{
+    ViewBag.Title = "Index";
+}
+@section css {
+
+}
+@section sideNavDailyReport
+{
+    sideNavItemSelected
+}
+
+<a href="/DailyReport" class="btn btn-default">Back</a>
+<br />
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>Daily Report Detail</b></div>
+    <div class="panel-body">
+        <b>
+            Report Date:
+        </b>
+        <p>@ViewBag.currentReportDate</p>
+        <b>
+            Report Summary:
+        </b>
+        <p>@ViewBag.currentReportSummary</p>
+
+
+    </div>
+</div>
+
+
+<hr />
+<a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success">Create Work Performed Items</a>
+<br /><br />
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Select Work Performed Item:</b>
+    </div>
+    <div class="panel-body">
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Contractor</th>
+                    <th>Summary</th>
+                    <th>Performance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var work in Model)
+            {
+                    <tr>
+                        <td>@work.ContractorId</td>
+                        <td><a href="\Budget\Phase\@work.WorkItemId">@work.Summary</a></td>
+                        <td>@string.Format("{0:C}", @work.Performance)</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

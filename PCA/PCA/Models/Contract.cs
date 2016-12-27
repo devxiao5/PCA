@@ -11,12 +11,20 @@ namespace PCA.Models
     {
         [Key]
         public int ContractId { get; set; }
+
         public int ClientId { get; set; }
+
         public int ProjectId { get; set; }
+
         public int OwnerSigAccountId { get; set; }
+
         public int ContractorSigAccountId { get; set; }
+
+        [StringLength(255)]
         public string Type { get; set; }
+
         public DateTime OwnerSignDate { get; set; }
+
         public DateTime ContractorSignDate { get; set; }
 
         [ForeignKey("ClientId")]

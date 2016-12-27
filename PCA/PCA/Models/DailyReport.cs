@@ -12,8 +12,14 @@ namespace PCA.Models
         [Key]
         public int DailyReportId { get; set; }
         public int ProjectId { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        [StringLength(1000)]
         public string Summary { get; set; }
+
+        [StringLength(255)]
         public string Status { get; set; }
 
         // Constraint / Relationships

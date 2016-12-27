@@ -1,0 +1,24 @@
+﻿@model PCA.Models.Budget
+@{
+    ViewBag.Title = "New";
+}
+@section sideNavBudgets
+{
+    sideNavItemSelected
+}
+
+<h2>New Budget Item</h2>
+
+<form action="/Budget/Create" class="form-inline">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description)
+        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Quantity)
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+
+    </div>
+</form>
+

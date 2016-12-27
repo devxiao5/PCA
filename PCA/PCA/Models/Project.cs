@@ -12,14 +12,26 @@ namespace PCA.Models
         [Key]
         [Required]
         public int ProjectId { get; set; }
+
         [Required]
         public int ClientId { get; set; }
+
         [Required]
+        [StringLength(255)]
         public string Name { get; set; }
+
+        [StringLength(255)]
         public string Class { get; set; }
+
+        [StringLength(255)]
         public string Address { get; set; }
+
+        [StringLength(255)]
         public string City { get; set; }
+
         public int StateId { get; set; }
+
+        [StringLength(255)]
         public string Zip { get; set; }
         public int TotalSquareFoot { get; set; }
 
@@ -33,6 +45,8 @@ namespace PCA.Models
         // End Billing
 
         public int PaymentDueDay { get; set; }
+
+        [StringLength(1000)]
         public string Notes { get; set; }
 
 

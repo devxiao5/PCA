@@ -13,6 +13,7 @@ namespace PCA.Models
         [Required]
         public int PositionId { get; set; }
         [Required]
+        [StringLength(255)]
         public string Name { get; set; }
 
     }

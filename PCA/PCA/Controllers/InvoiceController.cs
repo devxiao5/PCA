@@ -1,15 +1,9 @@
-﻿/* Title: Invoice Contoller
- * Description: Manages invoice information for selected project
- * Location: /Invoice/
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
-using PCA.ViewModels;
 
 namespace PCA.Controllers
 {
@@ -20,41 +14,84 @@ namespace PCA.Controllers
         // GET: Invoice
         public ActionResult Index()
         {
-            // Navbar dependencies
+            //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
             ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-
-            // Creates collection of viewmodel
-            List<InvoiceViewModel> viewModel = new List<InvoiceViewModel>();
-
+            //---------------------------
             // Declarations
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
-            // Pulls information from database
-            List<Phase> phases = new List<Phase>(db.Phases);
-            var invoices = from invoice in db.Invoices
-                           join c in db.Contractors on invoice.ContractorId equals c.ContractorId
-                           where invoice.ProjectId.Equals(currentProjectNumber)
-                           select new
-                           {
-                                invoice.InvoiceId, invoice.ContractorId, c.Name, invoice.TotalAmount, invoice.DateOfInvoice
-                           };
+            List<Invoice> invoices = new List<Invoice>(from invoice in db.Invoices
+                                                       where invoice.ProjectId == currentProjectNumber
+                                                       select invoice);
 
 
-            foreach (var invoice in invoices)
-            {
-                string datestring = invoice.DateOfInvoice.ToString("MM/dd/yyyy");
-                viewModel.Add(new InvoiceViewModel(invoice.InvoiceId, invoice.ContractorId, invoice.Name, invoice.TotalAmount, datestring));
-            }
-
-
-            return View(viewModel);
+            return View(invoices);
         }
 
+        // GET: Invoices/Create
         public ActionResult Create()
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            return View();
+        }
+
+        // POST: Invoices/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "InvoiceId,ProjectId,ContractorId,AIANumber,InvoiceNumber,AccountNumber,OrderNumber,TotalAmount,TermInDays,DateReceived,DateOfInvoice,Status")] Invoice invoice, HttpPostedFileBase upload)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            if (ModelState.IsValid)
+            {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var invoiceUpload = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.InvoiceImage,
+                        ContentType = upload.ContentType
+                    };
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        invoiceUpload.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    invoice.Files = new List<File> { invoiceUpload };
+
+                }
+                db.Invoices.Add(invoice);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", invoice.ContractorId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", invoice.ProjectId);
+            return View(invoice);
+        }
+
+        /*public ActionResult Create()
         {
             //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -85,7 +122,11 @@ namespace PCA.Controllers
 
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             return View();
-        }
+        }*/
+
+
+
+
     }
 
 

@@ -12,14 +12,16 @@ namespace PCA.ViewModels
         public string ContractorName { get; set; }
         public double InvoiceTotal { get; set; }
         public string InvoiceDate { get; set; }
+        public string InvoiceStatus { get; set; }
 
-        public InvoiceViewModel(int invid, int contid, string cname, double total, string date)
+        public InvoiceViewModel(int invid, int contid, string cname, double total, string date, string status)
         {
             this.InvoiceId = invid;
             this.ContractorId = contid;
             this.ContractorName = cname;
             this.InvoiceTotal = total;
             this.InvoiceDate = date;
+            this.InvoiceStatus = status;
         }
     }
 }

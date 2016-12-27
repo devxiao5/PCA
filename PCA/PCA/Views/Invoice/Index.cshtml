@@ -1,62 +1,47 @@
-﻿@*@model IEnumerable<PCA.Models.Phase>*@
-@model IEnumerable<PCA.ViewModels.InvoiceViewModel>
+﻿@model IEnumerable<PCA.Models.Invoice>
+
 @{
-    ViewBag.Title = "Index";
-}
-@section css {
-    <link rel="stylesheet" href="~/Content/Budget.css" />
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section sideNavInvoices
 {
     sideNavItemSelected
 }
 
+
 <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<a href="/Budget/Create" class="btn btn-success">Create New Invoice</a>
-
+<a href="/Invoice/Create" class="btn btn-success">Create Invoice</a>
 <br />
-<hr />
+<br />
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Invoice Summary</h4>
-    </div>
-    <div class="panel-body">
-        Total Budgeted: @string.Format("{0:C}", 1400)
-        <br />
-        Total Contracted: [ToDo]
-    </div>
-</div>
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4>Select Phase:</h4>
+        <h4>Invoices</h4>
     </div>
     <div class="panel-body">
         <table id="table_id" class="display">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Contractor</th>
-                    <th>Amount</th>
+                    <th>Total</th>
                     <th>Date</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var m in Model)
+                @foreach (var inv in Model)
             {
                     <tr>
-                        <td>@m.InvoiceId</td>
-                        <td><a href="\Budget\Phase\@m.ContractorId">@m.ContractorName</a></td>
-                        <td>@string.Format("{0:C}", @m.InvoiceTotal)</td>
-                        <td>@m.InvoiceDate</td>
+                        <td>@inv.InvoiceId</td>
+                        <td>@string.Format("{0:C}", @inv.TotalAmount)</td>
+                        <td>@inv.DateOfInvoice</td>
+                        <td>@inv.Status</td>
                     </tr>
                 }
 
 
             </tbody>
         </table>
+        
     </div>
 </div>
-
