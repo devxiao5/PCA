@@ -51,7 +51,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContractId,ClientId,ProjectId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate")] Contract contract)
+        public ActionResult Create([Bind(Include = "ContractId,ProjectId,ClientId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate,TotalAmount,TotalAmountLiteral")] Contract contract)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContractId,ClientId,ProjectId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate")] Contract contract)
+        public ActionResult Edit([Bind(Include = "ContractId,ProjectId,ClientId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate,TotalAmount,TotalAmountLiteral")] Contract contract)
         {
             if (ModelState.IsValid)
             {

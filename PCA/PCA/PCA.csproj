@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\ContractCostPhasesController.cs" />
     <Compile Include="Controllers\ContractExhibitsController.cs" />
+    <Compile Include="Controllers\ContractGeneralConditionsController.cs" />
     <Compile Include="Controllers\ContractorsController.cs" />
     <Compile Include="Controllers\ContractorTypesController.cs" />
     <Compile Include="Controllers\ContractorTypeUnionsController.cs" />
@@ -273,6 +274,26 @@
     <Compile Include="Migrations\201612231532546_lengths.Designer.cs">
       <DependentUpon>201612231532546_lengths.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612271636273_displaynameinvoice.cs" />
+    <Compile Include="Migrations\201612271636273_displaynameinvoice.Designer.cs">
+      <DependentUpon>201612271636273_displaynameinvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271738208_contractstuff.cs" />
+    <Compile Include="Migrations\201612271738208_contractstuff.Designer.cs">
+      <DependentUpon>201612271738208_contractstuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271759227_contractrequired.cs" />
+    <Compile Include="Migrations\201612271759227_contractrequired.Designer.cs">
+      <DependentUpon>201612271759227_contractrequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271900298_contractorcontract.cs" />
+    <Compile Include="Migrations\201612271900298_contractorcontract.Designer.cs">
+      <DependentUpon>201612271900298_contractorcontract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612271931508_12-27test.cs" />
+    <Compile Include="Migrations\201612271931508_12-27test.Designer.cs">
+      <DependentUpon>201612271931508_12-27test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -282,6 +303,7 @@
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\ContractCostPhase.cs" />
     <Compile Include="Models\ContractExhibit.cs" />
+    <Compile Include="Models\ContractGeneralCondition.cs" />
     <Compile Include="Models\Contractor.cs" />
     <Compile Include="Models\ContractorType.cs" />
     <Compile Include="Models\ContractorTypeUnion.cs" />
@@ -426,11 +448,6 @@
     <Content Include="Views\ContractorTypeUnions\Details.cshtml" />
     <Content Include="Views\ContractorTypeUnions\Edit.cshtml" />
     <Content Include="Views\ContractorTypeUnions\Index.cshtml" />
-    <Content Include="Views\Contracts\Create.cshtml" />
-    <Content Include="Views\Contracts\Delete.cshtml" />
-    <Content Include="Views\Contracts\Details.cshtml" />
-    <Content Include="Views\Contracts\Edit.cshtml" />
-    <Content Include="Views\Contracts\Index.cshtml" />
     <Content Include="Views\ContractCostPhases\Create.cshtml" />
     <Content Include="Views\ContractCostPhases\Delete.cshtml" />
     <Content Include="Views\ContractCostPhases\Details.cshtml" />
@@ -466,6 +483,19 @@
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Invoice\ViewAttachment.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Invoice\Delete.cshtml" />
+    <Content Include="Views\Contracts\Create.cshtml" />
+    <Content Include="Views\Contracts\Delete.cshtml" />
+    <Content Include="Views\Contracts\Details.cshtml" />
+    <Content Include="Views\Contracts\Edit.cshtml" />
+    <Content Include="Views\Contracts\Index.cshtml" />
+    <Content Include="Views\Contract\Create.cshtml" />
+    <Content Include="Views\ContractGeneralConditions\Create.cshtml" />
+    <Content Include="Views\ContractGeneralConditions\Delete.cshtml" />
+    <Content Include="Views\ContractGeneralConditions\Details.cshtml" />
+    <Content Include="Views\ContractGeneralConditions\Edit.cshtml" />
+    <Content Include="Views\ContractGeneralConditions\Index.cshtml" />
+    <Content Include="Views\Contract\CreateGC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -508,6 +538,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612231532546_lengths.resx">
       <DependentUpon>201612231532546_lengths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271636273_displaynameinvoice.resx">
+      <DependentUpon>201612271636273_displaynameinvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271738208_contractstuff.resx">
+      <DependentUpon>201612271738208_contractstuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271759227_contractrequired.resx">
+      <DependentUpon>201612271759227_contractrequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271900298_contractorcontract.resx">
+      <DependentUpon>201612271900298_contractorcontract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612271931508_12-27test.resx">
+      <DependentUpon>201612271931508_12-27test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

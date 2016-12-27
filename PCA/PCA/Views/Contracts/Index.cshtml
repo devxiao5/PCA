@@ -33,6 +33,12 @@
         <th>
             @Html.DisplayNameFor(model => model.ContractorSignDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmountLiteral)
+        </th>
         <th></th>
     </tr>
 
@@ -58,6 +64,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ContractorSignDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmountLiteral)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ContractId }) |

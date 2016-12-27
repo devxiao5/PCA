@@ -12,7 +12,7 @@
 <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
 <a href="/Invoice/Create" class="btn btn-success">Create Invoice</a>
 <br />
-<br />
+<hr />
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -26,6 +26,7 @@
                     <th>Total</th>
                     <th>Date</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +37,14 @@
                         <td>@string.Format("{0:C}", @inv.TotalAmount)</td>
                         <td>@inv.DateOfInvoice</td>
                         <td>@inv.Status</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/Invoice/Details/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="/Invoice/Edit/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/Invoice/Delete/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/Invoice/ViewAttachment/@inv.InvoiceId" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            </div>
+                        </td>
                     </tr>
                 }
 

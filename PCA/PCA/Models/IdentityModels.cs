@@ -49,6 +49,6 @@ namespace PCA.Models
         public virtual DbSet<SubPhase> SubPhases { get; set; }
         public virtual DbSet<WorkItem> WorkItems { get; set; }
 
-
+        public System.Data.Entity.DbSet<PCA.Models.ContractGeneralCondition> ContractGeneralConditions { get; set; }
     } 
 }

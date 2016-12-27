@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PCA.Models.ContractGeneralCondition>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Contracts.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScopeOfWork)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommencementDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkingDays)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contracts.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScopeOfWork)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommencementDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkingDays)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ContractGeneralConditionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ContractGeneralConditionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ContractGeneralConditionId })
+        </td>
+    </tr>
+}
+
+</table>

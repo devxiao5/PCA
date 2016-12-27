@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
+using System.Net;
+using System.Data.Entity;
 
 namespace PCA.Controllers
 {
@@ -90,6 +92,97 @@ namespace PCA.Controllers
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", invoice.ProjectId);
             return View(invoice);
         }
+
+        public ActionResult ViewAttachment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoice = db.Invoices.Include(s => s.Files).SingleOrDefault(s => s.InvoiceId == id);
+            if (invoice == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoice);
+        }
+
+        // GET: Invoices/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoice = db.Invoices.Include(s => s.Files).SingleOrDefault(s => s.InvoiceId == id);
+            if (invoice == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoice);
+        }
+
+        // GET: Invoices/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoice = db.Invoices.Find(id);
+            if (invoice == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", invoice.ContractorId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", invoice.ProjectId);
+            return View(invoice);
+        }
+
+        // POST: Invoices/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "InvoiceId,ProjectId,ContractorId,AIANumber,InvoiceNumber,AccountNumber,OrderNumber,TotalAmount,TermInDays,DateReceived,DateOfInvoice,Status")] Invoice invoice)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(invoice).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", invoice.ContractorId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", invoice.ProjectId);
+            return View(invoice);
+        }
+
+        // GET: Invoices/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoice = db.Invoices.Find(id);
+            if (invoice == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoice);
+        }
+
+        // POST: Invoices/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Invoice invoice = db.Invoices.Find(id);
+            db.Invoices.Remove(invoice);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         /*public ActionResult Create()
         {

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<PCA.Models.Contract>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,7 +17,7 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="reportDropDown">
         <li class="dropdown-header">Primary Contracts</li>
-        <li><a href="/Contract/GeneralConditionReport" target="_blank">General Conditions</a></li>
+        <li><a href="/Contract/Create" target="_blank">General Conditions</a></li>
         <li><a href="#">Materials Purchase Order</a></li>
         <li><a href="#">Budget Change Order</a></li>
         <li class="dropdown-header">Sub Contracts</li>
@@ -27,14 +28,46 @@
     </ul>
 </span>
 <br />
-<br />
+<hr />
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>Contracts</h4>
     </div>
     <div class="panel-body">
-        CONTRACTS GO HERE
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Contractor</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contract in Model)
+            {
+                    <tr>
+                        <td>@contract.ContractId</td>
+                        <td>@contract.ContractorId</td>
+                        <td>@contract.Type</td>
+                        <td>@string.Format("{0:C}", @contract.TotalAmount)</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/Invoice/Details/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="/Invoice/Edit/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/Invoice/Delete/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/Invoice/ViewAttachment/@contract.ContractId" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
         
     </div>
 </div>
