@@ -91,7 +91,13 @@ namespace PCA.Controllers
 
             // Gets lists of options for dropdown boxes
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
-            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Name");
+            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Number");
+            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "Name");
+            ViewBag.Type = new SelectList(Enum.GetValues(typeof(DepreciationType)).Cast<DepreciationType>().Select(t => new SelectListItem
+            {
+                Text = t.ToString(),
+                Value = t.ToString()
+            }).ToList(), "Value", "Text");
 
             return View();
         }
@@ -103,8 +109,8 @@ namespace PCA.Controllers
         */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BudgetId,Description,ProjectId,PhaseId," +
-                                                   "Quantity,Unit,Cost,TotalCost,Status")] Budget budget)
+        public ActionResult Create([Bind(Include = "BudgetId,Description,ProjectId,PhaseId,SubPhaseId," +
+                                                   "Type,Quantity,Unit,Cost,TotalCost,Status")] Budget budget)
         {
             // Current project / Navbar dependencies
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -123,7 +129,13 @@ namespace PCA.Controllers
 
             // Gets lists of options for dropdown boxes
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
-            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Name");
+            ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Number");
+            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "Name");
+            ViewBag.Type = new SelectList(Enum.GetValues(typeof(DepreciationType)).Cast<DepreciationType>().Select(t => new SelectListItem
+            {
+                Text = t.ToString(),
+                Value = t.ToString()
+            }).ToList(), "Value", "Text");
             return View(budget);
         }
 

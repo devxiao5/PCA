@@ -13,7 +13,6 @@
 
 <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
 <a href="/Budget/Create" class="btn btn-success">Create Budget Items</a>
-<a href="/Budget/Create" class="btn btn-primary">View Budget Item History</a>
 
 <br />
 <hr />
@@ -25,7 +24,6 @@
     <div class="panel-body">
         Total Budgeted: @string.Format("{0:C}", @ViewBag.BudgetSummaryTotal)
         <br />
-        Total Contracted: [ToDo]
     </div>
 </div>
 
@@ -41,7 +39,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Total Budget</th>
-                    <th>Total Contracted</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,9 +47,13 @@
             {
                     <tr>
                         <td>@phase.PhaseNumber</td>
-                        <td><a href="\Budget\Phase\@phase.PhaseId">@phase.PhaseName</a></td>
+                        <td>@phase.PhaseName</td>
                         <td>@string.Format("{0:C}", @phase.TotalCost)</td>
-                        <td>[Todo]</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/Budget/Phase/@phase.PhaseId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            </div>
+                        </td>
                     </tr>
                 }
 

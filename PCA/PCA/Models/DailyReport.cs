@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace PCA.Models
 {
@@ -13,6 +14,7 @@ namespace PCA.Models
         public int DailyReportId { get; set; }
         public int ProjectId { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -25,5 +27,6 @@ namespace PCA.Models
         // Constraint / Relationships
         [ForeignKey("ProjectId")]
         public virtual Project Projects { get; set; }
+        public virtual ICollection<WorkItem> WorkItems { get; set; }
     }
 }

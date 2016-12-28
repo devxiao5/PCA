@@ -228,7 +228,6 @@
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileController.cs" />
-    <Compile Include="Controllers\FileSignatureController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
@@ -303,6 +302,14 @@
     <Compile Include="Migrations\201612272344370_fixfilesig.Designer.cs">
       <DependentUpon>201612272344370_fixfilesig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612281606066_12-28-fix-images-atempt1.cs" />
+    <Compile Include="Migrations\201612281606066_12-28-fix-images-atempt1.Designer.cs">
+      <DependentUpon>201612281606066_12-28-fix-images-atempt1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612281730287_nullablefkworkitems.cs" />
+    <Compile Include="Migrations\201612281730287_nullablefkworkitems.Designer.cs">
+      <DependentUpon>201612281730287_nullablefkworkitems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -317,10 +324,9 @@
     <Compile Include="Models\ContractorType.cs" />
     <Compile Include="Models\ContractorTypeUnion.cs" />
     <Compile Include="Models\DailyReport.cs" />
+    <Compile Include="Models\DepreciationType.cs" />
     <Compile Include="Models\File.cs" />
-    <Compile Include="Models\FileSignature.cs" />
     <Compile Include="Models\FileType.cs" />
-    <Compile Include="Models\FileTypeSignature.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Phase.cs" />
@@ -511,6 +517,9 @@
     <Content Include="Views\ContractGeneralConditions\Edit.cshtml" />
     <Content Include="Views\ContractGeneralConditions\Index.cshtml" />
     <Content Include="Views\Contract\CreateGC.cshtml" />
+    <Content Include="Views\Contract\Details.cshtml" />
+    <Content Include="Views\DailyReport\Delete.cshtml" />
+    <Content Include="Views\DailyReport\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -575,6 +584,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612272344370_fixfilesig.resx">
       <DependentUpon>201612272344370_fixfilesig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612281606066_12-28-fix-images-atempt1.resx">
+      <DependentUpon>201612281606066_12-28-fix-images-atempt1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612281730287_nullablefkworkitems.resx">
+      <DependentUpon>201612281730287_nullablefkworkitems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

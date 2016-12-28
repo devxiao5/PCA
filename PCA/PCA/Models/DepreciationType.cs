@@ -5,8 +5,11 @@ using System.Web;
 
 namespace PCA.Models
 {
-    public enum FileTypeSignature
+    public enum DepreciationType
     {
-        Signature = 1, Photo
+        Site = 1,
+        Building = 2,
+        Labor = 3,
+        Misc = 4
     }
 }

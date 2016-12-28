@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
+using System.Net;
 
 namespace PCA.Controllers
 {
@@ -122,6 +123,29 @@ namespace PCA.Controllers
 
             ViewBag.ContractId = new SelectList(db.Contracts, "ContractId", "ContractId", contractGeneralCondition.ContractId);
             return View(contractGeneralCondition);
+        }
+
+        // GET: Contract/Details/5
+        public ActionResult Details(int? id)
+        {
+            // Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Contract contract = db.Contracts.Find(id);
+            if (contract == null)
+            {
+                return HttpNotFound();
+            }
+            return View(contract);
         }
     }
 }

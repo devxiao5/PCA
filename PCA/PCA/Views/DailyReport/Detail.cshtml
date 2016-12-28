@@ -15,7 +15,7 @@
 <br />
 
 <div class="panel panel-default">
-    <div class="panel-heading"><b>Daily Report Detail</b></div>
+    <div class="panel-heading"><h4>Current Daily Report</h4></div>
     <div class="panel-body">
         <b>
             Report Date:
@@ -37,7 +37,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <b>Select Work Performed Item:</b>
+        <h4>Work Performed</h4>
     </div>
     <div class="panel-body">
         <table id="table_id" class="display">
@@ -46,6 +46,7 @@
                     <th>Contractor</th>
                     <th>Summary</th>
                     <th>Performance</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +55,14 @@
                     <tr>
                         <td>@work.ContractorId</td>
                         <td><a href="\Budget\Phase\@work.WorkItemId">@work.Summary</a></td>
-                        <td>@string.Format("{0:C}", @work.Performance)</td>
+                        <td>@work.Performance</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/DailyReport/Detail/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="/DailyReport/Edit/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/DailyReport/Delete/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                            </div>
+                        </td>
                     </tr>
                 }
 

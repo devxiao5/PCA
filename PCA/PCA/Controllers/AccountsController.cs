@@ -28,7 +28,7 @@ namespace PCA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Include(s => s.FileSignatures).SingleOrDefault(s => s.AccountId == id);
+            Account account = db.Accounts.Include(s => s.Files).SingleOrDefault(s => s.AccountId == id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -53,17 +53,17 @@ namespace PCA.Controllers
             {
                if (upload != null && upload.ContentLength > 0)
                 {
-                    var signature = new FileSignature
+                    var signature = new File
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
-                        FileTypeSignature = FileTypeSignature.Signature,
+                        FileType = FileType.Signature,
                         ContentType = upload.ContentType
                     };
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
                     {
                         signature.Content = reader.ReadBytes(upload.ContentLength);
                     }
-                    account.FileSignatures = new List<FileSignature> { signature };
+                    account.Files = new List<File> { signature };
                 }
                 db.Accounts.Add(account);
                 db.SaveChanges();
@@ -80,7 +80,7 @@ namespace PCA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Include(s => s.FileSignatures).SingleOrDefault(s => s.AccountId == id);
+            Account account = db.Accounts.Include(s => s.Files).SingleOrDefault(s => s.AccountId == id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -107,21 +107,21 @@ namespace PCA.Controllers
                 {
                     if (upload != null && upload.ContentLength > 0)
                     {
-                        if (accountUpdate.FileSignatures.Any(f => f.FileTypeSignature == FileTypeSignature.Signature))
+                        if (accountUpdate.Files.Any(f => f.FileType == FileType.Signature))
                         {
-                            db.FileSignatures.Remove(accountUpdate.FileSignatures.First(f => f.FileTypeSignature == FileTypeSignature.Signature));
+                            db.Files.Remove(accountUpdate.Files.First(f => f.FileType == FileType.Signature));
                         }
-                        var signature = new FileSignature
+                        var signature = new File
                         {
                             FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileTypeSignature = FileTypeSignature.Signature,
+                            FileType = FileType.Signature,
                             ContentType = upload.ContentType
                         };
                         using (var reader = new System.IO.BinaryReader(upload.InputStream))
                         {
                             signature.Content = reader.ReadBytes(upload.ContentLength);
                         }
-                        accountUpdate.FileSignatures = new List<FileSignature> { signature };
+                        accountUpdate.Files = new List<File> { signature };
                     }
                     db.Entry(accountUpdate).State = EntityState.Modified;
                     db.SaveChanges();

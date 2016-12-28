@@ -7,6 +7,7 @@ namespace PCA.Models
 {
     public enum FileType
     {
-        InvoiceImage = 1, Photo
+        InvoiceImage = 1, Photo,
+        Signature = 2, Sig
     }
 }

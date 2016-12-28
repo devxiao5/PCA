@@ -16,7 +16,9 @@ namespace PCA.Models
         public string ContentType { get; set; }
         public byte[] Content { get; set; }
         public FileType FileType { get; set; }
-        public int InvoiceId { get; set; }
+        public int? InvoiceId { get; set; }
+        public int? AccountId { get; set; }
+        public virtual Account Account { get; set; }
         public virtual Invoice Invoice { get; set; }
     }
 }

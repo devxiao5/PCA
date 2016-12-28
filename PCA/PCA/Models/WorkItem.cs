@@ -11,8 +11,8 @@ namespace PCA.Models
     {
         [Key]
         public int WorkItemId { get; set; }
-        public int DailyReportId { get; set; }
-        public int ContractorId { get; set; }
+        public int? DailyReportId { get; set; }
+        public int? ContractorId { get; set; }
 
         [StringLength(1000)]
         public string Summary { get; set; }

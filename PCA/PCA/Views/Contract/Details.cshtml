@@ -1,0 +1,91 @@
+﻿@model PCA.Models.Contract
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Clients.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clients.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorAccount.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorAccount.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerAccount.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerAccount.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerSignDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerSignDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractorSignDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractorSignDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmountLiteral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmountLiteral)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ContractId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

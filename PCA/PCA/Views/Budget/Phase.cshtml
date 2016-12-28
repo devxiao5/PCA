@@ -17,7 +17,7 @@
 
 <div class="panel panel-default">
 
-    <div class="panel-heading">@ViewBag.currentPhase</div>
+    <div class="panel-heading"><h4>@ViewBag.currentPhase</h4></div>
     <div class="panel-body">
         <table id="table_id" class="display">
             <thead>
@@ -28,6 +28,7 @@
                     <th>Cost</th>
                     <th>Total Cost</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,8 +39,13 @@
                         <td>@budget.Quantity</td>
                         <td>@budget.Unit</td>
                         <td>@string.Format("{0:C}", @budget.UnitCost)</td>
-                        <td><a href="\Budget\Edit\@budget.BudgetId">@string.Format("{0:C}", @budget.TotalCost)</a></td>
+                        <td>@string.Format("{0:C}", @budget.TotalCost)</td>
                         <td>@budget.Status</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/Budget/Edit/@budget.BudgetId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                            </div>
+                        </td>
                     </tr>
                 }
 

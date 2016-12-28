@@ -41,7 +41,6 @@ namespace PCA.Models
         public virtual DbSet<ContractorTypeUnion> ContractorTypeUnions { get; set; }
         public virtual DbSet<DailyReport> DailyReport { get; set; }
         public virtual DbSet<File> Files { get; set; }
-        public virtual DbSet<FileSignature> FileSignatures { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Phase> Phases { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
