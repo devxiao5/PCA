@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Accounts", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -82,6 +82,24 @@
                 </div>
             </div>
         </div>
+
+        @if (Model.FileSignatures.Any(f => f.FileTypeSignature == FileTypeSignature.Signature))
+        {
+            <div class="form-group">
+                <span class="control-label col-md-2"><strong>Current Signature</strong></span>
+                <div class="col-md-10">
+                    <img src="~/File?id=@Model.FileSignatures.First(f => f.FileTypeSignature == FileTypeSignature.Signature).FileSignatureId" alt="Signature" />
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.Label("Signature", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="Signature" name="upload" />
+            </div>
+        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

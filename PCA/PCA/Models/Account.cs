@@ -46,6 +46,7 @@ namespace PCA.Models
         [Required]
         public bool CanLogin { get; set; }
 
+        public virtual ICollection<FileSignature> FileSignatures { get; set; }
 
     }
 }

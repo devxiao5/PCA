@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace PCA.Controllers
 {
@@ -27,7 +28,7 @@ namespace PCA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
+            Account account = db.Accounts.Include(s => s.FileSignatures).SingleOrDefault(s => s.AccountId == id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -46,10 +47,24 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Type,CanLogin")] Account account)
+        public ActionResult Create([Bind(Include = "AccountId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Type,CanLogin")] Account account, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+               if (upload != null && upload.ContentLength > 0)
+                {
+                    var signature = new FileSignature
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileTypeSignature = FileTypeSignature.Signature,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        signature.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    account.FileSignatures = new List<FileSignature> { signature };
+                }
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -65,7 +80,7 @@ namespace PCA.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Account account = db.Accounts.Find(id);
+            Account account = db.Accounts.Include(s => s.FileSignatures).SingleOrDefault(s => s.AccountId == id);
             if (account == null)
             {
                 return HttpNotFound();
@@ -78,15 +93,48 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountId,FirstName,LastName,Email,Username,Password,ConfirmPassword,Type,CanLogin")] Account account)
+        public ActionResult Edit(int? id, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                db.Entry(account).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(account);
+            var accountUpdate = db.Accounts.Find(id);
+            if (TryUpdateModel(accountUpdate, "",
+                new string[] { "AccountId", "FirstName", "LastName", "Email", "Username", "Password", "ConfirmPassword", "Type", "CanLogin" }))
+            {
+                try
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        if (accountUpdate.FileSignatures.Any(f => f.FileTypeSignature == FileTypeSignature.Signature))
+                        {
+                            db.FileSignatures.Remove(accountUpdate.FileSignatures.First(f => f.FileTypeSignature == FileTypeSignature.Signature));
+                        }
+                        var signature = new FileSignature
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileTypeSignature = FileTypeSignature.Signature,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            signature.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        accountUpdate.FileSignatures = new List<FileSignature> { signature };
+                    }
+                    db.Entry(accountUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(accountUpdate);
         }
 
         // GET: Accounts/Delete/5

@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Accounts", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -78,6 +78,13 @@
                     @Html.EditorFor(model => model.CanLogin)
                     @Html.ValidationMessageFor(model => model.CanLogin, "", new { @class = "text-danger" })
                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Signature", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="Signature" name="upload" />
             </div>
         </div>
 

@@ -75,6 +75,16 @@
             @Html.DisplayFor(model => model.CanLogin)
         </dd>
 
+        @if (Model.FileSignatures.Any(f => f.FileTypeSignature == FileTypeSignature.Signature))
+        {
+            <dt>
+                Signature
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.FileSignatures.First(f => f.FileTypeSignature == FileTypeSignature.Signature).FileSignatureId" alt="Signature" />
+            </dd>
+        }
+
     </dl>
 </div>
 <p>
