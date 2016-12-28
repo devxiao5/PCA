@@ -1,10 +1,11 @@
 ﻿@model PCA.Models.DailyReport
 
 @{
+    ViewBag.PanelTitle = "Daily Report";
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-
+<a href="/DailyReport/" class="btn btn-default">Back</a>
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -12,7 +13,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>DailyReport</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.DailyReportId)
@@ -51,12 +51,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

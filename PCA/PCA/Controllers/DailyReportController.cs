@@ -48,14 +48,15 @@ namespace PCA.Controllers
             //---------------------------
 
             var currentReport = db.DailyReport.Find(id);
+            string date = currentReport.Date.ToString("yyyy-MM-dd");
 
             ViewBag.currentReportDate = currentReport.Date.ToString("yyyy-MM-dd");
             ViewBag.currentReportSummary = currentReport.Summary;
             ViewBag.currentReportId = currentReport.DailyReportId;
 
             List<WorkItem> workList = new List<WorkItem>(from work in db.WorkItems
-                                                                   where work.DailyReportId == id
-                                                                   select work);
+                                                         where work.DailyReportId == id
+                                                         select work);
 
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
@@ -191,7 +192,7 @@ namespace PCA.Controllers
             db.DailyReport.Remove(dailyReport);
             db.SaveChanges();
             return RedirectToAction("Index");
-            
+
         }
 
         // GET: DailyReport/Edit/5
@@ -297,9 +298,126 @@ namespace PCA.Controllers
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
             List<DailyReportPicture> pictures = new List<DailyReportPicture>(from pic in db.DailyReportPicture
-                                                                   where pic.DailyReportId == id
-                                                                   select pic);
+                                                                             where pic.DailyReportId == id
+                                                                             select pic);
             return View(pictures);
+        }
+
+        public ActionResult WorkDetail(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WorkItem workItem = db.WorkItems.Find(id);
+            if (workItem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(workItem);
+
+
+        }
+
+        // GET: DailyReport/WorkEdit/5
+        public ActionResult WorkEdit(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WorkItem workItem = db.WorkItems.Find(id);
+            if (workItem == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
+            return View(workItem);
+        }
+
+        // POST: DailyReport/WorkEdit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult WorkEdit([Bind(Include = "WorkItemId,DailyReportId,ContractorId,Summary,Performance,MenWorked,HoursWorked")] WorkItem workItem)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(workItem).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
+            return View(workItem);
+        }
+
+        // GET: DailyReport/WorkDelete/5
+        public ActionResult WorkDelete(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WorkItem workItem = db.WorkItems.Find(id);
+            if (workItem == null)
+            {
+                return HttpNotFound();
+            }
+            return View(workItem);
+        }
+
+        // POST: DailyReport/WorkDelete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult WorkDelete(int id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            WorkItem workItem = db.WorkItems.Find(id);
+            int? drid = workItem.DailyReportId;
+            db.WorkItems.Remove(workItem);
+            db.SaveChanges();
+            string returnstring = "/Detail/" + drid.ToString();
+            return RedirectToAction(returnstring);
         }
     }
 }

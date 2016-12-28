@@ -1,0 +1,70 @@
+﻿@model PCA.Models.WorkItem
+
+@{
+    ViewBag.PanelTitle = "Delete Work Performed";
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+<a href="/DailyReport/Detail/@Model.DailyReportId" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractors.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contractors.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DailyReports.Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyReports.Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Performance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Performance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MenWorked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MenWorked)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursWorked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursWorked)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    }
+</div>

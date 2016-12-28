@@ -10,13 +10,12 @@
     sideNavItemSelected
 }
 
-<a href="/DailyReport" class="btn btn-default">Back</a>
-<br />
-<br />
-
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Current Daily Report</h4></div>
     <div class="panel-body">
+        <a href="/DailyReport" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+        <br />
+        <br />
         <b>
             Report Date:
         </b>
@@ -30,16 +29,12 @@
     </div>
 </div>
 
-
-<hr />
-<a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success">Create Work Performed Items</a>
-<br /><br />
-
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>Work Performed</h4>
     </div>
     <div class="panel-body">
+        <a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -58,9 +53,9 @@
                         <td>@work.Performance</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="/DailyReport/Detail/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="/DailyReport/Edit/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/DailyReport/Delete/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/DailyReport/WorkDetail/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                <a href="/DailyReport/WorkEdit/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/DailyReport/WorkDelete/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
                             </div>
                         </td>
                     </tr>

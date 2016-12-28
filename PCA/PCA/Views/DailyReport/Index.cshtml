@@ -8,15 +8,13 @@
     sideNavItemSelected
 }
 
-<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<a href="/DailyReport/Create" class="btn btn-success">Create Daily Report</a>
-<br />
-<hr />
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Select Daily Report:</h4>
+        <h4>Daily Report</h4>
     </div>
     <div class="panel-body">
+        <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+        <a href="/DailyReport/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
         <table id="table_id" class="display">
             <thead>
                 <tr>

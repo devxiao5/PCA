@@ -35,8 +35,8 @@
 }
 
 body {
-    background-image: url('Images/squared_metal_@2X.png');
     background-repeat: repeat;
+    background-image: url('Images/shattered.png');
 }
 
 img {
