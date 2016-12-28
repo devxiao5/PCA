@@ -225,6 +225,7 @@
     <Compile Include="Controllers\ContractorTypeUnionsController.cs" />
     <Compile Include="Controllers\ContractsController.cs" />
     <Compile Include="Controllers\DailyReportController.cs" />
+    <Compile Include="Controllers\DailyReportPicturesController.cs" />
     <Compile Include="Controllers\DailyReportsController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FileController.cs" />
@@ -310,6 +311,10 @@
     <Compile Include="Migrations\201612281730287_nullablefkworkitems.Designer.cs">
       <DependentUpon>201612281730287_nullablefkworkitems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612281933238_dailyreportpicture.cs" />
+    <Compile Include="Migrations\201612281933238_dailyreportpicture.Designer.cs">
+      <DependentUpon>201612281933238_dailyreportpicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -324,6 +329,7 @@
     <Compile Include="Models\ContractorType.cs" />
     <Compile Include="Models\ContractorTypeUnion.cs" />
     <Compile Include="Models\DailyReport.cs" />
+    <Compile Include="Models\DailyReportPicture.cs" />
     <Compile Include="Models\DepreciationType.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -352,6 +358,7 @@
     <Content Include="Content\Images\Plann_LetterHead.png" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\Images\shattered.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -520,6 +527,13 @@
     <Content Include="Views\Contract\Details.cshtml" />
     <Content Include="Views\DailyReport\Delete.cshtml" />
     <Content Include="Views\DailyReport\Edit.cshtml" />
+    <Content Include="Views\DailyReportPictures\Create.cshtml" />
+    <Content Include="Views\DailyReportPictures\Delete.cshtml" />
+    <Content Include="Views\DailyReportPictures\Details.cshtml" />
+    <Content Include="Views\DailyReportPictures\Edit.cshtml" />
+    <Content Include="Views\DailyReportPictures\Index.cshtml" />
+    <Content Include="Views\DailyReport\CreatePicture.cshtml" />
+    <Content Include="Views\DailyReport\PictureIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -590,6 +604,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612281730287_nullablefkworkitems.resx">
       <DependentUpon>201612281730287_nullablefkworkitems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612281933238_dailyreportpicture.resx">
+      <DependentUpon>201612281933238_dailyreportpicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

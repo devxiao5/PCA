@@ -30,12 +30,14 @@
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => report.Date)</td>
-                        <td><a href="\DailyReport\Detail\@report.DailyReportId">@report.Summary</a></td>
+                        <td>@report.Summary</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="...">
                                 <a href="/DailyReport/Detail/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
                                 <a href="/DailyReport/Edit/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
                                 <a href="/DailyReport/Delete/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/DailyReport/PictureIndex/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span></a>
+
                             </div>
                         </td>
                     </tr>

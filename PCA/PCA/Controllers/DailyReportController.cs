@@ -242,6 +242,65 @@ namespace PCA.Controllers
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", dailyReport.ProjectId);
             return View(dailyReport);
         }
+
+        // GET: DailyReport/CreatePicture
+        public ActionResult CreatePicture()
+        {
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Date");
+            return View();
+        }
+
+        // POST: DailyReport/CreatePicture
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePicture([Bind(Include = "DailyReportPictureId,DailyReportId,Description,Date")] DailyReportPicture dailyReportPicture, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    var picture = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Picture,
+                        ContentType = upload.ContentType
+                    };
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        picture.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+                    dailyReportPicture.Files = new List<File> { picture };
+                }
+                db.DailyReportPicture.Add(dailyReportPicture);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", dailyReportPicture.DailyReportId);
+            return View(dailyReportPicture);
+        }
+
+        public ActionResult PictureIndex(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            //List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
+
+            int currentProjectNumber = ViewBag.CurrentProjectNumber;
+
+            List<DailyReportPicture> pictures = new List<DailyReportPicture>(from pic in db.DailyReportPicture
+                                                                   where pic.DailyReportId == id
+                                                                   select pic);
+            return View(pictures);
+        }
     }
 }
 

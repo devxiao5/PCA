@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<PCA.Models.DailyReportPicture>
+@{
+    ViewBag.Title = "Index";
+}
+@section sideNavDailyReport
+{
+    sideNavItemSelected
+}
+
+<a href="/DailyReport/Index" class="btn btn-default">Back</a>
+<a href="/DailyReport/CreatePicture" class="btn btn-success">Add Picture</a>
+<br />
+<hr />
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h4>Current Daily Report</h4></div>
+    <div class="panel-body">
+        <b>
+            Report Date:
+        </b>
+        <p>@ViewBag.currentReportDate</p>
+        <b>
+            Report Summary:
+        </b>
+        <p>@ViewBag.currentReportSummary</p>
+
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Pictures</h4>
+    </div>
+    <div class="panel-body">
+        <table id="table_id" class="display">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var picture in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => picture.Date)</td>
+                        <td>@picture.Description</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a href="/DailyReport/Edit/@picture.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/DailyReport/Delete/@picture.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/DailyReport/Detail/@picture.DailyReportPictureId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -46,3 +46,7 @@ img {
 .dashboardpanel {
     height: 300px;
 }
+
+#currentproject{
+    color: white;
+}

@@ -18,7 +18,9 @@ namespace PCA.Models
         public FileType FileType { get; set; }
         public int? InvoiceId { get; set; }
         public int? AccountId { get; set; }
+        public int? DailyReportPictureId { get; set; }
         public virtual Account Account { get; set; }
         public virtual Invoice Invoice { get; set; }
+        public virtual DailyReportPicture DailyReportPicture { get; set; }
     }
 }

@@ -28,5 +28,6 @@ namespace PCA.Models
         [ForeignKey("ProjectId")]
         public virtual Project Projects { get; set; }
         public virtual ICollection<WorkItem> WorkItems { get; set; }
+        public virtual ICollection<DailyReportPicture> DailyReportPictures { get; set; }
     }
 }
