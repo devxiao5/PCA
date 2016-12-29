@@ -444,6 +444,65 @@ namespace PCA.Controllers
             }
             return View(picture);
         }
+
+        // GET: DailyReport/PictureEdit/5
+        public ActionResult PictureEdit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReportPicture dailyReportPicture = db.DailyReportPicture.Find(id);
+            if (dailyReportPicture == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", dailyReportPicture.DailyReportId);
+            return View(dailyReportPicture);
+        }
+
+        // POST: DailyReportPictures/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PictureEdit([Bind(Include = "DailyReportPictureId,DailyReportId,Description,Date")] DailyReportPicture dailyReportPicture)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(dailyReportPicture).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", dailyReportPicture.DailyReportId);
+            return View(dailyReportPicture);
+        }
+
+        // GET: DailyReportPictures/Delete/5
+        public ActionResult PictureDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReportPicture dailyReportPicture = db.DailyReportPicture.Find(id);
+            if (dailyReportPicture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dailyReportPicture);
+        }
+
+        // POST: DailyReportPictures/Delete/5
+        [HttpPost, ActionName("PictureDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult PictureDeleteConfirmed(int id)
+        {
+            DailyReportPicture dailyReportPicture = db.DailyReportPicture.Find(id);
+            db.DailyReportPicture.Remove(dailyReportPicture);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
 

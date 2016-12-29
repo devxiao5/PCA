@@ -547,6 +547,8 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutFormOLD.cshtml" />
     <Content Include="Views\DailyReport\ViewAttachment.cshtml" />
+    <Content Include="Views\DailyReport\PictureEdit.cshtml" />
+    <Content Include="Views\DailyReport\PictureDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

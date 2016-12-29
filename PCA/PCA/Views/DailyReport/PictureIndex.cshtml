@@ -8,14 +8,12 @@
     sideNavItemSelected
 }
 
-<a href="/DailyReport/Index" class="btn btn-default">Back</a>
-<a href="/DailyReport/CreatePicture" class="btn btn-success">Add Picture</a>
-<br />
-<hr />
-
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Current Daily Report</h4></div>
     <div class="panel-body">
+        <a href="/DailyReport/Index" class="btn btn-default">Back</a>
+        <a href="/DailyReport/CreatePicture" class="btn btn-success">Add Picture</a>
+        <hr />
         <b>
             Report Date:
         </b>
@@ -50,8 +48,8 @@
                         <td>@picture.Description</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="...">
-                                <a href="/DailyReport/Edit/@picture.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/DailyReport/Delete/@picture.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a href="/DailyReport/PictureEdit/@picture.DailyReportPictureId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href="/DailyReport/PictureDelete/@picture.DailyReportPictureId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
                                 <a href="/DailyReport/ViewAttachment/@picture.DailyReportPictureId" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>
                             </div>
                         </td>
