@@ -358,8 +358,8 @@
     <Content Include="Content\Images\loginbkrd.jpg" />
     <Content Include="Content\Images\pcalogo.png" />
     <Content Include="Content\Images\Plann_LetterHead.png" />
+    <Content Include="Content\LayoutOLD.css" />
     <Content Include="Content\Layout.css" />
-    <Content Include="Content\LayoutTest.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Images\shattered.png" />
     <Content Include="favicon.ico" />
@@ -400,7 +400,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutOLD.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -541,7 +541,7 @@
     <Content Include="Views\DailyReport\WorkDetail.cshtml" />
     <Content Include="Views\DailyReport\WorkEdit.cshtml" />
     <Content Include="Views\DailyReport\WorkDelete.cshtml" />
-    <Content Include="Views\Shared\_LayoutTest.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

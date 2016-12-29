@@ -8,39 +8,41 @@
     sideNavItemSelected
 }
 
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="panel panel-default col-xs-12">
+    <div class="panel-heading col-xs-12">
         <h4>Daily Report</h4>
     </div>
-    <div class="panel-body">
+    <div class="panel-body col-xs-12">
         <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
         <a href="/DailyReport/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
-        <table id="table_id" class="display">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Summary</th>
-                    <td>Actions</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var report in Model)
-                {
+        <div id="TableWrapper" class="col-xs-12">
+            <table id="table_id" class="display col-xs-12">
+                <thead>
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => report.Date)</td>
-                        <td>@report.Summary</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/DailyReport/Detail/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="/DailyReport/Edit/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/DailyReport/Delete/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                <a href="/DailyReport/PictureIndex/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span></a>
-
-                            </div>
-                        </td>
+                        <th>Date</th>
+                        <th>Summary</th>
+                        <td>Actions</td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var report in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => report.Date)</td>
+                            <td>@report.Summary</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <a href="/DailyReport/Detail/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
+                                    <a href="/DailyReport/Edit/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="/DailyReport/Delete/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a href="/DailyReport/PictureIndex/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span></a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -1,52 +1,111 @@
-﻿#sideNav{
-    background-color: #2B3643;
-    width: 15%;
-    height: 100%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top: 25px;
-
-}
-
-#content {
-    margin-left: 15%;
-    padding-top: 25px;
-}
-
-.sideNavItem {
-    padding-top: 5px;
-    height: 40px;
-    text-align: right;
-    font-size: 1.4em;
-}
-
-.sideNavItem:hover {
-    background-color:#696969;
-}
-
-.sideNavItem a {
-    padding: 25px;
-    color: #eee;
-    text-decoration: none;
-}
-
-.sideNavItemSelected {
-    background-color: #6F86A2;
-}
-
-body {
+﻿body {
+    padding-top: 0px;
+    margin-top: 0px;
     background-repeat: repeat;
     background-image: url('Images/shattered.png');
 }
 
-img {
-    max-width: 100%;
+#navbar {
+    background-color: white;
 }
 
-.dashboardpanel {
-    height: 300px;
+#Navigation{
+    border: 0px;
+    border-bottom-width: 3px;
+    border-top-width: 3px;
+    border-style: solid;
+    border-top-color: #85c9f9;
+    border-bottom-color: #064979;
+    min-height: 30px;
+    background-color: #1796F3;
 }
 
-#currentproject{
+
+#NavigationLinks{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: 0px;
+    
+}
+
+.NavigationLinkItem {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-left: 0px !important;
+    text-align: center;
+    list-style-type: none;
+    min-height: 40px;
+    max-height: 40px;
+    font-size: 1em;
     color: white;
+    transition: background-color ease-in 100ms;
 }
+
+.NavigationLinkItem:hover{
+    background-color: #064979;
+}
+
+.NavItemSelected {
+    background-color: #064979;
+}
+
+#CurrentUserText {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    max-height: 35px;
+    color: white;
+    text-align: center;
+}
+
+#CurrentUser {
+    max-height: 35px;
+}
+
+#Footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 50px;
+    border: 0px;
+    background-color: #333333;
+    border-top-width: 5px;
+    border-style: solid;
+    border-color: #ddd;
+}
+
+#Footer:hover{
+   background-color: #222;
+}
+
+#CurrentProjectText{
+    text-align: center;
+    font-size: 1.2em;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+#Body{
+    margin-top: 10px;
+}
+
+.sideNavItemSelected{
+    background-color: #064979;
+}
+
+.panel {
+    padding:0px;
+}
+ #TableWrapper{
+     padding: 0px;
+ }
+
+ #table_id{
+     padding: 0px;
+ }
+
+ #table_id_wrapper{
+     overflow: auto;
+ }

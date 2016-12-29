@@ -1,0 +1,71 @@
+﻿<!-- Layout Page for PCA Dashboard-->
+<!-- Head Elements -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="~/Content/Layout.css" />
+    @RenderSection("css", false)
+
+
+</head>
+<!-- End Head -->
+<!-- Body -->
+<body>
+    <!-- Header Bar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("Planning & Construction", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @if (@ViewBag.CurrentProjectNumber == null)
+                {
+                    <p class="navbar-text">No Project.</p>
+                }
+                else
+                {
+                    <p class="navbar-text"><a href="/Dashboard/Select" id="currentproject">Current Project: @ViewBag.CurrentProjectString</a></p>
+                }
+                <p class="navbar-text">User Goes Here</p>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Header Bar -->
+
+
+    <div id="sideNav">
+        <div class="sideNavItem @RenderSection("sideNavDashboard", false)"><a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber">Dashboard</a></div>
+        <div class="sideNavItem @RenderSection("sideNavContracts", false)"><a href="/Contract/Index">Contracts</a></div>
+        <div class="sideNavItem @RenderSection("sideNavBudgets", false)"><a href="/Budget/">Budgets</a></div>
+        <div class="sideNavItem @RenderSection("sideNavInvoices", false)"><a href="/Invoice/Index">Invoice</a></div>
+        <div class="sideNavItem @RenderSection("sideNavDailyReport", false)"><a href="/DailyReport/">Daily Report</a></div>
+        <div class="sideNavItem @RenderSection("sideNavReport", false)"><a href="/Report/">Report</a></div>
+    </div>
+
+
+    <div id="content">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+
+        <!-- End Body -->
+        <!-- Footer -->
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Planning & Construction Associates Inc.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+    <script src="~/Scripts/Layout.js"></script>
+</body>
+</html>
