@@ -1,7 +1,7 @@
 ﻿@model PCA.Models.DailyReport
 
 @{
-    ViewBag.PanelTitle = "Daily Report";
+    ViewBag.PanelTitle = "Create Daily Report";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
     ViewBag.Title = "Create";
 }
@@ -10,7 +10,7 @@
     sideNavItemSelected
 }
 <a href="/DailyReport/" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-<h2>Create</h2>
+<hr />
 
 @using (Html.BeginForm())
 {

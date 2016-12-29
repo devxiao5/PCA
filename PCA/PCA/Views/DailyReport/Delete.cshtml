@@ -1,16 +1,14 @@
 ﻿@model PCA.Models.DailyReport
 
 @{
-    ViewBag.PanelTitle = "Daily Report";
+    ViewBag.PanelTitle = "Delete Daily Report";
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 <a href="/DailyReport/" class="btn btn-default">Back</a>
-<h2>Delete</h2>
-
+<hr />
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Projects.Name)

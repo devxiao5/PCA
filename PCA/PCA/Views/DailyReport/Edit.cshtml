@@ -1,13 +1,11 @@
 ﻿@model PCA.Models.DailyReport
 
 @{
-    ViewBag.PanelTitle = "Daily Report";
+    ViewBag.PanelTitle = "Edit Daily Report";
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
 <a href="/DailyReport/" class="btn btn-default">Back</a>
-<h2>Edit</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

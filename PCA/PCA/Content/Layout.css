@@ -2,7 +2,7 @@
     padding-top: 0px;
     margin-top: 0px;
     background-repeat: repeat;
-    background-image: url('Images/shattered.png');
+    background-image: url('Images/grey_wash_wall.png');
 }
 
 #navbar {
@@ -11,8 +11,8 @@
 
 #Navigation{
     border: 0px;
-    border-bottom-width: 3px;
-    border-top-width: 3px;
+    border-bottom-width: 4px;
+    border-top-width: 2px;
     border-style: solid;
     border-top-color: #85c9f9;
     border-bottom-color: #064979;
@@ -70,9 +70,9 @@
     height: 50px;
     border: 0px;
     background-color: #333333;
-    border-top-width: 5px;
+    border-top-width: 4px;
     border-style: solid;
-    border-color: #ddd;
+    border-color: #222;
 }
 
 #Footer:hover{
@@ -88,7 +88,7 @@
 }
 
 #Body{
-    margin-top: 10px;
+    margin-top: 5%;
 }
 
 .sideNavItemSelected{
@@ -97,7 +97,10 @@
 
 .panel {
     padding:0px;
+    box-shadow: 5px 5px 15px #333;
+
 }
+
  #TableWrapper{
      padding: 0px;
  }

@@ -9,65 +9,81 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="~/Content/Layout.css" />
+    <link href="~/Content/Layout.css" rel="stylesheet" />
     @RenderSection("css", false)
-
-
 </head>
 <!-- End Head -->
 <!-- Body -->
 <body>
     <!-- Header Bar -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("Planning & Construction", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
-                @if (@ViewBag.CurrentProjectNumber == null)
-                {
-                    <p class="navbar-text">No Project.</p>
-                }
-                else
-                {
-                    <p class="navbar-text"><a href="/Dashboard/Select" id="currentproject">Current Project: @ViewBag.CurrentProjectString</a></p>
-                }
-                <p class="navbar-text">User Goes Here</p>
-
+    <div class="container-fluid">
+        <div class="row">
+            <div id="navbar" class="col-xs-12">
+                <div id="logo" class="col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 col-xl-2 col-xl-offset-5">
+                    <img class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 col-xl-2 col-xl-offset-5" src="~/Content/Images/pcalogo.png" />
+                </div>
             </div>
         </div>
-    </div>
-    <!-- End Header Bar -->
-
-
-    <div id="sideNav">
-        <div class="sideNavItem @RenderSection("sideNavDashboard", false)"><a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber">Dashboard</a></div>
-        <div class="sideNavItem @RenderSection("sideNavContracts", false)"><a href="/Contract/Index">Contracts</a></div>
-        <div class="sideNavItem @RenderSection("sideNavBudgets", false)"><a href="/Budget/">Budgets</a></div>
-        <div class="sideNavItem @RenderSection("sideNavInvoices", false)"><a href="/Invoice/Index">Invoice</a></div>
-        <div class="sideNavItem @RenderSection("sideNavDailyReport", false)"><a href="/DailyReport/">Daily Report</a></div>
-        <div class="sideNavItem @RenderSection("sideNavReport", false)"><a href="/Report/">Report</a></div>
-    </div>
-
-
-    <div id="content">
-        <div class="container body-content">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>@ViewBag.PanelTitle</h4>
+        <!-- End Header Bar -->
+        <!-- Navigation -->
+        <div class="row">
+            <div id="Navigation" class="col-xs-12">
+                <div id="NavigationLinks" class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
+                    <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavDashboard", false)">DASHBOARD</span></a>
+                    <a href="/Contract/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavContracts", false)">CONTRACTS</span></a>
+                    <a href="/Budget/Index/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavBudgets", false)">BUDGETS</span></a>
+                    <a href="/Invoice/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavInvoices", false)">INVOICE</span></a>
+                    <a href="/DailyReport/Index"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavDailyReport", false)">DAILY REPORT</span></a>
+                    <a href="/Report/Index"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavReport", false)">REPORTS</span></a>
                 </div>
-                <div class="panel-body">
-                    @RenderBody()
+
+                <div id="CurrentUser" class="col-xs-12 col-md-4 col-lg-6 col-xl-4">
+                    <a href="/"><p id="CurrentUserText">Hello, <u>USER</u>. Log Out</p></a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="BodyContainer" class="container">
+            <div class="row">
+                <div id="Body" class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>@ViewBag.PanelTitle</h4>
+                        </div>
+                        <div class="panel-body">
+                            @RenderBody()
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- End Body -->
         <!-- Footer -->
-        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Planning & Construction Associates Inc.</p>
         </footer>
     </div>
+
+    <div class="row">
+        <a href="/Dashboard/Select">
+            <div id="Footer" class="col-xs-12">
+                <p id="CurrentProjectText">
+                    @if (@ViewBag.CurrentProjectNumber == null)
+                    {
+                        <span>No Project Selected.</span>
+                    }
+                    else
+                    {
+                        @ViewBag.CurrentProjectString
+                    }
+                </p>
+            </div>
+        </a>
+    </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

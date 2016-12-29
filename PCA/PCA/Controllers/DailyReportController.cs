@@ -142,7 +142,7 @@ namespace PCA.Controllers
             {
                 db.WorkItems.Add(work);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail", new { id = work.DailyReportId });
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
@@ -175,7 +175,7 @@ namespace PCA.Controllers
         // POST: DailyReport/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id)
         {
             //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -189,6 +189,18 @@ namespace PCA.Controllers
 
             // Remove workitems attatched to daily report
             db.WorkItems.RemoveRange(dailyReport.WorkItems);
+            List<DailyReportPicture> reportpictures = new List<DailyReportPicture>(from report in db.DailyReportPicture
+                                                                                   where report.DailyReportId == id
+                                                                                   select report);
+
+            
+
+            foreach (var picture in reportpictures)
+            {
+                db.DailyReportPicture.Remove(picture);
+                var file = db.Files.Where(f => f.DailyReportPictureId == picture.DailyReportPictureId).Single();
+                db.Files.Remove(file);
+            }
             db.DailyReport.Remove(dailyReport);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -369,7 +381,7 @@ namespace PCA.Controllers
             {
                 db.Entry(workItem).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Detail", new { id = workItem.DailyReportId });
             }
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name", workItem.ContractorId);
             ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", workItem.DailyReportId);
@@ -416,8 +428,21 @@ namespace PCA.Controllers
             int? drid = workItem.DailyReportId;
             db.WorkItems.Remove(workItem);
             db.SaveChanges();
-            string returnstring = "/Detail/" + drid.ToString();
-            return RedirectToAction(returnstring);
+            return RedirectToAction("Detail", new { id = drid });
+        }
+
+        public ActionResult ViewAttachment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReportPicture picture = db.DailyReportPicture.Include(s => s.Files).SingleOrDefault(s => s.DailyReportPictureId == id);
+            if (picture == null)
+            {
+                return HttpNotFound();
+            }
+            return View(picture);
         }
     }
 }
