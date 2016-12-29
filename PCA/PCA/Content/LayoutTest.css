@@ -1,0 +1,97 @@
+﻿body {
+}
+
+#navbar {
+    background-color: white;
+}
+
+#NavigationLinks {
+    
+   
+}
+
+#Navigation{
+    border: 0px;
+    border-top-width: 3px;
+    border-style: solid;
+    border-color: #064979;
+    min-height: 50px;
+    background-color: #1796F3;
+    border-bottom-width: 5px;
+    border-bottom-color: #ddd;
+    
+
+}
+
+body{
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+#NavigationLinks{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: 0px;
+    
+}
+
+.NavigationLinkItem {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-left: 0px !important;
+    text-align: center;
+    list-style-type: none;
+    min-height: 55px;
+    max-height: 55px;
+    font-size: 1.1em;
+    color: white;
+    transition: background-color ease-in 300ms;
+}
+
+.NavigationLinkItem:hover{
+    background-color: #064979;
+}
+
+.NavItemSelected {
+    background-color: #064979;
+}
+
+#CurrentUserText {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-height: 55px;
+    color: white;
+    text-align: center;
+}
+
+#CurrentUser {
+    max-height: 55px;
+}
+
+#Footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 75px;
+    border: 0px;
+    background-color: #333333;
+    border-top-width: 5px;
+    border-style: solid;
+    border-color: #ddd;
+
+}
+
+#CurrentProjectText{
+    text-align: center;
+    font-size: 1.2em;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body {
+    background-repeat: repeat;
+    background-image: url('Images/shattered.png');
+}
