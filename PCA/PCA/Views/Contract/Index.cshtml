@@ -7,34 +7,45 @@
 {
     sideNavItemSelected
 }
-
-
-<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<span class="dropdown">
-    <button class="btn btn-success dropdown-toggle" type="button" id="reportDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Create New Contract...
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="reportDropDown">
-        <li class="dropdown-header">Primary Contracts</li>
-        <li><a href="/Contract/Create" target="_blank">General Conditions</a></li>
-        <li><a href="#">Materials Purchase Order</a></li>
-        <li><a href="#">Budget Change Order</a></li>
-        <li class="dropdown-header">Sub Contracts</li>
-        <li><a href="#">Modification of Contract</a></li>
-        <li><a href="#">Change Order</a></li>
-        @*<li role="separator" class="divider"></li>*@
-
-    </ul>
-</span>
-<br />
-<hr />
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>Contracts</h4>
     </div>
     <div class="panel-body">
+
+        <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
+        <span class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="reportDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Create New Contract...
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="reportDropDown">
+                <li class="dropdown-header">Primary Contracts</li>
+                <li><a href="/Contract/Create" target="_blank">General Conditions</a></li>
+                <li><a href="#">Materials Purchase Order</a></li>
+                <li><a href="#">Budget Change Order</a></li>
+                <li class="dropdown-header">Sub Contracts</li>
+                <li><a href="#">Modification of Contract</a></li>
+                <li><a href="#">Change Order</a></li>
+                @*<li role="separator" class="divider"></li>*@
+
+            </ul>
+        </span>
+        <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Details</a>
+            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            <a id="LinkButton4" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> View</a>
+        </div>
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -42,26 +53,17 @@
                     <th>Contractor</th>
                     <th>Type</th>
                     <th>Amount</th>
-                    <td>Actions</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var contract in Model)
             {
-                    <tr>
+                    <tr class="LinkButton" data-link-button-1="/Contract/Details/@contract.ContractId" data-link-button-2="/Invoice/Edit/@contract.ContractId"
+                             data-link-button-3="/Invoice/Delete/@contract.ContractId" data-link-button-4="/Invoice/ViewAttachment/@contract.ContractId">
                         <td>@contract.ContractId</td>
                         <td>@contract.ContractorId</td>
                         <td>@contract.Type</td>
                         <td>@string.Format("{0:C}", @contract.TotalAmount)</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/Contract/Details/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="/Invoice/Edit/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/Invoice/Delete/@contract.ContractId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                <a href="/Invoice/ViewAttachment/@contract.ContractId" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            </div>
-                        </td>
-                        
                     </tr>
                 }
 

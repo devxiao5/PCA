@@ -11,13 +11,13 @@
 
 #Navigation{
     border: 0px;
-    border-bottom-width: 4px;
-    border-top-width: 2px;
+    border-bottom-width: 3px;
     border-style: solid;
     border-top-color: #85c9f9;
-    border-bottom-color: #064979;
+    border-bottom-color: #1796F3;
     min-height: 30px;
-    background-color: #1796F3;
+    background-color: #064979;
+    box-shadow: 0px 10px 15px #333;
 }
 
 
@@ -44,11 +44,11 @@
 }
 
 .NavigationLinkItem:hover{
-    background-color: #064979;
+    background-color: #1796F3;
 }
 
 .NavItemSelected {
-    background-color: #064979;
+    background-color: #1796F3;
 }
 
 #CurrentUserText {
@@ -92,7 +92,7 @@
 }
 
 .sideNavItemSelected{
-    background-color: #064979;
+    background-color: #1796F3;
 }
 
 .panel {
