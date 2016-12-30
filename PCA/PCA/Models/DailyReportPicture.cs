@@ -17,10 +17,6 @@ namespace PCA.Models
         [StringLength(1000)]
         public string Description { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
-
         public virtual ICollection<File> Files { get; set; }
 
         // Constraint / Relationships

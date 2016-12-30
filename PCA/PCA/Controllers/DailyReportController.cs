@@ -257,7 +257,6 @@ namespace PCA.Controllers
         }
 
         // GET: DailyReport/CreatePicture
-        [ValidateAntiForgeryToken]
         public ActionResult CreatePicture(int id)
         {
             //Get current project
@@ -268,7 +267,7 @@ namespace PCA.Controllers
             ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
             //---------------------------
 
-            ViewBag.CurrenDailyReportId = id;
+            ViewBag.CurrentDailyReportId = id;
             ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Date");
             return View();
         }
@@ -278,8 +277,16 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatePicture([Bind(Include = "DailyReportPictureId,DailyReportId,Description,Date")] DailyReportPicture dailyReportPicture, HttpPostedFileBase upload)
+        public ActionResult CreatePicture([Bind(Include = "DailyReportPictureId,DailyReportId,Description")] DailyReportPicture dailyReportPicture, HttpPostedFileBase upload)
         {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+            int currentReportId = dailyReportPicture.DailyReportId;
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
@@ -298,7 +305,7 @@ namespace PCA.Controllers
                 }
                 db.DailyReportPicture.Add(dailyReportPicture);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("PictureIndex", new { id = currentReportId });
             }
 
             ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Summary", dailyReportPicture.DailyReportId);
@@ -322,6 +329,16 @@ namespace PCA.Controllers
             List<DailyReportPicture> pictures = new List<DailyReportPicture>(from pic in db.DailyReportPicture
                                                                              where pic.DailyReportId == id
                                                                              select pic);
+            var currenreport = from r in db.DailyReport
+                               where r.DailyReportId == id
+                               select r;
+
+            foreach (var rep in currenreport)
+            {
+                ViewBag.currentReportDate = rep.Date.ToString();
+                ViewBag.currentReportSummary = rep.Summary;
+            }
+
             return View(pictures);
         }
 
@@ -476,7 +493,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PictureEdit([Bind(Include = "DailyReportPictureId,DailyReportId,Description,Date")] DailyReportPicture dailyReportPicture)
+        public ActionResult PictureEdit([Bind(Include = "DailyReportPictureId,DailyReportId,Description")] DailyReportPicture dailyReportPicture)
         {
             if (ModelState.IsValid)
             {
