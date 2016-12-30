@@ -9,20 +9,31 @@
 {
     sideNavItemSelected
 }
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 
 <div class="panel panel-default">
     <div class="panel-heading"><h4>Current Daily Report</h4></div>
     <div class="panel-body">
         <a href="/DailyReport" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
         <hr />
-        <b>
-            Report Date:
-        </b>
-        <p>@ViewBag.currentReportDate</p>
-        <b>
-            Report Summary:
-        </b>
-        <p>@ViewBag.currentReportSummary</p>
+        <div class="col-xs-12">
+            <div class="col-xs-6 DetailItem">
+                <h5>Report Date:</h5>
+                <p>@ViewBag.currentReportDate</p>
+            </div>
+            <div class="col-xs-6 DetailItem">
+                <h5>
+                    Report Summary:
+                </h5>
+                <p>@ViewBag.currentReportSummary</p>
+            </div>
+        </div>
+        
+        
 
 
     </div>
@@ -35,29 +46,35 @@
     <div class="panel-body">
         <a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
         <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Information</a>
+            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+        </div>
+
+
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
                     <th>Contractor</th>
                     <th>Summary</th>
                     <th>Performance</th>
-                    <th>Actions</th>
+                    <th>Men Worked</th>
+                    <th>Hours Worked</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var work in Model)
             {
-                    <tr>
+                    <tr class="LinkButton" data-link-button-1="/DailyReport/WorkDetail/@work.WorkItemId" data-link-button-2="/DailyReport/WorkEdit/@work.WorkItemId"
+                             data-link-button-3="/DailyReport/WorkDelete/@work.WorkItemId">
                         <td>@work.ContractorId</td>
                         <td>@work.Summary</td>
                         <td>@work.Performance</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/DailyReport/WorkDetail/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="/DailyReport/WorkEdit/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/DailyReport/WorkDelete/@work.WorkItemId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                            </div>
-                        </td>
+                        <td>@work.MenWorked</td>
+                        <td>@work.HoursWorked</td>
                     </tr>
                 }
 

@@ -7,11 +7,11 @@
 }
 
 
-@using (Html.BeginForm("CreatePicture", "DailyReport", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using(Html.BeginForm("CreatePicture", "DailyReport", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <a href="/DailyReport/PictureIndex/@Model.DailyReportId" class="btn btn-default">Back</a>
+        <a href="/DailyReport/PictureIndex/@ViewBag.CurrentDailyReportId" class="btn btn-default">Back</a>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

@@ -112,3 +112,22 @@
  #table_id_wrapper{
      overflow: auto;
  }
+
+ .panel-heading{
+     text-align: center;
+ }
+
+ #LinkButtonGroup {
+     visibility: hidden;
+     max-height: 0px;
+     transition: max-height ease-in 500ms;
+ }
+
+#LinkButtonSelected > td {
+     background-color: #6dbef8!important;
+     color: white;
+ }
+
+.DetailItem{
+    text-align: center;
+}

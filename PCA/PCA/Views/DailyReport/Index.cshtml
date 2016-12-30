@@ -7,7 +7,11 @@
 {
     sideNavItemSelected
 }
-
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 <div class="panel panel-default col-xs-12">
     <div class="panel-heading col-xs-12">
         <h4>Daily Report</h4>
@@ -16,30 +20,31 @@
         <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
         <a href="/DailyReport/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
         <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Information</a>
+            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            <a id="LinkButton4" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> Pictures</a>
+        </div>
+
         <div id="TableWrapper" class="col-xs-12">
-            <table id="table_id" class="display col-xs-12">
+            <table id="Sort1" class="display col-xs-12 Sort1">
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Summary</th>
-                        <td>Actions</td>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var report in Model)
                     {
-                        <tr>
+                        <tr class="LinkButton" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
+                             data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId">
                             <td>@Html.DisplayFor(modelItem => report.Date)</td>
                             <td>@report.Summary</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="...">
-                                    <a href="/DailyReport/Detail/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                    <a href="/DailyReport/Edit/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a href="/DailyReport/Delete/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                    <a href="/DailyReport/PictureIndex/@report.DailyReportId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span></a>
-
-                                </div>
-                            </td>
+                            <td>@report.Status</td>
                         </tr>
                     }
                 </tbody>

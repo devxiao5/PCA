@@ -257,8 +257,18 @@ namespace PCA.Controllers
         }
 
         // GET: DailyReport/CreatePicture
-        public ActionResult CreatePicture()
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePicture(int id)
         {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
+            ViewBag.CurrenDailyReportId = id;
             ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Date");
             return View();
         }
@@ -306,7 +316,7 @@ namespace PCA.Controllers
             // -----------
 
             //List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
-
+            ViewBag.CurrentDailyReportId = id;
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
             List<DailyReportPicture> pictures = new List<DailyReportPicture>(from pic in db.DailyReportPicture
