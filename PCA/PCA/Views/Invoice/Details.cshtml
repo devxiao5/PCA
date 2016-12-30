@@ -1,12 +1,18 @@
 ﻿@model PCA.Models.Invoice
 
 @{
+    ViewBag.PanelTitle = "Invoice Detail";
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
+@section sideNavInvoices
+{
+    sideNavItemSelected
+}
 
-<h2>Details</h2>
 
+<a href="/Invoice" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+<hr />
 <div>
     <dl class="dl-horizontal">
         @*@if (Model.Files.Any(f => f.FileType == FileType.InvoiceImage))
@@ -109,7 +115,3 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

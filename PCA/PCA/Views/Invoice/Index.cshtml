@@ -7,18 +7,30 @@
 {
     sideNavItemSelected
 }
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 
-
-<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<a href="/Invoice/Create" class="btn btn-success">Create Invoice</a>
-<br />
-<hr />
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>Invoices</h4>
     </div>
     <div class="panel-body">
+
+        <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+        <a href="/Invoice/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Invoice</a>
+        <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Info</a>
+            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            <a id="LinkButton4" href="" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-picture"></span> View</a>
+        </div>
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -26,25 +38,17 @@
                     <th>Total</th>
                     <th>Date</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var inv in Model)
             {
-                    <tr>
+                    <tr class="LinkButton" data-link-button-1="/Invoice/Details/@inv.InvoiceId" data-link-button-2="/Invoice/Edit/@inv.InvoiceId"
+                             data-link-button-3="/Invoice/Delete/@inv.InvoiceId" data-link-button-4="/Invoice/ViewAttachment/@inv.InvoiceId">
                         <td>@inv.InvoiceId</td>
                         <td>@string.Format("{0:C}", @inv.TotalAmount)</td>
                         <td>@inv.DateOfInvoice</td>
                         <td>@inv.Status</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/Invoice/Details/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                                <a href="/Invoice/Edit/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href="/Invoice/Delete/@inv.InvoiceId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>
-                                <a href="/Invoice/ViewAttachment/@inv.InvoiceId" type="button" class="btn btn-default" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            </div>
-                        </td>
                     </tr>
                 }
 

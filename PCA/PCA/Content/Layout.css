@@ -122,11 +122,19 @@
      max-height: 0px;
      transition: max-height ease-in 500ms;
  }
+ 
+#LinkButtonSelected > .sorting_1 {
+    background-color: #333!important;
+}
 
 #LinkButtonSelected > td {
-     background-color: #6dbef8!important;
+     background-color: #444!important;
      color: white;
+     transition: background-color ease-in-out 200ms;
+     transition: color ease-in-out 150ms;
  }
+
+
 
 .DetailItem{
     text-align: center;

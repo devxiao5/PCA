@@ -10,18 +10,19 @@
 {
     sideNavItemSelected
 }
-
-<a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default">Back</a>
-<a href="/Budget/Create" class="btn btn-success">Create Budget Items</a>
-
-<br />
-<hr />
-
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 <div class="panel panel-default">
     <div class="panel-heading">
+
         <h4>Budget Summary</h4>
     </div>
     <div class="panel-body">
+        <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+        <hr />
         Total Budgeted: @string.Format("{0:C}", @ViewBag.BudgetSummaryTotal)
         <br />
     </div>
@@ -33,27 +34,28 @@
         <h4>Select Phase:</h4>
     </div>
     <div class="panel-body">
+        <a href="/Budget/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Budget Items</a>
+        <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> View</a>
+        </div>
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
                     <th>Total Budget</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var phase in Model)
             {
-                    <tr>
+                    <tr class="LinkButton" data-link-button-1="/Budget/Phase/@phase.PhaseId">
                         <td>@phase.PhaseNumber</td>
                         <td>@phase.PhaseName</td>
                         <td>@string.Format("{0:C}", @phase.TotalCost)</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/Budget/Phase/@phase.PhaseId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            </div>
-                        </td>
                     </tr>
                 }
 

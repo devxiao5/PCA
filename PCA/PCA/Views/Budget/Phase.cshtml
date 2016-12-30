@@ -7,18 +7,25 @@
 {
     sideNavItemSelected
 }
-
-<a href="/Budget/" class="btn btn-default">Back</a>
-<a href="/Budget/Create" class="btn btn-success">Create Budget Items</a>
-
-
-<br />
-<hr />
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+}
 
 <div class="panel panel-default">
 
     <div class="panel-heading"><h4>@ViewBag.currentPhase</h4></div>
     <div class="panel-body">
+
+        <a href="/Budget/" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+        <a href="/Budget/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Budget Items</a>
+        <hr />
+
+        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Info</a>
+        </div>
+
         <table id="table_id" class="display">
             <thead>
                 <tr>
@@ -28,24 +35,18 @@
                     <th>Cost</th>
                     <th>Total Cost</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var budget in @ViewBag.Budgets)
             {
-                    <tr>
+                    <tr class="LinkButton" data-link-button-1="/Budget/Phase/@budget.PhaseId">
                         <td>@budget.Description</td>
                         <td>@budget.Quantity</td>
                         <td>@budget.Unit</td>
                         <td>@string.Format("{0:C}", @budget.UnitCost)</td>
                         <td>@string.Format("{0:C}", @budget.TotalCost)</td>
                         <td>@budget.Status</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="...">
-                                <a href="/Budget/Edit/@budget.BudgetId" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span></a>
-                            </div>
-                        </td>
                     </tr>
                 }
 
