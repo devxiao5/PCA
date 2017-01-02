@@ -1,32 +1,35 @@
-﻿$(document).ready(function () {
-    const budgetChart = document.getElementById("budgetCanvas");
+﻿let ctx = document.getElementById("budgetCanvas");
 
-    let budgetCanvas = new Chart(budgetChart, {
-        type: 'pie',
-        data: {
-            labels: [ 'Site', 'Building', 'Materials', 'Misc'],
-            datasets: [
-                {
-                    data: [333, 333, 333, 5],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56",
-                        "#333",
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56",
-                        "#333",
-                    ]
-                }]
-        },
-        options: {
-            animation: {
-                animateScale: true
-            }
+    let data = {
+        labels: [
+            "Red",
+            "Blue",
+            "Yellow"
+        ],
+        datasets: [
+            {
+                data: [300, 50, 100],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }]
+    };
+
+    let options = {
+        animation: {
+            duration: 5000
         }
-    });
+    }
 
-});
+    var budgetCanvas = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: options
+    });
