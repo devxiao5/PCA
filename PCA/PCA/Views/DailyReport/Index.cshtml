@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<PCA.Models.DailyReport>
+@model IEnumerable<PCA.ViewModels.DailyReportViewModel>
 @{
     ViewBag.Title = "Index";
 }
@@ -9,23 +9,25 @@
 }
 @section scripts
 {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
     <script src="~/Scripts/DataTablesCustomization.js"></script>
     <script src="~/Scripts/PCA.js"></script>
+    <script src="~/Scripts/DailyReport.js"></script>
 }
-<div class="panel panel-default col-xs-12">
+<div class="panel panel-default col-xs-12 col-md-7">
     <div class="panel-heading col-xs-12">
-        <h4>Daily Report</h4>
+        <h4>Daily Reports</h4>
     </div>
     <div class="panel-body col-xs-12">
         <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
         <a href="/DailyReport/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
         <hr />
 
-        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
-            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-road"></span> Work</a>
-            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-            <a id="LinkButton4" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-picture"></span> Pictures</a>
+        <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
+            <a id="LinkButton1" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Work</a>
+            <a id="LinkButton2" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+            <a id="LinkButton3" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            <a id="LinkButton4" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span> Pictures</a>
         </div>
 
         <div id="TableWrapper" class="col-xs-12">
@@ -40,9 +42,10 @@
                 <tbody>
                     @foreach (var report in Model)
                     {
-                        <tr class="LinkButton" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
-                             data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId">
-                            <td>@Html.DisplayFor(modelItem => report.Date)</td>
+                        <tr id="@report.DateString"class="LinkButton" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
+                            data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId"
+                            data-date="@report.DateString" data-totalHours="@report.TotalHours">
+                            <td>@report.DateString</td>
                             <td>@report.Summary</td>
                             <td>@report.Status</td>
                         </tr>
@@ -50,5 +53,17 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+
+<div class="panel panel-default col-xs-12 col-md-4 col-md-offset-1">
+    <div class="panel-heading">
+        <h4>Analytics</h4>
+    </div>
+    <div class="panel-body">
+        <canvas id="dailyReportCanvas" width="400" height="400" data-weekreport-1="@ViewBag.DailyReportAnalWeekDay1" 
+                data-weekreport-2="@ViewBag.DailyReportAnalWeekDay2" data-weekreport-3="@ViewBag.DailyReportAnalWeekDay3"
+                data-weekreport-4="@ViewBag.DailyReportAnalWeekDay4" data-weekreport-5="@ViewBag.DailyReportAnalWeekDay5"
+                data-weekreport-6="@ViewBag.DailyReportAnalWeekDay6" data-weekreport-7="@ViewBag.DailyReportAnalWeekDay7"></canvas>
     </div>
 </div>

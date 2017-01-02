@@ -34,7 +34,74 @@ namespace PCA.Controllers
             List<DailyReport> dailyReports = new List<DailyReport>(from dailyReport in db.DailyReport
                                                                    where dailyReport.ProjectId == currentProjectNumber
                                                                    select dailyReport);
-            return View(dailyReports);
+
+            var viewModelInformation = from work in db.WorkItems
+                                       join report in db.DailyReport on work.DailyReportId equals report.DailyReportId
+                                       where report.ProjectId == currentProjectNumber
+                                       select new { report.DailyReportId, report.ProjectId, report.Date, report.Summary,
+                                       report.Status, work.WorkItemId, work.ContractorId, work.Performance, work.MenWorked,
+                                       work.HoursWorked };
+
+            List<DailyReportViewModel> reportModel = new List<DailyReportViewModel>();
+            
+
+            foreach (var report in dailyReports)
+            {
+                double totalHourRunningTotal = 0;
+                DailyReportViewModel vm = new DailyReportViewModel();
+                vm.DailyReportId = report.DailyReportId;
+                vm.ProjectId = report.ProjectId;
+                vm.Date = report.Date;
+                vm.Summary = report.Summary;
+                vm.Status = report.Status;
+                var lw = new List<WorkItem>();
+                foreach (var item in viewModelInformation)
+                {
+                    if (item.DailyReportId == vm.DailyReportId)
+                    {
+                        WorkItem w = new WorkItem();
+                        w.WorkItemId = item.WorkItemId;
+                        w.DailyReportId = item.DailyReportId;
+                        w.ContractorId = item.ContractorId;
+                        w.Performance = item.Performance;
+                        w.MenWorked = item.MenWorked;
+                        w.HoursWorked = item.HoursWorked;
+                        double workHoursTotal = item.MenWorked * item.HoursWorked;
+                        totalHourRunningTotal += workHoursTotal;
+                        lw.Add(w);
+                    }
+                }
+
+                vm.TotalHours = totalHourRunningTotal;
+                vm.DateString = vm.Date.ToString("yyyy-MM-dd");
+                vm.WorkItems = lw;
+                reportModel.Add(vm);
+            }
+
+            List<string> DailyReportWeekAnal = new List<string>();
+
+            //Analytics 
+
+            //Week report (hours)
+
+            /*DateTime currentDate = DateTime.Now;
+            for (int i=0; i>=-7; i--)
+            {
+                DateTime d = DateTime.Now.AddDays(i);
+                string sd = d.ToString("yyyy-MM-dd");
+                DailyReportWeekAnal.Add(sd);
+            }*/
+
+            ViewBag.DailyReportAnalWeekDay1 = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay2 = DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay3 = DateTime.Now.AddDays(-4).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay4 = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay5 = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay6 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay7 = DateTime.Now.ToString("yyyy-MM-dd");
+
+
+            return View(reportModel);
         }
 
         public ActionResult Detail(int id)
