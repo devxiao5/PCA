@@ -12,10 +12,11 @@
 }
 @section scripts
 {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
     <script src="~/Scripts/DataTablesCustomization.js"></script>
     <script src="~/Scripts/PCA.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
     <script src="~/Scripts/Budget.js"></script>
+    
 }
 <div class="col-xs-12 col-md-7">
     <div class="panel panel-default col-xs-12">
@@ -75,6 +76,10 @@
         <h4>Analytics</h4>
     </div>
     <div class="panel-body">
-        <canvas id="budgetCanvas" width="400" height="400"></canvas>
+        <div class="col-xs-10 col-xs-offset-1">
+            <canvas id="budgetCanvas" width="400" height="300" data-site-total="@ViewBag.SiteTotal"
+                    data-equipment-total="@ViewBag.EquipmentTotal" data-building-total="@ViewBag.BuildingTotal"
+                    data-misc-total="@ViewBag.MiscTotal"></canvas>
+        </div>
     </div>
 </div>

@@ -8,6 +8,7 @@ using System.Data.Entity;
 
 namespace PCA.Models
 {
+
     public class DailyReport
     {
         [Key]
@@ -18,6 +19,7 @@ namespace PCA.Models
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [StringLength(1000)]
         public string Summary { get; set; }
 
@@ -29,5 +31,6 @@ namespace PCA.Models
         public virtual Project Projects { get; set; }
         public virtual ICollection<WorkItem> WorkItems { get; set; }
         public virtual ICollection<DailyReportPicture> DailyReportPictures { get; set; }
+
     }
 }

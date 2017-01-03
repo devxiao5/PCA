@@ -320,6 +320,10 @@
     <Compile Include="Migrations\201612301631077_removepicture.Designer.cs">
       <DependentUpon>201612301631077_removepicture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701032152303_workperformedenum.cs" />
+    <Compile Include="Migrations\201701032152303_workperformedenum.Designer.cs">
+      <DependentUpon>201701032152303_workperformedenum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -335,6 +339,7 @@
     <Compile Include="Models\ContractorTypeUnion.cs" />
     <Compile Include="Models\DailyReport.cs" />
     <Compile Include="Models\DailyReportPicture.cs" />
+    <Compile Include="Models\WorkPerformance.cs" />
     <Compile Include="Models\DepreciationType.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
@@ -360,11 +365,13 @@
     <Content Include="Content\Budget.css" />
     <Content Include="Content\GC.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\cork-wallet.png" />
     <Content Include="Content\Images\grey_wash_wall.png" />
     <Content Include="Content\Images\loginbkrd.jpg" />
     <Content Include="Content\Images\mirrored_squares.png" />
     <Content Include="Content\Images\pcalogo.png" />
     <Content Include="Content\Images\Plann_LetterHead.png" />
+    <Content Include="Content\LayoutCurrent.css" />
     <Content Include="Content\LayoutOLD.css" />
     <Content Include="Content\Layout.css" />
     <Content Include="Content\Login.css" />
@@ -552,13 +559,15 @@
     <Content Include="Views\DailyReport\WorkDetail.cshtml" />
     <Content Include="Views\DailyReport\WorkEdit.cshtml" />
     <Content Include="Views\DailyReport\WorkDelete.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layouttest.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutFormOLD.cshtml" />
     <Content Include="Views\DailyReport\ViewAttachment.cshtml" />
     <Content Include="Views\DailyReport\PictureEdit.cshtml" />
     <Content Include="Views\DailyReport\PictureDelete.cshtml" />
     <Content Include="Views\Shared\LinkButtonGroup.cshtml" />
+    <Content Include="Views\Budget\Details.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -635,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612301631077_removepicture.resx">
       <DependentUpon>201612301631077_removepicture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701032152303_workperformedenum.resx">
+      <DependentUpon>201701032152303_workperformedenum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

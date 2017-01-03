@@ -40,7 +40,7 @@
             <tbody>
                 @foreach (var budget in @ViewBag.Budgets)
             {
-                    <tr class="LinkButton" data-link-button-1="/Budget/Phase/@budget.PhaseId">
+                    <tr class="LinkButton" data-link-button-1="/Budget/Details/@budget.BudgetId">
                         <td>@budget.Description</td>
                         <td>@budget.Quantity</td>
                         <td>@budget.Unit</td>

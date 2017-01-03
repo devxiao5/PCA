@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     const CHART = document.getElementById("dailyReportCanvas");
-    console.log(CHART);
 
     var day1 = $('#dailyReportCanvas').attr('data-weekreport-1');
     var day2 = $('#dailyReportCanvas').attr('data-weekreport-2');

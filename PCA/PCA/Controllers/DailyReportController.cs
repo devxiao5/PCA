@@ -138,10 +138,11 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
             return View();
         }
 
@@ -157,7 +158,8 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
             if (ModelState.IsValid)
@@ -167,7 +169,7 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
             return View(dailyReport);
         }
 
@@ -179,7 +181,8 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
@@ -187,6 +190,7 @@ namespace PCA.Controllers
             {
                 DailyReportId = id
             };
+
             return View(model);
         }
 
@@ -202,7 +206,8 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
             if (ModelState.IsValid)
@@ -213,6 +218,11 @@ namespace PCA.Controllers
             }
 
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
+            ViewBag.Performance = new SelectList(Enum.GetValues(typeof(WorkPerformance)).Cast<WorkPerformance>().Select(t => new SelectListItem
+            {
+                Text = t.ToString(),
+                Value = t.ToString()
+            }).ToList(), "Value", "Text");
             return View(work);
         }
 

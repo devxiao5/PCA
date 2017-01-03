@@ -43,6 +43,10 @@ namespace PCA.Controllers
             int runningPhaseId;
             string runningPhaseName;
             string runningPhaseNumber;
+            double runningSiteTotal = 0;
+            double runningEquipmentTotal = 0;
+            double runningBuildingTotal = 0;
+            double runningMiscTotal = 0;
 
             // Pulls information from database
             List<Phase> phases = new List<Phase>(db.Phases);
@@ -64,6 +68,21 @@ namespace PCA.Controllers
                         runningTotal += budget.TotalCost;
                         budgetSummaryTotal += budget.TotalCost;
                     }
+                    switch (budget.Type)
+                    {
+                        case "Site":
+                            runningSiteTotal += budget.TotalCost;
+                            break;
+                        case "Equipment":
+                            runningEquipmentTotal += budget.TotalCost;
+                            break;
+                        case "Building":
+                            runningBuildingTotal += budget.TotalCost;
+                            break;
+                        case "Misc":
+                            runningMiscTotal += budget.TotalCost;
+                            break;
+                    }
                 }
                 viewModel.Add(new BudgetPhaseViewModel(runningPhaseId, runningPhaseName, runningPhaseNumber, runningTotal));
                 runningTotal = 0;
@@ -71,6 +90,11 @@ namespace PCA.Controllers
 
             // Budget Summary - Toal Budgeted
             ViewBag.BudgetSummaryTotal = budgetSummaryTotal;
+            ViewBag.SiteTotal = runningSiteTotal;
+            ViewBag.EquipmentTotal = runningEquipmentTotal;
+            ViewBag.BuildingTotal = runningBuildingTotal;
+            ViewBag.MiscTotal = runningMiscTotal;
+
 
             return View(viewModel);
         }
@@ -244,6 +268,21 @@ namespace PCA.Controllers
 
             ViewBag.Budgets = budgetss;
             return View(budgets);
+        }
+
+        // GET: Budgets/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Budget budget = db.Budgets.Find(id);
+            if (budget == null)
+            {
+                return HttpNotFound();
+            }
+            return View(budget);
         }
     }
 }
