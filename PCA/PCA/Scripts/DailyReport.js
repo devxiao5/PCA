@@ -95,7 +95,13 @@
         }
 
     })
+});
 
+$(document).ready(function () {
+    $(".dailyReportStatusFilter").click(function () {
+        var filterText = $(this).text();
+        $('#selection').html(filterText);
+        
 
-
+    })
 });

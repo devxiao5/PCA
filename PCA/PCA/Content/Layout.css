@@ -13,11 +13,17 @@
 
 .workflowTable > tbody > tr > td {
     text-align: center;
+    
 }
 
 .workflowTable > tbody > tr > td:hover {
     background-color: #777;
     color: white;
+}
+
+.headingElements{
+    padding: 0px;
+
 }
 
 #navbar {
@@ -26,9 +32,18 @@
     padding-bottom: 8px;*/
 }
 
-.panel-heading{
+.panel-heading > .headingText{
     border-width: 5px;
     border-color: #333;
+    font-size: 1.3em;
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px;
+}
+
+.heading-1{
+    font-size: 1.5em;
+    padding: 0px;
+
 }
 
 #Navigation{
@@ -119,7 +134,16 @@
     
 }
 
-.panel {
+.list-group-item:hover{
+    background-color: #666;
+    color: white;
+}
+
+.panel{
+    padding:0px;
+}
+
+.panelShadow {
     padding:0px;
     box-shadow: 10px 10px 3px #999;
 
@@ -137,8 +161,15 @@
      overflow: auto;
  }
 
- .panel-heading{
+ .panel-heading > .headingElements > .headingText  {
      text-align: center;
+     font-size: 1.3em;
+     font-family: 'Open Sans', sans-serif;
+     padding: 5px;
+ }
+
+  .panel-heading > .headingElements > .headingRight  {
+     text-align: right;
  }
 
  #LinkButtonGroup {
