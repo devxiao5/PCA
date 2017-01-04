@@ -607,6 +607,21 @@ namespace PCA.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // GET: Budgets/Details/5
+        public ActionResult WorkFlow(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReport report = db.DailyReport.Find(id);
+            if (report == null)
+            {
+                return HttpNotFound();
+            }
+            return View(report);
+        }
     }
 }
 

@@ -1,6 +1,8 @@
-﻿$(document).ready(function () {
+﻿// Analytics 
+$(document).ready(function () {
     const CHART = document.getElementById("dailyReportCanvas");
 
+    // Dates for x-axis
     var day1 = $('#dailyReportCanvas').attr('data-weekreport-1');
     var day2 = $('#dailyReportCanvas').attr('data-weekreport-2');
     var day3 = $('#dailyReportCanvas').attr('data-weekreport-3');
@@ -61,9 +63,7 @@
         day7value = $("#" + day7).attr('data-totalHours')
     }
 
-
-
-
+    // Create Chart with data
     let dailyReportCanvas = new Chart(CHART, {
         type: 'line',
         data: {
@@ -93,15 +93,40 @@
                 }
             ]
         }
-
     })
 });
 
+// Filter Options
 $(document).ready(function () {
+    // Click filter
     $(".dailyReportStatusFilter").click(function () {
+
+        // Hide Link buttons
+        $("#LinkButtonGroup").css({ 'visibility': 'hidden', 'max-height': '0px' });
+
+        // Set current filter text
         var filterText = $(this).text();
         $('#selection').html(filterText);
+
+        var selecteditem = document.getElementById('LinkButtonSelected');
+        $(selecteditem).removeAttr('id');
+
         
 
+        $('.dailyReportRow').each(function (i, obj) {
+            $(this).show();
+        })
+
+        if (filterText == "All") {
+            $('.dailyReportRow').each(function (i, obj) {
+                $(this).show();
+            })
+        }
+        else
+            $('.dailyReportRow').each(function (i, obj) {
+            if ($(this).attr('data-status') != filterText) {
+                $(this).hide();
+            }
+        })
     })
 });

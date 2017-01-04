@@ -576,6 +576,7 @@
     <Content Include="Views\Shared\LinkButtonGroup.cshtml" />
     <Content Include="Views\Budget\Details.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\DailyReport\WorkFlow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
