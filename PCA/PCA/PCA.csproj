@@ -324,6 +324,14 @@
     <Compile Include="Migrations\201701032152303_workperformedenum.Designer.cs">
       <DependentUpon>201701032152303_workperformedenum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701032347420_timestampdailyreport.cs" />
+    <Compile Include="Migrations\201701032347420_timestampdailyreport.Designer.cs">
+      <DependentUpon>201701032347420_timestampdailyreport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701040000238_moretimestampz.cs" />
+    <Compile Include="Migrations\201701040000238_moretimestampz.Designer.cs">
+      <DependentUpon>201701040000238_moretimestampz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -647,6 +655,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701032152303_workperformedenum.resx">
       <DependentUpon>201701032152303_workperformedenum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701032347420_timestampdailyreport.resx">
+      <DependentUpon>201701032347420_timestampdailyreport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701040000238_moretimestampz.resx">
+      <DependentUpon>201701040000238_moretimestampz.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

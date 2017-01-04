@@ -19,9 +19,17 @@ namespace PCA.Models
 
         public virtual ICollection<File> Files { get; set; }
 
+        public DateTime Timestamp { get; set; }
+
         // Constraint / Relationships
         [ForeignKey("DailyReportId")]
         public virtual DailyReport DailyReports { get; set; }
+
+        public DailyReportPicture()
+        {
+            Timestamp = DateTime.Now;
+        }
+
 
     }
 }

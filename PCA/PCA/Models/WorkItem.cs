@@ -29,6 +29,8 @@ namespace PCA.Models
         [Display(Name = "Hours Worked")]
         public double HoursWorked { get; set; }
 
+        public DateTime Timestamp { get; set; }
+
         // Constraint / Relationships
         [ForeignKey("DailyReportId")]
         public virtual DailyReport DailyReports { get; set; }
@@ -36,6 +38,11 @@ namespace PCA.Models
         [Display(Name = "Contractor")]
         [ForeignKey("ContractorId")]
         public virtual Contractor Contractors { get; set; }
+
+        public WorkItem()
+        {
+            Timestamp = DateTime.Now;
+        }
 
     }
 }

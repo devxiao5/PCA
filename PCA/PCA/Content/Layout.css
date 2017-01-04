@@ -6,14 +6,29 @@
     background: #ddd;
 }
 
+.workflowTable, .workflowTable > tbody > tr > td {
+    border-width: 3px;
+    border-color: #777;
+}
+
+.workflowTable > tbody > tr > td {
+    text-align: center;
+}
+
+.workflowTable > tbody > tr > td:hover {
+    background-color: #777;
+    color: white;
+}
+
 #navbar {
     background-color: white;
     /*box-shadow: inset 0px -3px 5px #666;
     padding-bottom: 8px;*/
 }
 
-#rowLogo{
-   
+.panel-heading{
+    border-width: 5px;
+    border-color: #333;
 }
 
 #Navigation{
@@ -24,7 +39,7 @@
     border-bottom-color: #ddd;
     min-height: 30px;
     background-color: #064979;
-    box-shadow: inset 0px -3px 5px #222;
+    box-shadow: inset 0px -3px 5px #333;
 
     /*box-shadow: 0px 10px 15px #333;*/
 }
@@ -54,11 +69,6 @@
 
 .NavigationLinkItem:hover{
     background-color: #1796F3;
-}
-
-.NavItemSelected {
-    
-    
 }
 
 #CurrentUserText {

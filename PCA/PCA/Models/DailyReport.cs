@@ -26,11 +26,19 @@ namespace PCA.Models
         [StringLength(255)]
         public string Status { get; set; }
 
+        public DateTime Timestamp { get; set; }
+
         // Constraint / Relationships
         [ForeignKey("ProjectId")]
         public virtual Project Projects { get; set; }
         public virtual ICollection<WorkItem> WorkItems { get; set; }
         public virtual ICollection<DailyReportPicture> DailyReportPictures { get; set; }
+
+        public DailyReport()
+        {
+            Timestamp = DateTime.Now;
+        }
+
 
     }
 }
