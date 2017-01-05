@@ -29,12 +29,12 @@
         <div class="row">
             <div id="Navigation" class="col-xs-12">
                 <div id="NavigationLinks" class="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-4">
-                    <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavDashboard", false)">DASHBOARD</span></a>
-                    <a href="/Contract/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavContracts", false)">CONTRACTS</span></a>
-                    <a href="/Budget/Index/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavBudgets", false)">BUDGETS</span></a>
-                    <a href="/Invoice/"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavInvoices", false)">INVOICE</span></a>
-                    <a href="/DailyReport/Index"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavDailyReport", false)">DAILY REPORT</span></a>
-                    <a href="/Report/Index"><span class="NavigationLinkItem col-xs-12 col-md-2 @RenderSection("sideNavReport", false)">REPORTS</span></a>
+                    <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavDashboard", false)">DASHBOARD</span></a>
+                    <a href="/Contract/"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavContracts", false)">CONTRACTS</span></a>
+                    <a href="/Budget/Index/"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavBudgets", false)">BUDGETS</span></a>
+                    <a href="/Invoice/"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavInvoices", false)">INVOICE</span></a>
+                    <a href="/DailyReport/Index"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavDailyReport", false)">DAILY REPORT</span></a>
+                    <a href="/Report/Index"><span class="NavigationLinkItem col-xs-4 col-md-2 @RenderSection("sideNavReport", false)">REPORTS</span></a>
                 </div>
 
                 <div id="CurrentUser" class="col-xs-12 col-md-4 col-lg-6 col-xl-4">
@@ -48,13 +48,19 @@
         <div id="BodyContainer" class="container">
             <div class="row">
                 <div id="Body" class="col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4>@ViewBag.PanelTitle</h4>
+                    <div class="panel panel-default panelShadow">
+                        <div class="panel-heading col-xs-12">
+                            <span class="headingElements col-xs-12">
+                                <span id="headerLeft" class="col-xs-4">@RenderSection("headerLeft", false)</span>
+                                <span class="headingText col-xs-4">@ViewBag.PanelTitle</span>
+                                <span id="headerLeft" class="col-xs-4 headingRight">@RenderSection("headerRight", false)</span>
+                            </span>
                         </div>
+
                         <div class="panel-body">
                             @RenderBody()
                         </div>
+                        
                     </div>
                 </div>
             </div>

@@ -164,6 +164,7 @@ namespace PCA.Controllers
 
             if (ModelState.IsValid)
             {
+                dailyReport.Status = "Pending";
                 db.DailyReport.Add(dailyReport);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -611,6 +612,14 @@ namespace PCA.Controllers
         // GET: Budgets/Details/5
         public ActionResult WorkFlow(int? id)
         {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -621,6 +630,67 @@ namespace PCA.Controllers
                 return HttpNotFound();
             }
             return View(report);
+        }
+
+        // GET: Budgets/Details/5
+        public ActionResult WorkFlowForward(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReport report = db.DailyReport.Find(id);
+            if (report == null)
+            {
+                return HttpNotFound();
+            }
+
+            var currentStatus = report.Status;
+            if (currentStatus == "Pending")
+            {
+                report.Status = "Approved";
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult WorkFlowReturn(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DailyReport report = db.DailyReport.Find(id);
+            if (report == null)
+            {
+                return HttpNotFound();
+            }
+
+            var currentStatus = report.Status;
+            if (currentStatus == "Approved")
+            {
+                report.Status = "Pending";
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

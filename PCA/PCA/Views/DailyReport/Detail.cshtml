@@ -14,73 +14,86 @@
     <script src="~/Scripts/DataTablesCustomization.js"></script>
     <script src="~/Scripts/PCA.js"></script>
 }
-
-<div class="panel panel-default">
-    <div class="panel-heading"><h4>Current Daily Report</h4></div>
-    <div class="panel-body">
-        <a href="/DailyReport" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-        <hr />
-        <div class="col-xs-12">
-            <div class="col-xs-6 DetailItem">
-                <h5>Report Date:</h5>
-                <p>@ViewBag.currentReportDate</p>
-            </div>
-            <div class="col-xs-6 DetailItem">
-                <h5>
-                    Report Summary:
-                </h5>
-                <p>@ViewBag.currentReportSummary</p>
+<div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-default panelShadow">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/DailyReport/Index/" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-menu-left"></span> Back
+                    </a>
+                </div>
+                <span class="headingText col-xs-4">Current Daily Report</span>
             </div>
         </div>
-        
-        
+
+        <div class="panel-body">
+            <div class="col-xs-12">
+                <div class="col-xs-6 DetailItem">
+                    <h5>Report Date:</h5>
+                    <p>@ViewBag.currentReportDate</p>
+                </div>
+                <div class="col-xs-6 DetailItem">
+                    <h5>
+                        Report Summary:
+                    </h5>
+                    <p>@ViewBag.currentReportSummary</p>
+                </div>
+            </div>
 
 
+
+
+        </div>
     </div>
-</div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4>Work Performed</h4>
-    </div>
-    <div class="panel-body">
-        <a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Create New</a>
-        <hr />
-
-        <div id="LinkButtonGroup" class="btn-group col-xs-12" role="group" aria-label="...">
-            <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Information</a>
-            <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-            <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+    <div class="panel panel-default panelShadow">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/DailyReport/CreateWork/@ViewBag.currentReportId" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New</a>
+                </div>
+                <span class="headingText col-xs-4">Work Performed</span>
+            </div>
         </div>
 
+        <div class="panel-body">
+
+            <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
+                <a id="LinkButton1" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> Information</a>
+                <a id="LinkButton2" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                <a id="LinkButton3" href="" type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+            </div>
 
 
-        <table id="table_id" class="display">
-            <thead>
-                <tr>
-                    <th>Contractor</th>
-                    <th>Summary</th>
-                    <th>Performance</th>
-                    <th>Men Worked</th>
-                    <th>Hours Worked</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var work in Model)
-            {
-                    <tr class="LinkButton" data-link-button-1="/DailyReport/WorkDetail/@work.WorkItemId" data-link-button-2="/DailyReport/WorkEdit/@work.WorkItemId"
-                             data-link-button-3="/DailyReport/WorkDelete/@work.WorkItemId">
-                        <td>@work.ContractorId</td>
-                        <td>@work.Summary</td>
-                        <td>@work.Performance</td>
-                        <td>@work.MenWorked</td>
-                        <td>@work.HoursWorked</td>
+
+
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>Contractor</th>
+                        <th>Summary</th>
+                        <th>Performance</th>
+                        <th>Men Worked</th>
+                        <th>Hours Worked</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var work in Model)
+            {
+                        <tr class="LinkButton" data-link-button-1="/DailyReport/WorkDetail/@work.WorkItemId" data-link-button-2="/DailyReport/WorkEdit/@work.WorkItemId"
+                            data-link-button-3="/DailyReport/WorkDelete/@work.WorkItemId">
+                            <td>@work.ContractorId</td>
+                            <td>@work.Summary</td>
+                            <td>@work.Performance</td>
+                            <td>@work.MenWorked</td>
+                            <td>@work.HoursWorked</td>
+                        </tr>
+                    }
 
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-

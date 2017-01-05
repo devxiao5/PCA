@@ -368,11 +368,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapTEST.css" />
     <Content Include="Content\bootstrapOG.css" />
     <Content Include="Content\bootstrapOG.min.css" />
     <Content Include="Content\Budget.css" />
     <Content Include="Content\GC.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapTEST.min.css" />
     <Content Include="Content\Images\cork-wallet.png" />
     <Content Include="Content\Images\grey_wash_wall.png" />
     <Content Include="Content\Images\loginbkrd.jpg" />

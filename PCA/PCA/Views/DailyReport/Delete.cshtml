@@ -5,8 +5,11 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-<a href="/DailyReport/" class="btn btn-default">Back</a>
-<hr />
+@section headerLeft
+{
+    <a href="/DailyReport/" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
+<br /><br /><br />
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <dl class="dl-horizontal">

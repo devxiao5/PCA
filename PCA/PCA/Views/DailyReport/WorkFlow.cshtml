@@ -5,11 +5,18 @@
     ViewBag.Title = "WorkFlow";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-
-<h2>WorkFlow</h2>
+@section headerLeft
+{
+    <a href="/DailyReport/Index/" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-menu-left"></span> Back
+    </a>
+}
+@section sideNavDailyReport
+{
+    sideNavItemSelected
+}
 
 <div>
-    <h4>DailyReport</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -54,7 +61,13 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DailyReportId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (Model.Status == "Approved")
+{
+    <a href="/DailyReport/WorkFlowReturn/@Model.DailyReportId" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Return</a>
+}
+else
+{
+    <a href="/DailyReport/WorkFlowForward/@Model.DailyReportId" class="btn btn-primary btn-sm">Forward <span class="glyphicon glyphicon-arrow-right"></span></a>
+}
+
+

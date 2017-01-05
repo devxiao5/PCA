@@ -11,6 +11,10 @@
     border-color: #777;
 }
 
+.vertSpace{
+    padding-top: 15px;
+}
+
 .workflowTable > tbody > tr > td {
     text-align: center;
     
@@ -54,7 +58,7 @@
     border-bottom-color: #ddd;
     min-height: 30px;
     background-color: #064979;
-    box-shadow: inset 0px -3px 5px #333;
+    box-shadow: inset 0px -5px 5px #032c49;
 
     /*box-shadow: 0px 10px 15px #333;*/
 }
@@ -68,22 +72,24 @@
 }
 
 .NavigationLinkItem {
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 8px;
+    padding-left: 0.25%;
+    padding-right: 0.25%;
+    padding-top: 10px;
     padding-bottom: 8px;
     margin-left: 0px !important;
     text-align: center;
     list-style-type: none;
     min-height: 40px;
     max-height: 40px;
-    font-size: 1em;
+    font-size: 0.9em;
     color: white;
     transition: background-color ease-in 100ms;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
 }
 
 .NavigationLinkItem:hover{
-    background-color: #1796F3;
+    background-color: #0967aa;
 }
 
 #CurrentUserText {
@@ -107,7 +113,8 @@
     background-color: #333333;
     border-top-width: 4px;
     border-style: solid;
-    border-color: #222;
+    border-color: #111;
+    box-shadow: inset 0px 3px 10px #111;
 }
 
 #Footer:hover{
@@ -129,7 +136,7 @@
 .sideNavItemSelected{
     background-color: #ddd;
     color:#222;
-    font-weight: 500;
+    font-weight: 600;
     background-image: url('Images/cork-wallet.png');
     
 }
@@ -176,6 +183,7 @@
      visibility: hidden;
      max-height: 0px;
      transition: max-height ease-in 500ms;
+     padding-top: 10px;
  }
  
 #LinkButtonSelected > .sorting_1 {

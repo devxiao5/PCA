@@ -5,9 +5,18 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-<a href="/DailyReport/Detail/@Model.DailyReportId" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+@section headerLeft
+{
+    <a href="/DailyReport/Detail/@Model.DailyReportId" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
+@section sideNavDailyReport
+{
+    sideNavItemSelected
+}
+
+
 <div>
-    <hr />
+    <br /><br /><br />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Contractors.Name)
@@ -18,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DailyReports.Summary)
+            @Html.DisplayNameFor(model => model.DailyReports.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DailyReports.Summary)
+            @Html.DisplayFor(model => model.DailyReports.Date)
         </dd>
 
         <dt>
