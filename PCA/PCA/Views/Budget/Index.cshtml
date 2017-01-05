@@ -19,26 +19,38 @@
     
 }
 <div class="col-xs-12 col-md-7">
-    <div class="panel panel-default col-xs-12">
-        <div class="panel-heading">
-
-            <h4>Budget Summary</h4>
+    <div class="panel panel-default panelShadow col-xs-12">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-menu-left"></span> Back
+                    </a>
+                </div>
+                <span class="headingText col-xs-4">Budget Summary</span>
+            </div>
         </div>
+
+
         <div class="panel-body">
-            <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-            <hr />
+            <br /><br /><br />
             Total Budgeted: @string.Format("{0:C}", @ViewBag.BudgetSummaryTotal)
             <br />
         </div>
     </div>
 
 
-    <div class="panel panel-default col-xs-12">
-        <div class="panel-heading">
-            <h4>Select Phase:</h4>
+    <div class="panel panel-default panelShadow col-xs-12">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/Budget/Create" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> New</a>
+                </div>
+                <span class="headingText col-xs-4">Select Phase</span>
+            </div>
         </div>
         <div class="panel-body">
-            <a href="/Budget/Create" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Create Budget Items</a>
+            
             <hr />
 
             <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
@@ -71,7 +83,7 @@
 </div>
 <div class="col-xs-0 col-md-1"></div>
 
-<div class="panel panel-default col-xs-12 col-md-4">
+<div class="panel panel-default panelShadow col-md-4">
     <div class="panel-heading">
         <h4>Analytics</h4>
     </div>

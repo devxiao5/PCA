@@ -15,6 +15,11 @@
     padding-top: 15px;
 }
 
+.dashboardSection{
+    border-width: 5px;
+    border-style: solid;
+}
+
 .workflowTable > tbody > tr > td {
     text-align: center;
     

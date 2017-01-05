@@ -9,10 +9,11 @@
 {
     sideNavItemSelected
 }
-
-
-<a href="/Invoice" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-<hr />
+@section headerLeft
+{
+    <a href="/Invoice/" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
+<br /><br /><br />
 <div>
     <dl class="dl-horizontal">
         @*@if (Model.Files.Any(f => f.FileType == FileType.InvoiceImage))

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
+using PCA.ViewModels;
 using System.Net;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -27,12 +28,27 @@ namespace PCA.Controllers
             // Declarations
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
-            List<Invoice> invoices = new List<Invoice>(from invoice in db.Invoices
-                                                       where invoice.ProjectId == currentProjectNumber
-                                                       select invoice);
+            var invoices = from invoice in db.Invoices
+                           join cont in db.Contractors on invoice.ContractorId equals cont.ContractorId
+                           where invoice.ProjectId == currentProjectNumber
+                           select new { invoice.InvoiceId, cont.ContractorId, cont.Name, invoice.TotalAmount, invoice.DateOfInvoice, invoice.Status };
+
+            List<InvoiceIndexViewModel> invoiceView = new List<InvoiceIndexViewModel>();
+
+            foreach (var invoice in invoices)
+            {
+                InvoiceIndexViewModel vm = new InvoiceIndexViewModel();
+                vm.InvoiceId = invoice.InvoiceId;
+                vm.ContractorId = invoice.ContractorId;
+                vm.ContractorName = invoice.Name;
+                vm.InvoiceTotal = invoice.TotalAmount;
+                vm.InvoiceDate = invoice.DateOfInvoice.ToString("yyyy-MM-dd");
+                vm.InvoiceStatus = invoice.Status;
+                invoiceView.Add(vm);
+            }
 
 
-            return View(invoices);
+            return View(invoiceView);
         }
 
         // GET: Invoices/Create
@@ -228,6 +244,14 @@ namespace PCA.Controllers
         // GET: Invoices/Delete/5
         public ActionResult Delete(int? id)
         {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            //---------------------------
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -245,6 +269,16 @@ namespace PCA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var invoiceFile = from file in db.Files
+                                    where file.InvoiceId == id
+                                    select file;
+
+            foreach (var file in invoiceFile)
+            {
+                db.Files.Remove(file);
+
+            }
+            
             Invoice invoice = db.Invoices.Find(id);
             db.Invoices.Remove(invoice);
             db.SaveChanges();
