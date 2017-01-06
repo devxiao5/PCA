@@ -14,7 +14,7 @@ namespace PCA.ViewModels
 
         public string ProjectName { get; set; }
 
-        public IList<File> Files { get; set; }
+        public virtual ICollection<File> Files { get; set; }
 
 
     }

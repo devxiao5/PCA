@@ -8,6 +8,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
+using PCA.ViewModels;
+using System.Data.Entity;
 
 namespace PCA.Controllers
 {
@@ -42,8 +44,36 @@ namespace PCA.Controllers
         {
             // Get all current projects
             var projects = db.Projects.ToList();
+            List<ProjectSelectViewModel> list = new List<ProjectSelectViewModel>();
 
-            return View(projects);
+            foreach (var project in projects)
+            {
+                ProjectSelectViewModel vm = new ProjectSelectViewModel();
+                List<File> files = new List<File>();
+                vm.ProjectId = project.ProjectId;
+                vm.ClientId = project.ClientId;
+                vm.ProjectName = project.Name;
+
+                List<DailyReportPicture> picture = new List<DailyReportPicture>(from pic in db.DailyReportPicture
+                                                                                join report in db.DailyReport on pic.DailyReportId equals report.DailyReportId
+                                                                                where report.ProjectId == project.ProjectId
+                                                                                select pic);
+
+                foreach (var p in picture)
+                {
+                    DailyReportPicture pic = db.DailyReportPicture.Include(s => s.Files).SingleOrDefault(s => s.DailyReportPictureId == p.DailyReportPictureId);
+
+                    foreach (var image in pic.Files)
+                    {
+                        files.Add(image);
+                    }
+                }
+                vm.Files = files;
+                list.Add(vm);
+            }
+
+            return View(list);
+
         }
     }
 }

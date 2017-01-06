@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PCA.Models.Project>
+﻿@model IEnumerable<PCA.ViewModels.ProjectSelectViewModel>
 
 @{
     ViewBag.Title = "Select";
@@ -12,27 +12,32 @@
         @foreach (var project in Model)
         {
             <div class="col-xs-12 col-md-6">
-                <div class="panel panel-default panelShadow col-md-8 col-md-offset-2 col-xs-12">
+                <div class="panel panel-default panelShadow col-md-10 col-md-offset-2 col-xs-12">
                     <div class="panel-heading col-xs-12">
                         <div class="headingElements col-xs-12">
                             <span class="col-xs-4">
                             </span>
-                            <span class="headingText col-xs-4">@project.Name</span>
+                            <span class="headingText col-xs-4">@project.ProjectName</span>
                         </div>
                     </div>
 
                     <div class="panel-body">
                         <a href="/Dashboard/Index/@project.ProjectId">[Project Information Here]</a>
-
+                        <div class="col-xs-12">
+                            @foreach (var f in project.Files)
+                            {
+                                <img src="~/File?id=@f.FileId" alt="" class="col-xs-6 " />
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
         }
 
-    <div class="panel panel-default panelShadow col-xs-12">
-        <div class="panel-heading">Admin</div>
-        <div class="panel-body"><a href="/Contractors/">Admin Links Here</a></div>
+        <div class="panel panel-default panelShadow col-xs-12">
+            <div class="panel-heading">Admin</div>
+            <div class="panel-body"><a href="/Contractors/">Admin Links Here</a></div>
+        </div>
     </div>
-</div>
 </row>
 
