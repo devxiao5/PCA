@@ -1,0 +1,97 @@
+﻿@*@model IEnumerable<PCA.Models.Phase>*@
+@model      PCA.ViewModels.BudgetIndexViewModel
+@{
+    ViewBag.Title = "Details";
+}
+@section css {
+    <link rel="stylesheet" href="~/Content/Budget.css" />
+}
+@section sideNavBudgets
+{
+    sideNavItemSelected
+}
+@section scripts
+{
+    <script src="~/Scripts/DataTablesCustomization.js"></script>
+    <script src="~/Scripts/PCA.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+    <script src="~/Scripts/Budget.js"></script>
+    
+}
+<div class="col-xs-12 col-md-7">
+    <div class="panel panel-default panelShadow col-xs-12">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-menu-left"></span> Back
+                    </a>
+                </div>
+                <span class="headingText col-xs-4">Budget Summary</span>
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+            <br /><br /><br />
+            Total Budgeted: @string.Format("{0:C}", @ViewBag.BudgetSummaryTotal)
+            <br />
+        </div>
+    </div>
+
+
+    <div class="panel panel-default panelShadow col-xs-12">
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4">
+                    <a href="/Budget/Create" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> New</a>
+                </div>
+                <span class="headingText col-xs-4">Select Phase</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            
+            <hr />
+
+            <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
+                <a id="LinkButton1" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> View</a>
+            </div>
+
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Total Budget</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var report in Model)
+                    {
+                        <tr class="LinkButton" data-link-button-1="/Budget/Phase/@report.DateString">
+                            <td>@report.Status</td>
+                            <td>@report.DailyReportId</td>
+                            <td>@report.DalCost)</td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-0 col-md-1"></div>
+
+<div class="panel panel-default panelShadow col-md-4">
+    <div class="panel-heading">
+        <h4>Analytics</h4>
+    </div>
+    <div class="panel-body">
+        <div class="col-xs-10 col-xs-offset-1">
+            <canvas id="budgetCanvas" width="400" height="300" data-site-total="@ViewBag.SiteTotal"
+                    data-equipment-total="@"~/Views/Shared/_LayoutForm.cshtml"" data-building-total="@ViewBag.BuildingTotal"
+                    data-misc-total="@report.DailyReportId = "Index" = "Index""></canvas>
+        </div>
+    </div>
+</div>

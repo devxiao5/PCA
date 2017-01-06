@@ -20,11 +20,27 @@ namespace PCA.Controllers
         // Database instance object
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        /* Title: Budget Index
-         * Description: Collection of all phases and budget for each phase for project
-         * Location: /Budget/Index
-        */
         public ActionResult Index()
+        {
+            // Access current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
+            int currentProjectNumber = int.Parse(ViewBag.CurrentProjectNumber);
+
+            var viewModelInformation = from bud in db.Budgets
+                                       join phase in db.Phases on bud.SubPhaseId equals phase.PhaseId
+                                       join subphase in db.SubPhases on bud.SubPhaseId equals subphase.SubPhaseId
+                                       where bud.ProjectId == currentProjectNumber
+                                       select new
+                                       {
+                                       };
+
+            return View();
+        }
+
+        public ActionResult IndexOG()
         {
             // Navbar Dependencies
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -34,7 +50,7 @@ namespace PCA.Controllers
             ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
 
             // Creates collection of viewmodel
-            List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
+            List<BudgetPhaseViewModelOG> viewModel = new List<BudgetPhaseViewModelOG>();
 
             // Declarations
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
@@ -84,7 +100,7 @@ namespace PCA.Controllers
                             break;
                     }
                 }
-                viewModel.Add(new BudgetPhaseViewModel(runningPhaseId, runningPhaseName, runningPhaseNumber, runningTotal));
+                viewModel.Add(new BudgetPhaseViewModelOG(runningPhaseId, runningPhaseName, runningPhaseNumber, runningTotal));
                 runningTotal = 0;
             }
 

@@ -6,7 +6,7 @@ using PCA.Models;
 
 namespace PCA.ViewModels
 {
-    public class BudgetPhaseViewModel
+    public class BudgetPhaseViewModelOG
     {
         /*public List<Phase> Phases { get; set; }
         public List<Budget> Budgets { get; set; }
@@ -18,7 +18,7 @@ namespace PCA.ViewModels
         public string PhaseNumber { get; set; }
         public double TotalCost { get; set; }
 
-        public BudgetPhaseViewModel(int pid, string pname, string pnum, double tc)
+        public BudgetPhaseViewModelOG(int pid, string pname, string pnum, double tc)
         {
             this.PhaseId = pid;
             this.PhaseName = pname;
