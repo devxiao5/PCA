@@ -346,7 +346,7 @@ namespace PCA.Controllers
             //---------------------------
 
             ViewBag.CurrentDailyReportId = id;
-            ViewBag.DailyReportId = new SelectList(db.DailyReport, "DailyReportId", "Date");
+            ViewBag.DailyReportId = new SelectList(db.DailyReport.Where(p => p.DailyReportId == id), "DailyReportId", "Date");
             return View();
         }
 

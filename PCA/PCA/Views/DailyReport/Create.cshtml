@@ -9,9 +9,11 @@
 {
     sideNavItemSelected
 }
-<a href="/DailyReport/" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-<hr />
-
+@section headerLeft
+{
+    <a href="/DailyReport/" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
+<br /><br /><br />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -29,7 +31,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Summary, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
             </div>
         </div>

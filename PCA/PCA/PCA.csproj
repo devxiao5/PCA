@@ -364,6 +364,7 @@
     <Compile Include="ViewModels\BudgetDetailReportViewModel.cs" />
     <Compile Include="ViewModels\BudgetPhaseViewModel.cs" />
     <Compile Include="ViewModels\DailyReportViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\InvoiceIndexViewModel.cs" />
     <Compile Include="ViewModels\InvoiceViewModel.cs" />
     <Compile Include="ViewModels\ProjectSelectViewModel.cs" />
@@ -377,6 +378,7 @@
     <Content Include="Content\Budget.css" />
     <Content Include="Content\GC.css" />
     <Content Include="Content\bootstrapTEST.min.css" />
+    <Content Include="Content\Images\concrete_seamless.png" />
     <Content Include="Content\Images\cork-wallet.png" />
     <Content Include="Content\Images\grey_wash_wall.png" />
     <Content Include="Content\Images\loginbkrd.jpg" />

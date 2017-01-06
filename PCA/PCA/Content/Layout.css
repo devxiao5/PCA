@@ -2,8 +2,13 @@
     padding-top: 0px;
     margin-top: 0px;
     background-repeat: repeat;
-    background-image: url('Images/cork-wallet.png');*
+    background-image: url('Images/concrete_seamless.png');*
     background: #ddd;
+    margin-left: 0px;
+}
+
+.badge{
+    background-color: #333;
 }
 
 .workflowTable, .workflowTable > tbody > tr > td {
@@ -25,9 +30,25 @@
     
 }
 
-.workflowTable > tbody > tr > td:hover {
-    background-color: #777;
-    color: white;
+.thumbPictureHolder{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+    background-color: #333;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.thumbPicture{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    
 }
 
 .headingElements{
@@ -57,13 +78,13 @@
 
 #Navigation{
     border: 0px;
-    border-bottom-width: 3px;
+    border-bottom-width: 0px;
     border-style: solid;
     border-top-color: #85c9f9;
     border-bottom-color: #ddd;
     min-height: 30px;
     background-color: #064979;
-    box-shadow: inset 0px -5px 5px #032c49;
+    box-shadow: inset 0px -8px 0px #05304E;
 
     /*box-shadow: 0px 10px 15px #333;*/
 }
@@ -79,7 +100,7 @@
 .NavigationLinkItem {
     padding-left: 0.25%;
     padding-right: 0.25%;
-    padding-top: 10px;
+    padding-top: 9px;
     padding-bottom: 8px;
     margin-left: 0px !important;
     text-align: center;
@@ -91,6 +112,9 @@
     transition: background-color ease-in 100ms;
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
+    border-right-color: rgba(5, 48, 78, 1);
+    border-right-width: 2px;
+    border-right-style: solid;
 }
 
 .NavigationLinkItem:hover{
@@ -109,22 +133,23 @@
     max-height: 35px;
 }
 
-#Footer {
+/*#Footer {
     position: fixed;
     left: 0px;
     bottom: 0px;
     height: 50px;
     border: 0px;
-    background-color: #333333;
+    background-color: #1D262B;
     border-top-width: 4px;
     border-style: solid;
     border-color: #111;
-    box-shadow: inset 0px 3px 10px #111;
+    box-shadow: inset 0px 3px 10px #171D21;
 }
 
 #Footer:hover{
-   background-color: #222;
+   background-color: #171D21;
 }
+    */
 
 #CurrentProjectText{
     text-align: center;
@@ -139,25 +164,33 @@
 }
 
 .sideNavItemSelected{
-    background-color: #ddd;
     color:#222;
     font-weight: 600;
-    background-image: url('Images/cork-wallet.png');
+    background-image: url('Images/concrete_seamless.png');
+    border-right-width: 0px;
+
     
 }
 
 .list-group-item:hover{
-    background-color: #666;
-    color: white;
+    background-color: #eee;
 }
 
 .panel{
     padding:0px;
+    margin-bottom: 5%;
+}
+
+.panelShadow > .panel-heading{
+    background-image: none;
+    background-color: #064979;
+    color: white;
+    box-shadow: inset 0px -5px 0px #05304E;
 }
 
 .panelShadow {
     padding:0px;
-    box-shadow: 10px 10px 3px #999;
+    box-shadow: 5px 5px 10px #666;
 
 }
 

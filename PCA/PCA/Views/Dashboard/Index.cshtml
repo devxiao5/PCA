@@ -1,4 +1,4 @@
-﻿
+﻿@model PCA.ViewModels.DashboardViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,8 +25,8 @@
                 <!-- List group -->
                 <div class="panel-heading">Budgets</div>
                     <ul class="list-group">
-                        <li class="list-group-item">PM REVIEW<span class="badge">14</span></li>
-                        <li class="list-group-item">APPROVE<span class="badge">14</span></li>
+                        <li class="list-group-item">Pending<span class="badge">@Model.BudgetPending</span></li>
+                        <li class="list-group-item">Approved<span class="badge">@Model.BudgetApproved</span></li>
                     </ul>
             </div>
         </div>
@@ -36,8 +36,8 @@
                 <!-- List group -->
                 <div class="panel-heading">Daily Reports</div>
                 <ul class="list-group">
-                    <a href="/DailyReport/"><li class="list-group-item">PENDING<span class="badge">14</span></li></a>
-                    <li class="list-group-item">APPROVED<span class="badge">14</span></li>
+                    <a href="/DailyReport/"><li class="list-group-item">Pending<span class="badge">@Model.DailyReportPending</span></li></a>
+                    <li class="list-group-item">Approved<span class="badge">@Model.DailyReportApproved</span></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <!-- List group -->
                 <div class="panel-heading">Contracts</div>
                 <ul class="list-group">
-                    <li class="list-group-item">CONTRACTS<span class="badge">14</span></li>
+                    <li class="list-group-item">CONTRACTS<span class="badge">0</span></li>
                     <li class="list-group-item">PM REVIEW<span class="badge">14</span></li>
                     <li class="list-group-item">APPROVE<span class="badge">14</span></li>
                     <li class="list-group-item">ROUTING<span class="badge">14</span></li>

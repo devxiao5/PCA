@@ -26,7 +26,11 @@
                         <div class="col-xs-12">
                             @foreach (var f in project.Files)
                             {
-                                <img src="~/File?id=@f.FileId" alt="" class="col-xs-6 " />
+                                <div class="col-xs-4">
+                                    <a href="#" class="thumbnail thumbPictureHolder">
+                                        <img src="~/File?id=@f.FileId" alt="" class="thumbPicture img img-responsive full-width"/>
+                                    </a>
+                                </div>
                             }
                         </div>
                     </div>

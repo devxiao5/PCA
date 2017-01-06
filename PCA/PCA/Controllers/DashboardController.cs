@@ -34,8 +34,34 @@ namespace PCA.Controllers
             @ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
             @ViewBag.CurrentUserId = currentList.ElementAt(2);
             @ViewBag.CurrentUserName = currentList.ElementAt(3);
+            int projectsession = (int)(context.Session["Project"]);
 
-            return View();
+            var drpending = (from drp in db.DailyReport
+                             where drp.Status == "Pending"
+                             select drp).Count();
+
+            var drapproved = (from dr in db.DailyReport
+                             where dr.Status == "Approved"
+                             select dr).Count();
+
+            var budpending = (from i in db.Budgets
+                              where (i.Status == "Pending") && (i.ProjectId == projectsession)
+                              select i).Count();
+
+            var budapproved = (from i in db.Budgets
+                               where (i.Status == "Approved") && (i.ProjectId == projectsession)
+                               select i).Count();
+
+            DashboardViewModel vm = new DashboardViewModel();
+            vm.DailyReportPending = drpending;
+            vm.DailyReportApproved = drapproved;
+            vm.BudgetPending = budpending;
+            vm.BudgetApproved = budapproved;
+
+
+
+
+            return View(vm);
         }
 
 
@@ -54,10 +80,11 @@ namespace PCA.Controllers
                 vm.ClientId = project.ClientId;
                 vm.ProjectName = project.Name;
 
-                List<DailyReportPicture> picture = new List<DailyReportPicture>(from pic in db.DailyReportPicture
+                var picture = new List<DailyReportPicture>(from pic in db.DailyReportPicture
                                                                                 join report in db.DailyReport on pic.DailyReportId equals report.DailyReportId
                                                                                 where report.ProjectId == project.ProjectId
-                                                                                select pic);
+                                                                                orderby pic.Timestamp descending
+                                                                                select pic).Take(3);
 
                 foreach (var p in picture)
                 {

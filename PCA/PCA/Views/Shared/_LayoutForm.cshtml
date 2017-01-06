@@ -45,23 +45,21 @@
 
         </div>
 
-        <div id="BodyContainer" class="container">
-            <div class="row">
-                <div id="Body" class="col-xs-12">
-                    <div class="panel panel-default panelShadow">
-                        <div class="panel-heading col-xs-12">
-                            <span class="headingElements col-xs-12">
-                                <span id="headerLeft" class="col-xs-4">@RenderSection("headerLeft", false)</span>
-                                <span class="headingText col-xs-4">@ViewBag.PanelTitle</span>
-                                <span id="headerLeft" class="col-xs-4 headingRight">@RenderSection("headerRight", false)</span>
-                            </span>
-                        </div>
-
-                        <div class="panel-body">
-                            @RenderBody()
-                        </div>
-                        
+        <div class="row">
+            <div id="Body" class="col-xs-12 col-md-8 col-md-offset-2">
+                <div class="panel panel-default panelShadow">
+                    <div class="panel-heading col-xs-12">
+                        <span class="headingElements col-xs-12">
+                            <span id="headerLeft" class="col-xs-4">@RenderSection("headerLeft", false)</span>
+                            <span class="headingText col-xs-4">@ViewBag.PanelTitle</span>
+                            <span id="headerLeft" class="col-xs-4 headingRight">@RenderSection("headerRight", false)</span>
+                        </span>
                     </div>
+
+                    <div class="panel-body">
+                        @RenderBody()
+                    </div>
+                        
                 </div>
             </div>
         </div>
