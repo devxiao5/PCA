@@ -332,6 +332,10 @@
     <Compile Include="Migrations\201701040000238_moretimestampz.Designer.cs">
       <DependentUpon>201701040000238_moretimestampz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701091639527_subphasename.cs" />
+    <Compile Include="Migrations\201701091639527_subphasename.Designer.cs">
+      <DependentUpon>201701091639527_subphasename.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -362,6 +366,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BudgetDetailReportViewModel.cs" />
+    <Compile Include="ViewModels\BudgetIndexPhaseViewModel.cs" />
     <Compile Include="ViewModels\BudgetIndexViewModel.cs" />
     <Compile Include="ViewModels\BudgetPhaseViewModelOG.cs" />
     <Compile Include="ViewModels\DailyReportViewModel.cs" />
@@ -671,6 +676,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701040000238_moretimestampz.resx">
       <DependentUpon>201701040000238_moretimestampz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701091639527_subphasename.resx">
+      <DependentUpon>201701091639527_subphasename.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

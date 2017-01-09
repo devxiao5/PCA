@@ -293,7 +293,8 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
             if (id == null)
@@ -305,7 +306,8 @@ namespace PCA.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", dailyReport.ProjectId);
+            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
+
             return View(dailyReport);
         }
 
@@ -321,7 +323,8 @@ namespace PCA.Controllers
             systemController.Get();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNum = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProjectNum;
             //---------------------------
 
             if (ModelState.IsValid)
@@ -330,7 +333,7 @@ namespace PCA.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", dailyReport.ProjectId);
+            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
             return View(dailyReport);
         }
 

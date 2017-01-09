@@ -12,6 +12,7 @@ namespace PCA.ViewModels
         public double PhaseTotal { get; set; }
 
 
+        public int BudgetId { get; set; }
         public string SubPhaseName { get; set; }
         public double BudgetTotal { get; set; }
         public string BudgetDescription { get; set; }

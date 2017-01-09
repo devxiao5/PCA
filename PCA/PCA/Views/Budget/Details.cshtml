@@ -9,10 +9,13 @@
 {
     sideNavItemSelected
 }
+@section headerLeft
+{
+    <a href="/Budget/Index" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
 
 <div>
-    <a href="/Budget/Phase/@Model.PhaseId" class="btn btn-default">Back</a>
-    <hr />
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Phases.Number)
@@ -31,11 +34,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubPhases.Name)
+            @Html.DisplayNameFor(model => model.SubPhases.SubPhaseName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SubPhases.Name)
+            @Html.DisplayFor(model => model.SubPhases.SubPhaseName)
         </dd>
 
         <dt>

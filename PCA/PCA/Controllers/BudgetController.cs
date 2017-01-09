@@ -28,16 +28,77 @@ namespace PCA.Controllers
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
             ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
             int currentProjectNumber = int.Parse(ViewBag.CurrentProjectNumber);
+            // ------------------
 
+            // Declare
+            double runningPhaseTotal = 0;
+            
+
+
+            // Pull budget information
             var viewModelInformation = from bud in db.Budgets
-                                       join phase in db.Phases on bud.SubPhaseId equals phase.PhaseId
+                                       join phase in db.Phases on bud.PhaseId equals phase.PhaseId
                                        join subphase in db.SubPhases on bud.SubPhaseId equals subphase.SubPhaseId
                                        where bud.ProjectId == currentProjectNumber
                                        select new
                                        {
+                                           phase.Number,
+                                           phase.PhaseId,
+                                           phase.Name,
+                                           bud.SubPhaseId,
+                                           bud.BudgetId,
+                                           subphase.SubPhaseName,
+                                           bud.TotalCost,
+                                           bud.Description,
+                                           bud.Status
                                        };
 
-            return View();
+            var phaseList = (from phase in viewModelInformation
+                            select new
+                            {
+                                phase.Number
+                            }).Distinct();
+
+            List<BudgetIndexPhaseViewModel> phaseModel = new List<BudgetIndexPhaseViewModel>();
+
+            foreach (var phase in phaseList)
+            {
+                runningPhaseTotal = 0;
+
+                foreach (var bud in viewModelInformation)
+                {
+                    if (phase.Number == bud.Number)
+                    {
+                        runningPhaseTotal += bud.TotalCost;
+                    }
+                }
+
+                BudgetIndexPhaseViewModel p = new BudgetIndexPhaseViewModel();
+
+                p.PhaseNumber = phase.Number;
+                p.PhaseTotal = runningPhaseTotal;
+                phaseModel.Add(p);
+            }
+
+
+            List < BudgetIndexViewModel > indexViewModel = new List<BudgetIndexViewModel>();
+
+            foreach (var model in viewModelInformation)
+            {
+                BudgetIndexViewModel vm = new BudgetIndexViewModel();
+                vm.PhaseNumber = model.Number;
+                vm.PhaseName = model.Name;
+                vm.PhaseTotal = 0;
+                vm.SubPhaseName = model.SubPhaseName;
+                vm.BudgetTotal = model.TotalCost;
+                vm.BudgetDescription = model.Description;
+                vm.Status = model.Status;
+                vm.BudgetId = model.BudgetId;
+                vm.PhaseTotal = phaseModel.Where(p => p.PhaseNumber == model.Number).Select(p => p.PhaseTotal).First();
+                indexViewModel.Add(vm);
+            }
+
+            return View(indexViewModel);
         }
 
         public ActionResult IndexOG()
@@ -132,7 +193,7 @@ namespace PCA.Controllers
             // Gets lists of options for dropdown boxes
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Number");
-            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "Name");
+            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "SubPhaseName");
             ViewBag.Type = new SelectList(Enum.GetValues(typeof(DepreciationType)).Cast<DepreciationType>().Select(t => new SelectListItem
             {
                 Text = t.ToString(),
@@ -170,7 +231,7 @@ namespace PCA.Controllers
             // Gets lists of options for dropdown boxes
             ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             ViewBag.PhaseId = new SelectList(db.Phases, "PhaseId", "Number");
-            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "Name");
+            ViewBag.SubPhaseId = new SelectList(db.SubPhases, "SubPhaseId", "SubPhaseName");
             ViewBag.Type = new SelectList(Enum.GetValues(typeof(DepreciationType)).Cast<DepreciationType>().Select(t => new SelectListItem
             {
                 Text = t.ToString(),

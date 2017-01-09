@@ -21,6 +21,7 @@ namespace PCA.Models
         [StringLength(1000)]
         public string Summary { get; set; }
 
+        [Required]
         public WorkPerformance Performance { get; set; }
 
         [Display(Name = "Men Worked")]

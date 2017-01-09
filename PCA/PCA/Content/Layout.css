@@ -7,6 +7,10 @@
     margin-left: 0px;
 }
 
+.button-primary{
+    background-color: #edfbc1 !important;
+}
+
 .badge{
     background-color: #333;
 }
@@ -168,7 +172,6 @@
     font-weight: 600;
     background-image: url('Images/concrete_seamless.png');
     border-right-width: 0px;
-
     
 }
 
@@ -225,15 +228,26 @@
  }
  
 #LinkButtonSelected > .sorting_1 {
-    background-color: #333!important;
+    background-color: #0b132b!important;
 }
 
 #LinkButtonSelected > td {
-     background-color: #444!important;
+     background-color: #1c2541!important;
      color: white;
      transition: background-color ease-in-out 200ms;
      transition: color ease-in-out 150ms;
  }
+
+#selectedPhase > .sorting_1 {
+    background-color: #0b132b!important;
+}
+
+#selectedPhase > td {
+    background-color: #1c2541!important;
+     color: white;
+     transition: background-color ease-in-out 200ms;
+     transition: color ease-in-out 150ms;
+}
 
 
 

@@ -12,6 +12,6 @@ namespace PCA.Models
         public int SubPhaseId { get; set; }
 
         [StringLength(255)]
-        public string Name { get; set; }
+        public string SubPhaseName { get; set; }
     }
 }
