@@ -98,7 +98,7 @@
                     <!-- Daily Reports -->
                     @foreach (var bud in Model)
                     {
-                        <tr id="budgetRow" class="LinkButton budgetRow" data-phase="@bud.PhaseNumber" data-link-button-1="/Budget/Details/@bud.BudgetId" data-link-button-2="/Budget/Details/@bud.BudgetId">
+                        <tr id="budgetRow" class="LinkButton budgetRow" data-phase="@bud.PhaseNumber" data-link-button-1="/Budget/Details/@bud.BudgetId" data-link-button-2="/Contract/CreateBCO/@bud.BudgetId">
                             <td>@string.Format("{0:C}", @bud.BudgetTotal)</td>
                             <td>@bud.BudgetDescription</td>
                             <td>@bud.SubPhaseName</td>

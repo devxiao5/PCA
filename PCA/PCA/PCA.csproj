@@ -340,6 +340,10 @@
     <Compile Include="Migrations\201701100210562_createdate.Designer.cs">
       <DependentUpon>201701100210562_createdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701101747086_contracrbcomodel.cs" />
+    <Compile Include="Migrations\201701101747086_contracrbcomodel.Designer.cs">
+      <DependentUpon>201701101747086_contracrbcomodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -347,6 +351,7 @@
     <Compile Include="Models\Budget.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\ContractBudgetChangeOrder.cs" />
     <Compile Include="Models\ContractCostPhase.cs" />
     <Compile Include="Models\ContractExhibit.cs" />
     <Compile Include="Models\ContractGeneralCondition.cs" />
@@ -369,6 +374,7 @@
     <Compile Include="Models\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BCOViewModel.cs" />
     <Compile Include="ViewModels\BudgetDetailReportViewModel.cs" />
     <Compile Include="ViewModels\BudgetIndexPhaseViewModel.cs" />
     <Compile Include="ViewModels\BudgetIndexViewModel.cs" />
@@ -687,6 +693,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701100210562_createdate.resx">
       <DependentUpon>201701100210562_createdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701101747086_contracrbcomodel.resx">
+      <DependentUpon>201701101747086_contracrbcomodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

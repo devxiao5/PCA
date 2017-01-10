@@ -34,6 +34,7 @@ namespace PCA.Models
         public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
+        public virtual DbSet<ContractBudgetChangeOrder> ContractBudgetChangeOrders { get; set; }
         public virtual DbSet<ContractCostPhase> ContractCostPhases { get; set; }
         public virtual DbSet<ContractExhibit> ContractExhibits { get; set; }
         public virtual DbSet<Contractor> Contractors { get; set; }

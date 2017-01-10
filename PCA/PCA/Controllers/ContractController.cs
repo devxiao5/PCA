@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PCA.Models;
 using System.Net;
+using PCA.ViewModels;
 
 namespace PCA.Controllers
 {
@@ -148,7 +149,7 @@ namespace PCA.Controllers
             return View(contract);
         }
 
-        public ActionResult CreateBCO(int? id)
+        public ActionResult CreateBCO(int id)
         {
             // Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -162,18 +163,21 @@ namespace PCA.Controllers
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name");
             ViewBag.ContractorSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName");
             ViewBag.OwnerSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName");
-            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProject), "ProjectId", "Name");
             ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
 
             var budget = db.Budgets.Find(id);
 
             ViewBag.ContractCurrentTotal = budget.TotalCost;
 
-            Contract bco = new Contract();
+            BCOViewModel bco = new BCOViewModel();
 
             bco.CreateDate = DateTime.Now;
             bco.ContractId = currentProject;
-            bco.ContractorId;
+            bco.OwnerSigAccountId = null;
+            bco.ContractorSigAccountId = null;
+            bco.Type = "BCO";
+            bco.BCOBudgetId = id;
 
             return View(bco);
         }
@@ -183,7 +187,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateBCO([Bind(Include = "ContractId,ProjectId,ClientId,ContractorId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate,TotalAmount,TotalAmountLiteral,CreateDate")] Contract contract)
+        public ActionResult CreateBCO([Bind(Include = "ContractId,ProjectId,ClientId,ContractorId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate,TotalAmount,TotalAmountLiteral,CreateDate, ContractBudgetChangeOrderId, BCOBudgetId")] BCOViewModel contract)
         {
             // Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -193,9 +197,29 @@ namespace PCA.Controllers
             ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
             // -----------
 
+
+            Contract c = new Contract();
+            c.ContractId = contract.ContractId;
+            c.ProjectId = contract.ProjectId;
+            c.ClientId = contract.ClientId;
+            c.ContractorId = contract.ContractorId;
+            c.OwnerSigAccountId = contract.OwnerSigAccountId;
+            c.ContractorSigAccountId = contract.ContractorSigAccountId;
+            c.Type = contract.Type;
+            c.OwnerSignDate = contract.OwnerSignDate;
+            c.ContractorSignDate = contract.ContractorSignDate;
+            c.TotalAmount = contract.TotalAmount;
+            c.TotalAmountLiteral = contract.TotalAmountLiteral;
+            c.CreateDate = contract.CreateDate;
+
+            ContractBudgetChangeOrder bco = new ContractBudgetChangeOrder();
+            bco.BudgetId = contract.BCOBudgetId;
+            bco.ContractId = contract.ContractId;
+
             if (ModelState.IsValid)
             {
-                db.Contracts.Add(contract);
+                db.Contracts.Add(c);
+                db.ContractBudgetChangeOrders.Add(bco);
                 db.SaveChanges();
                 return RedirectToAction("Index","Budget");
             }
