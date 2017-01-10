@@ -147,5 +147,65 @@ namespace PCA.Controllers
             }
             return View(contract);
         }
+
+        public ActionResult CreateBCO(int? id)
+        {
+            // Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            int currentProject = int.Parse(currentList.ElementAt(1));
+            ViewBag.CurrentProjectNumber = currentProject;
+            // -----------
+
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name");
+            ViewBag.ContractorSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName");
+            ViewBag.OwnerSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName");
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
+
+            var budget = db.Budgets.Find(id);
+
+            ViewBag.ContractCurrentTotal = budget.TotalCost;
+
+            Contract bco = new Contract();
+
+            bco.CreateDate = DateTime.Now;
+            bco.ContractId = currentProject;
+            bco.ContractorId;
+
+            return View(bco);
+        }
+
+        // POST: Contract/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBCO([Bind(Include = "ContractId,ProjectId,ClientId,ContractorId,OwnerSigAccountId,ContractorSigAccountId,Type,OwnerSignDate,ContractorSignDate,TotalAmount,TotalAmountLiteral,CreateDate")] Contract contract)
+        {
+            // Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (ModelState.IsValid)
+            {
+                db.Contracts.Add(contract);
+                db.SaveChanges();
+                return RedirectToAction("Index","Budget");
+            }
+
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "Name", contract.ClientId);
+            ViewBag.ContractorSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName", contract.ContractorSigAccountId);
+            ViewBag.OwnerSigAccountId = new SelectList(db.Accounts, "AccountId", "FirstName", contract.OwnerSigAccountId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name", contract.ProjectId);
+            ViewBag.ContractorId = new SelectList(db.Contractors, "ContractorId", "Name");
+            return View(contract);
+        }
     }
 }

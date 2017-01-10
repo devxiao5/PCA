@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 
 namespace PCA.Models
 {
@@ -28,6 +29,8 @@ namespace PCA.Models
         public DateTime? ContractorSignDate { get; set; }
         public double TotalAmount { get; set; }
         public string TotalAmountLiteral { get; set; }
+
+        public DateTime CreateDate { get; set; }
 
         [ForeignKey("ClientId")]
         public virtual Client Clients { get; set; }

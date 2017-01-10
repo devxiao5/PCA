@@ -336,6 +336,10 @@
     <Compile Include="Migrations\201701091639527_subphasename.Designer.cs">
       <DependentUpon>201701091639527_subphasename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701100210562_createdate.cs" />
+    <Compile Include="Migrations\201701100210562_createdate.Designer.cs">
+      <DependentUpon>201701100210562_createdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -591,6 +595,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DailyReport\WorkFlow.cshtml" />
     <Content Include="Views\Budget\Index.cshtml" />
+    <Content Include="Views\Contract\CreateBCO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -679,6 +684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701091639527_subphasename.resx">
       <DependentUpon>201701091639527_subphasename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701100210562_createdate.resx">
+      <DependentUpon>201701100210562_createdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
