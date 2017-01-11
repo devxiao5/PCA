@@ -3,19 +3,19 @@
 @model IEnumerable<PCA.ViewModels.BudgetDetailReportViewModel>
 @{
     ViewBag.Title = "BudgetDetail";
-    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
 }
 @section css {
     <link rel="stylesheet" href="~/Content/Report.css" />
 }
 
 <div class="row">
-    <img src="/Content/Images/Plann_LetterHead.png" class="col-xs-10 col-xs-offset-1" alt="">
+    <img src="/Content/Images/Plann_LetterHead.png" class="col-xs-8 col-xs-offset-2" alt="">
 </div>
 
 <div class="row">
-    <div class="col-xs-4 col-xs-offset-4 text-center"><h2><b>Budget Detail Report</b></h2></div>
-    <div class="col-xs-4 col-xs-offset-4 text-center"><h4>Project: @ViewBag.CurrentProjectString</h4></div>
+    <div class="col-xs-4 col-xs-offset-4 text-center"><h4><b>Budget Detail Report</b></h4></div>
+    <div class="col-xs-4 col-xs-offset-4 text-center"><h5>Project: @ViewBag.CurrentProjectString</h5></div>
 </div>
 
 <hr />

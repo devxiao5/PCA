@@ -602,6 +602,7 @@
     <Content Include="Views\DailyReport\WorkFlow.cshtml" />
     <Content Include="Views\Budget\Index.cshtml" />
     <Content Include="Views\Contract\CreateBCO.cshtml" />
+    <Content Include="Views\Shared\_LayoutReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

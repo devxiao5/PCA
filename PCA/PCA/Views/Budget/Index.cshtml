@@ -7,6 +7,12 @@
 {
     sideNavItemSelected
 }
+@section css
+{
+    <link href="~/Content/Budget.css" rel="stylesheet" />
+}
+
+
 @section scripts
 {
     <script src="~/Scripts/PCA.js"></script>
@@ -14,58 +20,11 @@
     <script src="~/Scripts/Budget.js"></script>
 }
 
-
-<div class="panel panel-default panelShadow col-xs-12 col-md-4">
-    <div class="panel-heading col-xs-12">
-        <div class="headingElements col-xs-12">
-            <div class="col-xs-4">
-                <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
-            </div>
-            <span class="headingText col-xs-4">Phases</span>
-        </div>
-    </div>
-    <div class="panel-body">
-        <br /><br /><br />
-
-        <!-- Daily Report DataTables -->
-        <div id="TableWrapper" class="col-xs-12">
-            <table id="" class="BudgetTable display col-xs-12 Sort1 table table-striped">
-                <thead>
-                    <tr>
-                        <th>Phase #</th>
-                        <th>Name</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Daily Reports -->
-
-                    @{
-                        var phase = Model.GroupBy(x => x.PhaseNumber).Select(x => x.First());
-                    }
-                    @foreach (var m in phase)
-                    {
-                        <tr id="selectPhaseRow" class="phaseRow" data-selectedPhase="@m.PhaseNumber">
-                            <td>@m.PhaseNumber</td>
-                            <td>@m.PhaseName</td>
-                            <td>@string.Format("{0:C}", @m.PhaseTotal)</td>
-                        </tr>
-                    }
-                </tbody>
-
-            </table>
-        </div>
-
-        <br />
-    </div>
-</div>
-
-<div class="col-xs-1"></div>
-
 <div class="panel panel-default panelShadow col-md-7 col-xs-12">
     <div class="panel-heading col-xs-12">
         <div class="headingElements col-xs-12">
             <div class="col-xs-4">
+                <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
             </div>
             <span class="headingText col-xs-4">Budget Items</span>
             <div class="headingRight col-xs-4">
@@ -113,3 +72,62 @@
     </div>
 </div>
 
+<div id="budgetIndexSpacer" class="col-xs-1"></div>
+
+
+<div class="panel panel-default panelShadow col-xs-12 col-md-4">
+    <div class="panel-heading col-xs-12">
+        <div class="headingElements col-xs-12">
+            <div class="col-xs-4"></div>
+            <span class="headingText col-xs-4">Phases</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        <br /><br /><br />
+
+        <!-- Daily Report DataTables -->
+        <div id="TableWrapper" class="col-xs-12">
+            <table id="" class="BudgetTable display col-xs-12 Sort1 table table-striped">
+                <thead>
+                    <tr>
+                        <th>Phase #</th>
+                        <th>Name</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Daily Reports -->
+
+                    @{
+                        var phase = Model.GroupBy(x => x.PhaseNumber).Select(x => x.First());
+                    }
+                    @foreach (var m in phase)
+                    {
+                        <tr id="selectPhaseRow" class="phaseRow" data-selectedPhase="@m.PhaseNumber">
+                            <td>@m.PhaseNumber</td>
+                            <td>@m.PhaseName</td>
+                            <td>@string.Format("{0:C}", @m.PhaseTotal)</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <br />
+    </div>
+</div>
+
+<div class="panel panel-default panelShadow col-xs-12 col-md-4 col-md-offset-1">
+    <div class="panel-heading col-xs-12">
+        <div class="headingElements col-xs-12">
+            <div class="col-xs-4">
+                <a href="/Dashboard/Index/@ViewBag.CurrentProjectNumber" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+            </div>
+            <span class="headingText col-xs-4">Phases</span>
+        </div>
+    </div>
+    <div class="panel-body">
+        Test
+    </div>
+
+</div>
