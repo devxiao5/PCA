@@ -28,7 +28,7 @@ namespace PCA.Controllers
                     db.Accounts.Where(m => m.Username == user.Username && m.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
-                    Session["UserId"] = user.AccountId.ToString();
+                    Session["UserId"] = user.AccountId;
                     Session["Username"] = user.Username.ToString();
                     return RedirectToAction("Select", "Dashboard");
                 }

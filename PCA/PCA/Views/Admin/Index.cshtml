@@ -1,16 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutEmpty.cshtml";
+    ViewBag.AdminHeadingTitle = "Administration";
+    ViewBag.BackButtonLink = "/Dashboard/Select";
+    ViewBag.HeadingRight = "";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Admin</h2>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        Admin
-    </div>
-    <div class="panel-body">
         <ul>
             <li><a href="/Accounts/Index">Accounts</a></li>
             <li><a href="/Assignments/Index">Assignments</a></li>
@@ -32,7 +30,4 @@
             <li><a href="/WorkItems/Index">WorkItems</a></li>
         </ul>
 
-
-    </div>
-</div>
 

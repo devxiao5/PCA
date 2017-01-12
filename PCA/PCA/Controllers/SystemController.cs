@@ -62,5 +62,12 @@ namespace PCA.Controllers
 
             return new List<string>();
         }
+
+        public bool Auth(List<int> positions)
+        {
+
+            return true;
+        }
+
     }
 }

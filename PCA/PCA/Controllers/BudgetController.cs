@@ -32,6 +32,9 @@ namespace PCA.Controllers
 
             // Declare
             double runningPhaseTotal = 0;
+            double pendingTotal = 0;
+            double reviewedTotal = 0;
+            double approvedTotal = 0;
             
 
 
@@ -70,8 +73,30 @@ namespace PCA.Controllers
                     if (phase.Number == bud.Number)
                     {
                         runningPhaseTotal += bud.TotalCost;
+                        switch (bud.Status)
+                        {
+                            case "Pending":
+                                pendingTotal += bud.TotalCost;
+                                break;
+                            case "Reviewed":
+                                reviewedTotal += bud.TotalCost;
+                                break;
+                            case "Approved":
+                                approvedTotal += bud.TotalCost;
+                                break;
+
+                        }
+
+
+
                     }
                 }
+
+                ViewBag.budgetTotal = pendingTotal + reviewedTotal + approvedTotal;
+                ViewBag.pendingTotal = pendingTotal;
+                ViewBag.reviewedTotal = reviewedTotal;
+                ViewBag.approvedTotal = approvedTotal;
+
 
                 BudgetIndexPhaseViewModel p = new BudgetIndexPhaseViewModel();
 
@@ -200,7 +225,10 @@ namespace PCA.Controllers
                 Value = t.ToString()
             }).ToList(), "Value", "Text");
 
-            return View();
+            Budget budget = new Budget();
+            budget.Status = "Pending";
+
+            return View(budget);
         }
 
 
@@ -361,5 +389,69 @@ namespace PCA.Controllers
             }
             return View(budget);
         }
+
+        public ActionResult Workflow(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Budget budget = db.Budgets.Find(id);
+            if (budget == null)
+            {
+                return HttpNotFound();
+            }
+            return View(budget);
+        }
+
+        // GET: Budgets/WorkflowForward/5
+        public ActionResult WorkflowForward(int? id)
+        {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            // -----------
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Budget budget = db.Budgets.Find(id);
+            if (budget == null)
+            {
+                return HttpNotFound();
+            }
+
+            switch (budget.Status)
+            {
+                case "Pending":
+                    budget.Status = "Reviewed";
+                    db.SaveChanges();
+                    break;
+                case "Reviewed":
+                    budget.Status = "Approved";
+                    db.SaveChanges();
+                    break;
+
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
     }
 }

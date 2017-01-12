@@ -1,0 +1,114 @@
+﻿@model PCA.Models.Budget
+
+@{
+    ViewBag.PanelTitle = "Budget Item Detail";
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+@section sideNavBudgets
+{
+    sideNavItemSelected
+}
+@section headerLeft
+{
+    <a href="/Budget/Index" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
+}
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Phases.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phases.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubPhases.SubPhaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubPhases.SubPhaseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+
+
+@if (Model.Status == "Reviewed")
+{
+    <a href="/Budget/WorkflowReturn/@Model.BudgetId  " class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-arrow-left"></span> Return</a>
+}
+@if (Model.Status == "Pending" || Model.Status == "Reviewed")
+{
+    <a href="/Budget/WorkflowForward/@Model.BudgetId  " class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-arrow-right"></span> Forward</a>
+}
+
+
+

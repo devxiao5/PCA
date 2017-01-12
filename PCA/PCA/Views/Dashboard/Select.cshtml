@@ -24,14 +24,16 @@
                     <div class="panel-body">
                         <a href="/Dashboard/Index/@project.ProjectId">[Project Information Here]</a>
                         <div class="col-xs-12">
-                            @foreach (var f in project.Files)
-                            {
-                                <div class="col-xs-4">
-                                    <a href="#" class="thumbnail thumbPictureHolder">
-                                        <img src="~/File?id=@f.FileId" alt="" class="thumbPicture img img-responsive full-width"/>
-                                    </a>
-                                </div>
-                            }
+                            @*
+    @foreach (var f in project.Files)
+    {
+        <div class="col-xs-4">
+            <a href="#" class="thumbnail thumbPictureHolder">
+                <img src="~/File?id=@f.FileId" alt="" class="thumbPicture img img-responsive full-width"/>
+            </a>
+        </div>
+    }
+                            *@
                         </div>
                     </div>
                 </div>
@@ -40,7 +42,7 @@
 
         <div class="panel panel-default panelShadow col-xs-12">
             <div class="panel-heading">Admin</div>
-            <div class="panel-body"><a href="/Contractors/">Admin Links Here</a></div>
+            <div class="panel-body"><a href="/Admin/">Admin Links Here</a></div>
         </div>
     </div>
 </row>

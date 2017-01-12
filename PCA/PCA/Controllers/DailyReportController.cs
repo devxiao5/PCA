@@ -19,6 +19,8 @@ namespace PCA.Controllers
         // GET: DailyReport
         public ActionResult Index()
         {
+
+            
             //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
             systemController.Get();
@@ -30,6 +32,33 @@ namespace PCA.Controllers
             //List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
 
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
+
+
+            // ----- Auth -----
+            bool canAccess = false;
+            int currentUser = Convert.ToInt32(Session["UserId"]);
+
+            var currentPosition = from assignment in db.Assignments
+                                  where assignment.AccountId == currentUser &&
+                                        assignment.ProjectId == currentProjectNumber
+                                  select assignment;
+
+
+            foreach (var pos in currentPosition)
+            {
+                if (pos.PositionId == 3)
+                {
+                    
+                    canAccess = true;
+                }
+            }
+
+            if (canAccess == false)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            // ------------------
+
 
             List<DailyReport> dailyReports = new List<DailyReport>(from dailyReport in db.DailyReport
                                                                    where dailyReport.ProjectId == currentProjectNumber
