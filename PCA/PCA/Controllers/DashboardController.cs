@@ -68,6 +68,8 @@ namespace PCA.Controllers
         // GET: Dashboard/Select
         public ActionResult Select()
         {
+            ViewBag.CurrentUserId = Session["UserId"];
+
             // Get all current projects
             var projects = db.Projects.ToList();
             List<ProjectSelectViewModel> list = new List<ProjectSelectViewModel>();
@@ -80,6 +82,7 @@ namespace PCA.Controllers
                 vm.ClientId = project.ClientId;
                 vm.ProjectName = project.Name;
 
+                /*
                 var picture = new List<DailyReportPicture>(from pic in db.DailyReportPicture
                                                                                 join report in db.DailyReport on pic.DailyReportId equals report.DailyReportId
                                                                                 where report.ProjectId == project.ProjectId
@@ -95,7 +98,7 @@ namespace PCA.Controllers
                         files.Add(image);
                     }
                 }
-                vm.Files = files;
+                vm.Files = files;*/
                 list.Add(vm);
             }
 

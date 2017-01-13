@@ -9,6 +9,8 @@ namespace PCA.Controllers
 {
     public class HomeController : Controller
     {
+        // GET: /
+        // Login page
         [AllowAnonymous]
         public ActionResult Index(string returnUrl)
         {
@@ -28,8 +30,8 @@ namespace PCA.Controllers
                     db.Accounts.Where(m => m.Username == user.Username && m.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
-                    Session["UserId"] = user.AccountId;
-                    Session["Username"] = user.Username.ToString();
+                    Session["UserId"] = usr.AccountId;
+                    Session["Username"] = usr.Username.ToString();
                     return RedirectToAction("Select", "Dashboard");
                 }
                 else

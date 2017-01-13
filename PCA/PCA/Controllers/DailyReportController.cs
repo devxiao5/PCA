@@ -32,31 +32,14 @@ namespace PCA.Controllers
             //List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
 
             int currentProjectNumber = ViewBag.CurrentProjectNumber;
-
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
 
             // ----- Auth -----
-            bool canAccess = false;
-            int currentUser = Convert.ToInt32(Session["UserId"]);
-
-            var currentPosition = from assignment in db.Assignments
-                                  where assignment.AccountId == currentUser &&
-                                        assignment.ProjectId == currentProjectNumber
-                                  select assignment;
-
-
-            foreach (var pos in currentPosition)
-            {
-                if (pos.PositionId == 3)
-                {
-                    
-                    canAccess = true;
-                }
-            }
-
-            if (canAccess == false)
+            if (systemController.Auth(new List<int> { 1, 2 }, currentUserId) == false)
             {
                 return RedirectToAction("Index", "Home");
             }
+
             // ------------------
 
 

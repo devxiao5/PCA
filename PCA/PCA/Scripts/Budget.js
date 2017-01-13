@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $('.BudgetTable').DataTable({
         "order": [[0, "desc"]],
-        "paging": true
+        "paging": false
 
     });
 });

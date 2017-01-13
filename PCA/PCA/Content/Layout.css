@@ -11,6 +11,11 @@
     background-color: #edfbc1 !important;
 }
 
+.dropdownLong{
+    max-height: 150px;
+    overflow-y: auto;
+}
+
 .badge{
     background-color: #1c2541;
 }

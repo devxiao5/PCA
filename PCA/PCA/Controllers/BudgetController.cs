@@ -2,6 +2,8 @@
  * Description: Manages budget information for selected project
  * Location: /Budget/
 */
+
+// Using
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,25 +22,28 @@ namespace PCA.Controllers
         // Database instance object
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        // GET: /Budget/
+        // Displays list of budget items and budget information 
         public ActionResult Index()
         {
-            // Access current project
+            // PCA Net Dependencies v1.0 - current project, etc
             var systemController = DependencyResolver.Current.GetService<SystemController>();
             var currentList = systemController.Get();
             ViewBag.CurrentProjectString = currentList.ElementAt(0);
             ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
             int currentProjectNumber = int.Parse(ViewBag.CurrentProjectNumber);
-            // ------------------
 
-            // Declare
-            double runningPhaseTotal = 0;
-            double pendingTotal = 0;
-            double reviewedTotal = 0;
-            double approvedTotal = 0;
-            
+            // Declarations
+            double runningPhaseTotal = 0; // Total of each budget per phase
+            double pendingTotal = 0; // Total of pending budgets
+            double reviewedTotal = 0; // Total of reviewed budgets
+            double approvedTotal = 0; // Total of approved budgets
+            List<BudgetIndexPhaseViewModel> phaseModel = new List<BudgetIndexPhaseViewModel>(); // Create list of view models for phases
+            List<BudgetIndexViewModel> indexViewModel = new List<BudgetIndexViewModel>(); // Create list of view model for view
 
 
-            // Pull budget information
+
+            // Pull budget information to fill view model 
             var viewModelInformation = from bud in db.Budgets
                                        join phase in db.Phases on bud.PhaseId equals phase.PhaseId
                                        join subphase in db.SubPhases on bud.SubPhaseId equals subphase.SubPhaseId
@@ -56,14 +61,15 @@ namespace PCA.Controllers
                                            bud.Status
                                        };
 
+            // Get all phases that the current project uses
             var phaseList = (from phase in viewModelInformation
                             select new
                             {
                                 phase.Number
                             }).Distinct();
 
-            List<BudgetIndexPhaseViewModel> phaseModel = new List<BudgetIndexPhaseViewModel>();
-
+            
+            // Calculate total costs per each phase and workflow phase
             foreach (var phase in phaseList)
             {
                 runningPhaseTotal = 0;
@@ -83,31 +89,28 @@ namespace PCA.Controllers
                                 break;
                             case "Approved":
                                 approvedTotal += bud.TotalCost;
-                                break;
-
-                        }
-
-
-
+                                break;                        }
                     }
                 }
 
+                // ViewBag information - pass inforation to view
                 ViewBag.budgetTotal = pendingTotal + reviewedTotal + approvedTotal;
                 ViewBag.pendingTotal = pendingTotal;
                 ViewBag.reviewedTotal = reviewedTotal;
                 ViewBag.approvedTotal = approvedTotal;
 
-
+                // Creates viewmodel per each phase
                 BudgetIndexPhaseViewModel p = new BudgetIndexPhaseViewModel();
 
+                // Fill view model information
                 p.PhaseNumber = phase.Number;
                 p.PhaseTotal = runningPhaseTotal;
+
+                // Add current viewmodel to list of viewmodels
                 phaseModel.Add(p);
             }
 
-
-            List < BudgetIndexViewModel > indexViewModel = new List<BudgetIndexViewModel>();
-
+            // Fill information to view model
             foreach (var model in viewModelInformation)
             {
                 BudgetIndexViewModel vm = new BudgetIndexViewModel();
@@ -123,9 +126,11 @@ namespace PCA.Controllers
                 indexViewModel.Add(vm);
             }
 
+            // Pass viewmodel to view
             return View(indexViewModel);
         }
 
+        // REFERENCE METHOD
         public ActionResult IndexOG()
         {
             // Navbar Dependencies
@@ -202,10 +207,8 @@ namespace PCA.Controllers
         }
 
 
-        /* Title: Budget Create
-         * Description: Creates new budget item. Can be used from within the index controller or within phase detail
-         * Location: /Budget/Create
-        */
+        // GET: /Budget/Create
+        // Creates new budget item. Can be used from within the index controller or within phase detail
         public ActionResult Create()
         {
             // Navbar Dependencies

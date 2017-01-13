@@ -63,10 +63,35 @@ namespace PCA.Controllers
             return new List<string>();
         }
 
-        public bool Auth(List<int> positions)
+        public bool Auth(List<int> positions, int currentUser)
         {
+            //Get current project
+            var systemController = DependencyResolver.Current.GetService<SystemController>();
+            systemController.Get();
+            var currentList = systemController.Get();
+            ViewBag.CurrentProjectString = currentList.ElementAt(0);
+            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
+            int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
-            return true;
+            // Auth
+
+            bool canAccess = false;
+             
+            var currentPosition = from assignment in db.Assignments
+                                  where assignment.AccountId == currentUser &&
+                                        assignment.ProjectId == currentProjectNumber
+                                  select assignment;
+
+
+            foreach (var pos in currentPosition)
+            {
+                if (positions.Contains(pos.PositionId))
+                {
+                    canAccess = true;
+                }
+            }
+
+            return canAccess;
         }
 
     }
