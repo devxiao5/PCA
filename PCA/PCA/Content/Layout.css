@@ -1,10 +1,28 @@
 ﻿body {
     padding-top: 0px;
     margin-top: 0px;
-    background-repeat: repeat;
-    background-image: url('Images/concrete_seamless.png');*
     background: #ddd;
     margin-left: 0px;
+    height: 100vh;
+}
+
+.backdrop {
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 100vh;
+    background-image: url('Images/loginbkrd.jpg');
+}
+
+.main{
+    border-left: solid 3px #666;
+    border-right: solid 3px #666;
+    height: 100vh;
+    background-repeat: repeat;
+    background-image: url('Images/whiteblue.gif');
+    background-color: #eee;
+    box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.7);
+
+
 }
 
 .button-primary{
@@ -94,7 +112,8 @@
     border: 0px;
     border-bottom-width: 0px;
     border-style: solid;
-    border-top-color: #85c9f9;
+    border-top-color: #ddd;
+    border-top-width: 3px;
     border-bottom-color: #ddd;
     min-height: 30px;
     background-color: #064979;
@@ -180,7 +199,10 @@
 .sideNavItemSelected{
     color:#222;
     font-weight: 600;
-    background-image: url('Images/concrete_seamless.png');
+    background-color: #eee;
+    background-image: url('Images/whiteblue.gif');
+    background-position-y: 5px;
+    /*background-image: url('Images/concrete_seamless.png');*/
     border-right-width: 0px;
     
 }
@@ -203,7 +225,8 @@
 
 .panelShadow {
     padding:0px;
-    box-shadow: 5px 5px 10px #666;
+    box-shadow: 10px 10px 3px rgba(48, 49, 63, 0.75);
+    border: 2px solid rgba(48, 49, 63, 1);
 
 }
 

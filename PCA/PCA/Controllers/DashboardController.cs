@@ -19,7 +19,7 @@ namespace PCA.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Dashboard/Index/1
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
             // Connects to System Controller
             var systemController = DependencyResolver.Current.GetService<SystemController>();
@@ -28,13 +28,9 @@ namespace PCA.Controllers
             HttpContext context = System.Web.HttpContext.Current;
 
             // Sets commonly used sessions variables and viewbag objects
-            systemController.Set(id);
             var currentList = systemController.Get();
-            @ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            @ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
-            @ViewBag.CurrentUserId = currentList.ElementAt(2);
-            @ViewBag.CurrentUserName = currentList.ElementAt(3);
-            int projectsession = (int)(context.Session["Project"]);
+            @ViewBag.CurrentUserId = currentList.ElementAt(0);
+            @ViewBag.CurrentUserName = currentList.ElementAt(1);
 
             var drpending = (from drp in db.DailyReport
                              where drp.Status == "Pending"
@@ -45,11 +41,11 @@ namespace PCA.Controllers
                              select dr).Count();
 
             var budpending = (from i in db.Budgets
-                              where (i.Status == "Pending") && (i.ProjectId == projectsession)
+                              where (i.Status == "Pending")
                               select i).Count();
 
             var budapproved = (from i in db.Budgets
-                               where (i.Status == "Approved") && (i.ProjectId == projectsession)
+                               where (i.Status == "Approved")
                                select i).Count();
 
             DashboardViewModel vm = new DashboardViewModel();

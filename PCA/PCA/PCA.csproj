@@ -379,6 +379,7 @@
     <Compile Include="ViewModels\BudgetIndexPhaseViewModel.cs" />
     <Compile Include="ViewModels\BudgetIndexViewModel.cs" />
     <Compile Include="ViewModels\BudgetPhaseViewModelOG.cs" />
+    <Compile Include="ViewModels\DailyReportSelectViewModel.cs" />
     <Compile Include="ViewModels\DailyReportViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\InvoiceIndexViewModel.cs" />
@@ -392,8 +393,10 @@
     <Content Include="Content\bootstrapOG.css" />
     <Content Include="Content\bootstrapOG.min.css" />
     <Content Include="Content\Budget.css" />
+    <Content Include="Content\Dashboard.css" />
     <Content Include="Content\GC.css" />
     <Content Include="Content\bootstrapTEST.min.css" />
+    <Content Include="Content\Images\climpek.png" />
     <Content Include="Content\Images\concrete_seamless.png" />
     <Content Include="Content\Images\cork-wallet.png" />
     <Content Include="Content\Images\grey_wash_wall.png" />
@@ -401,6 +404,8 @@
     <Content Include="Content\Images\mirrored_squares.png" />
     <Content Include="Content\Images\pcalogo.png" />
     <Content Include="Content\Images\Plann_LetterHead.png" />
+    <Content Include="Content\Images\whiteblue.gif" />
+    <Content Include="Content\Images\whiteblue2x.gif" />
     <Content Include="Content\LayoutCurrent.css" />
     <Content Include="Content\LayoutOLD.css" />
     <Content Include="Content\Layout.css" />
@@ -605,6 +610,11 @@
     <Content Include="Views\Contract\CreateBCO.cshtml" />
     <Content Include="Views\Shared\_LayoutReport.cshtml" />
     <Content Include="Views\Budget\Workflow.cshtml" />
+    <Content Include="Views\DailyReport\Select.cshtml" />
+    <Content Include="Views\DailyReportSelectViewModels\Delete.cshtml" />
+    <Content Include="Views\DailyReportSelectViewModels\Details.cshtml" />
+    <Content Include="Views\DailyReportSelectViewModels\Edit.cshtml" />
+    <Content Include="Views\DailyReportSelectViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

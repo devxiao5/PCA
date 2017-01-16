@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PCA.ViewModels.DailyReportSelectViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutForm.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DailyReportId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DailyReportId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DailyReportId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,26 @@
+﻿.table, .table > tbody > tr > td {
+    border:2px solid #333;
+    font-size: 1em;
+    font-weight: 400;
+    text-align: center;
+
+    
+}
+
+td:hover{
+    background-color: #ccc;
+}
+
+.table{
+    box-shadow: 0px 0px 5px #555;
+    min-height: 25px;
+}
+
+td, tr, tbody{
+    padding: 0px;
+    padding-top: 1px;
+}
+
+.WorkflowSelected{
+    background-color: #90EE90;
+}

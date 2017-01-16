@@ -23,16 +23,17 @@ namespace PCA.Controllers
             
             //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
             // -----------
 
             //List<BudgetPhaseViewModel> viewModel = new List<BudgetPhaseViewModel>();
 
-            int currentProjectNumber = ViewBag.CurrentProjectNumber;
+            int currentProjectNumber = Convert.ToInt32(Session["DailyReportProject"]);
+            string currentStatus = Session["DailyReportStatus"].ToString();
             int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentStatus = currentStatus;
+            ViewBag.currentProject = currentProjectNumber;
+            List<DailyReport> dailyReports;
+
 
             // ----- Auth -----
             if (systemController.Auth(new List<int> { 1, 2 }, currentUserId) == false)
@@ -42,10 +43,20 @@ namespace PCA.Controllers
 
             // ------------------
 
-
-            List<DailyReport> dailyReports = new List<DailyReport>(from dailyReport in db.DailyReport
-                                                                   where dailyReport.ProjectId == currentProjectNumber
-                                                                   select dailyReport);
+            if (currentProjectNumber == 0)
+            {
+                dailyReports = new List<DailyReport>(from dailyReport in db.DailyReport
+                                                                       where dailyReport.Status == currentStatus
+                                                                       select dailyReport);
+            }
+            else
+            {
+                dailyReports = new List<DailyReport>(from dailyReport in db.DailyReport
+                                                                       where dailyReport.ProjectId == currentProjectNumber &&
+                                                                             dailyReport.Status == currentStatus
+                                                                       select dailyReport);
+            }
+            
 
             var viewModelInformation = from work in db.WorkItems
                                        join report in db.DailyReport on work.DailyReportId equals report.DailyReportId
@@ -102,7 +113,7 @@ namespace PCA.Controllers
                 DateTime d = DateTime.Now.AddDays(i);
                 string sd = d.ToString("yyyy-MM-dd");
                 DailyReportWeekAnal.Add(sd);
-            }*/
+            }
 
             ViewBag.DailyReportAnalWeekDay1 = DateTime.Now.AddDays(-6).ToString("yyyy-MM-dd");
             ViewBag.DailyReportAnalWeekDay2 = DateTime.Now.AddDays(-5).ToString("yyyy-MM-dd");
@@ -110,7 +121,7 @@ namespace PCA.Controllers
             ViewBag.DailyReportAnalWeekDay4 = DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd");
             ViewBag.DailyReportAnalWeekDay5 = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
             ViewBag.DailyReportAnalWeekDay6 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-            ViewBag.DailyReportAnalWeekDay7 = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.DailyReportAnalWeekDay7 = DateTime.Now.ToString("yyyy-MM-dd");*/
 
 
             return View(reportModel);
@@ -118,13 +129,10 @@ namespace PCA.Controllers
 
         public ActionResult Detail(int id)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            //---------------------------
+            // Sessions
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             var currentReport = db.DailyReport.Find(id);
             string date = currentReport.Date.ToString("yyyy-MM-dd");
@@ -136,8 +144,6 @@ namespace PCA.Controllers
             List<WorkItem> workList = new List<WorkItem>(from work in db.WorkItems
                                                          where work.DailyReportId == id
                                                          select work);
-
-            int currentProjectNumber = ViewBag.CurrentProjectNumber;
 
             return View(workList);
         }
@@ -300,14 +306,9 @@ namespace PCA.Controllers
         // GET: DailyReport/Edit/5
         public ActionResult Edit(int? id)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            int currentProjectNum = int.Parse(currentList.ElementAt(1));
-            ViewBag.CurrentProjectNumber = currentProjectNum;
-            //---------------------------
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             if (id == null)
             {
@@ -330,14 +331,10 @@ namespace PCA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "DailyReportId,ProjectId,Date,Summary,Status")] DailyReport dailyReport)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            int currentProjectNum = int.Parse(currentList.ElementAt(1));
-            ViewBag.CurrentProjectNumber = currentProjectNum;
-            //---------------------------
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
+
 
             if (ModelState.IsValid)
             {
@@ -462,13 +459,10 @@ namespace PCA.Controllers
         // GET: DailyReport/WorkEdit/5
         public ActionResult WorkEdit(int? id)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            //---------------------------
+            // Session
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             if (id == null)
             {
@@ -489,13 +483,10 @@ namespace PCA.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult WorkEdit([Bind(Include = "WorkItemId,DailyReportId,ContractorId,Summary,Performance,MenWorked,HoursWorked")] WorkItem workItem)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            //---------------------------
+            // Session
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             if (ModelState.IsValid)
             {
@@ -628,11 +619,6 @@ namespace PCA.Controllers
         public ActionResult WorkFlow(int? id)
         {
             //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
             // -----------
 
             if (id == null)
@@ -650,14 +636,6 @@ namespace PCA.Controllers
         // GET: Budgets/Details/5
         public ActionResult WorkFlowForward(int? id)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            // -----------
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -680,14 +658,6 @@ namespace PCA.Controllers
 
         public ActionResult WorkFlowReturn(int? id)
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            // -----------
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -707,6 +677,40 @@ namespace PCA.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: DailyReport/Select
+        public ActionResult Select()
+        {
+            ViewBag.Status = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text="Pending", Value="Pending" },
+                new SelectListItem() { Text="Approved", Value="Approved" },
+            };
+            List<SelectListItem> projectList = new SelectList(db.Projects, "ProjectId", "Name").ToList();
+            projectList.Insert(0, (new SelectListItem { Text = "All", Value = "0" }));
+            ViewBag.ProjectId = projectList;
+
+            return View();
+        }
+
+        // POST: DailyReport/Select
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Select([Bind(Include = "DailyReportId,ProjectId,Status")] DailyReportSelectViewModel dailyReportSelectViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Session["DailyReportProject"] = dailyReportSelectViewModel.ProjectId;
+                Session["DailyReportStatus"] = dailyReportSelectViewModel.Status;
+
+                return RedirectToAction("Index");
+
+            }
+
+            return View(dailyReportSelectViewModel);
+        }
+
+
     }
 }
 

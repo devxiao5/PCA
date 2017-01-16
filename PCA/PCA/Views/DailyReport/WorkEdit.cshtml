@@ -9,6 +9,11 @@
 {
     <a href="/DailyReport/Detail/@Model.DailyReportId" class="btn btn-default">Back</a>
 }
+@section scripts
+{
+    
+    
+}
 
 
 @using (Html.BeginForm())
@@ -31,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContractorId, "Contractor", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ContractorId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ContractorId", null, htmlAttributes: new { @class = "select2 form-control" })
                 @Html.ValidationMessageFor(model => model.ContractorId, "", new { @class = "text-danger" })
             </div>
         </div>

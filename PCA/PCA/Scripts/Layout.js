@@ -12,7 +12,9 @@ $(document).ready(function () {
     });
 });
 
-
+$(document).ready(function () {
+    $('.select2').select2();
+});
 /*$(function () { // will trigger when the document is ready
     $('.datepicker').datepicker(); //Initialise any date pickers
 });*/

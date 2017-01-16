@@ -1,5 +1,41 @@
-﻿// Analytics 
+﻿// Filter Options
 $(document).ready(function () {
+// Click filter
+    $(".dailyReportStatusFilter").click(function () {
+
+// Hide Link buttons
+        $("#LinkButtonGroup").css({ 'visibility': 'hidden', 'max-height': '0px' });
+
+// Set current filter text
+        var filterText = $(this).text();
+        $('#selection').html(filterText);
+
+        var selecteditem = document.getElementById('LinkButtonSelected');
+        $(selecteditem).removeAttr('id');
+
+
+
+        $('.dailyReportRow').each(function (i, obj) {
+            $(this).show();
+})
+
+        if (filterText == "All") {
+            $('.dailyReportRow').each(function (i, obj) {
+                $(this).show();
+})
+}
+else
+            $('.dailyReportRow').each(function (i, obj) {
+            if ($(this).attr('data-status') != filterText) {
+                $(this).hide();
+}
+})
+})
+});
+
+
+// Analytics 
+/*$(document).ready(function () {
     const CHART = document.getElementById("dailyReportCanvas");
 
     // Dates for x-axis
@@ -95,38 +131,4 @@ $(document).ready(function () {
         }
     })
 });
-
-// Filter Options
-$(document).ready(function () {
-    // Click filter
-    $(".dailyReportStatusFilter").click(function () {
-
-        // Hide Link buttons
-        $("#LinkButtonGroup").css({ 'visibility': 'hidden', 'max-height': '0px' });
-
-        // Set current filter text
-        var filterText = $(this).text();
-        $('#selection').html(filterText);
-
-        var selecteditem = document.getElementById('LinkButtonSelected');
-        $(selecteditem).removeAttr('id');
-
-        
-
-        $('.dailyReportRow').each(function (i, obj) {
-            $(this).show();
-        })
-
-        if (filterText == "All") {
-            $('.dailyReportRow').each(function (i, obj) {
-                $(this).show();
-            })
-        }
-        else
-            $('.dailyReportRow').each(function (i, obj) {
-            if ($(this).attr('data-status') != filterText) {
-                $(this).hide();
-            }
-        })
-    })
-});
+*/
