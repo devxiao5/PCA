@@ -6,6 +6,13 @@
     height: 100vh;
 }
 
+.panel-heading{
+    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .backdrop {
     padding-left: 5%;
     padding-right: 5%;
@@ -94,14 +101,6 @@
     opacity: .4;
 }
 
-.panel-heading > .headingText{
-    border-width: 5px;
-    border-color: #333;
-    font-size: 1.3em;
-    font-family: 'Open Sans', sans-serif;
-    padding: 5px;
-}
-
 .heading-1{
     font-size: 1.5em;
     padding: 0px;
@@ -116,8 +115,8 @@
     border-top-width: 3px;
     border-bottom-color: #ddd;
     min-height: 30px;
-    background-color: #064979;
-    box-shadow: inset 0px -8px 0px #05304E;
+    background-color: #F4F4F4;
+    box-shadow: inset 0px -5px 15px #aaa;
 
     /*box-shadow: 0px 10px 15px #333;*/
 }
@@ -133,25 +132,25 @@
 .NavigationLinkItem {
     padding-left: 0.25%;
     padding-right: 0.25%;
-    padding-top: 9px;
+    padding-top: 11px;
     padding-bottom: 8px;
     margin-left: 0px !important;
     text-align: center;
     list-style-type: none;
     min-height: 40px;
     max-height: 40px;
-    font-size: 0.9em;
-    color: white;
+    font-size: 0.8em;
+    color: #333;
     transition: background-color ease-in 100ms;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     border-right-color: rgba(5, 48, 78, 1);
     border-right-width: 2px;
     border-right-style: solid;
 }
 
 .NavigationLinkItem:hover{
-    background-color: #0967aa;
+    background-color: #ccc;
 }
 
 .CurrentUserText {
@@ -199,11 +198,12 @@
 .sideNavItemSelected{
     color:#222;
     font-weight: 600;
-    background-color: #eee;
+    background-color: #222;
     background-image: url('Images/whiteblue.gif');
     background-position-y: 5px;
     /*background-image: url('Images/concrete_seamless.png');*/
-    border-right-width: 0px;
+    border-right-width: 2px;
+    border-width: 2px!important;
     
 }
 
@@ -246,12 +246,19 @@
      text-align: center;
      font-size: 1.3em;
      font-family: 'Open Sans', sans-serif;
-     padding: 5px;
+     padding: 0px;
  }
 
   .panel-heading > .headingElements > .headingRight  {
      text-align: right;
+     padding-right: 6px;
  }
+
+.panel-heading > .headingElements > .headingLeft  {
+    text-align: left;
+    padding-left: 6px;
+}
+
 
  #LinkButtonGroup {
      visibility: hidden;
