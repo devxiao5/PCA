@@ -406,6 +406,7 @@
     <Content Include="Content\Images\Plann_LetterHead.png" />
     <Content Include="Content\Images\whiteblue.gif" />
     <Content Include="Content\Images\whiteblue2x.gif" />
+    <Content Include="Content\Layout117.css" />
     <Content Include="Content\LayoutCurrent.css" />
     <Content Include="Content\LayoutOLD.css" />
     <Content Include="Content\Layout.css" />
@@ -430,6 +431,7 @@
     <Content Include="Scripts\Budget.js" />
     <Content Include="Scripts\BudgetOG.js" />
     <Content Include="Scripts\DailyReport.js" />
+    <Content Include="Scripts\Dashboard.js" />
     <Content Include="Scripts\DataTablesCustomization.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -615,6 +617,7 @@
     <Content Include="Views\DailyReportSelectViewModels\Details.cshtml" />
     <Content Include="Views\DailyReportSelectViewModels\Edit.cshtml" />
     <Content Include="Views\DailyReportSelectViewModels\Index.cshtml" />
+    <Content Include="Views\Shared\Layout117.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

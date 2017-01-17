@@ -48,11 +48,16 @@ namespace PCA.Controllers
                                where (i.Status == "Approved")
                                select i).Count();
 
+            var projects = (from p in db.Projects
+                            select p);
+
+
             DashboardViewModel vm = new DashboardViewModel();
             vm.DailyReportPending = drpending;
             vm.DailyReportApproved = drapproved;
             vm.BudgetPending = budpending;
             vm.BudgetApproved = budapproved;
+            ViewBag.ProjectList = projects;
 
 
 

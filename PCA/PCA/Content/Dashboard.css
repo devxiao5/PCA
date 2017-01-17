@@ -3,8 +3,6 @@
     font-size: 1em;
     font-weight: 400;
     text-align: center;
-
-    
 }
 
 td:hover{
@@ -23,4 +21,12 @@ td, tr, tbody{
 
 .WorkflowSelected{
     background-color: #90EE90;
+}
+
+.workflow-item{
+    background-color: #064979;
+}
+
+.panel {
+    box-shadow: 0px 0px 10px 1px #999;
 }

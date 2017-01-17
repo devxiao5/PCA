@@ -3,10 +3,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section sideNavDashboard
-{
-    sideNavItemSelected
-}
 @section css 
 {
     <link href="~/Content/Dashboard.css" rel="stylesheet" />
@@ -16,93 +12,186 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
     <script src="~/Scripts/DataTablesCustomization.js"></script>
     <script src="~/Scripts/PCA.js"></script>
+    <script src="~/Scripts/Dashboard.js"></script>
 }
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default col-xs-12">
+            <div class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-4"></div>
+                    <div class="headingText col-xs-4">
+                        <span>PROJECT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body col-xs-12">
+                <span>Project:</span>
+                <span class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span id="SelectProject">All</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="projectselection" data-project-name="All" data-project-id="0"><a href="#">All</a></li>
+                        @foreach (var p in ViewBag.ProjectList)
+                        {
+                            <li class="projectselection" data-project-name="@p.Name" data-project-id="@p.ProjectId"><a href="#">@p.Name</a></li>
+                        }
+                    </ul>
+                </span>
 
-<div class="panel panel-default panelShadow col-xs-12 col-md-7">
-    <div class="panel-heading col-xs-12">
-        <div class="headingElements">
-            <div class="col-xs-4"></div>
-            <div class="headingText col-xs-4">
-                <span>Workflow</span>
             </div>
         </div>
     </div>
-
-    <div class="panel-body col-xs-12">
-
-        <div class="table-responsive col-xs-12">
-            <h4><b>Budgets</b></h4>
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td>Pending</td>
-                        <td>Approved</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="table-responsive col-xs-12">
-            <h4><b>Contracts</b></h4>
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td>Pending</td>
-                        <td>Reviewed</td>
-                        <td>Approved</td>
-                        <td class="WorkflowSelected">Routed</td>
-                        <td>Posted</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="table-responsive col-xs-12">
-            <div class="table-responsive ">
-                <h4><b>Invoices</b></h4>
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td class="WorkflowSelected">Pending</td>
-                            <td>Approved</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="col-xs-6">
+        <div class="panel panel-default col-xs-12">
+            <div class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-4"></div>
+                    <div class="headingText col-xs-4">
+                        <span>LINKS</span>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="panel-body col-xs-12">
+                TEST<br />
+                TEST<br />
+                TEST<br />
 
-
-        <div class="table-responsive col-xs-12">
-            <div class="table-responsive">
-                <h4><b>Daily Reports</b></h4>
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td>Pending</td>
-                            <td class="WorkflowSelected">Approved</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
 </div>
 
+<div class="row">
+    <!-- Column 2 -->
+    <div class="col-xs-3">
+        <div class="panel panel-default col-xs-12">
+            <a href="/Budget/" class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-4"></div>
+                    <div class="headingText col-xs-4">
+                        <span>BUDGETS</span>
+                    </div>
+                </div>
+            </a>
+            
+            <div class="panel-body col-xs-12">
 
-<div class="panel panel-default panelShadow col-md-4 col-md-offset-1">
-    <div class="panel-heading">
-        <h4>Links</h4>
-    </div>
-    <div class="panel-body">
-        <a href="/Admin/Index">Admin</a>
-    </div>
-</div>
+                <div class="col-xs-6">
 
-<div class="panel panel-default panelShadow col-md-4 col-md-offset-1">
-    <div class="panel-heading">
-        <h4>Change Log</h4>
-    </div>
-    <div class="panel-body">
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">Pending</li>
+                        <li class="list-group-item list-group-item-success">Reviewed</li>
+                        <li class="list-group-item">Approved</li>
+                    </ul>
+                </div>
 
+                <div class="col-xs-12">
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="col-xs-3">
+        <div class="panel panel-default col-xs-12">
+            <div class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-4"></div>
+                    <div class="headingText col-xs-4">
+                        <span>CONTRACTS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body col-xs-12">
+
+                <div class="col-xs-6">
+
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">Pending</li>
+                        <li class="list-group-item list-group-item-success">Reviewed</li>
+                        <li class="list-group-item">Approved</li>
+                        <li class="list-group-item">Routed</li>
+                        <li class="list-group-item">Posted</li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12">
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-xs-3">
+        <div class="panel panel-default col-xs-12">
+            <div class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-4"></div>
+                    <div class="headingText col-xs-4">
+                        <span>INVOICES</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body col-xs-12">
+
+                <div class="col-xs-6">
+
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item">Pending</li>
+                        <li class="list-group-item list-group-item-success">Posted</li>
+                        <li class="list-group-item">Reviewed</li>
+                        <li class="list-group-item">Approved</li>
+                        <li class="list-group-item">Released</li>
+                        <li class="list-group-item">Paid</li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12">
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-xs-3">
+        <div class="panel panel-default col-xs-12">
+            <a href="/DailyReport/Select" class="panel-heading col-xs-12">
+                <div class="headingElements">
+                    <div class="col-xs-2"></div>
+                    <div class="headingText col-xs-8">
+                        <span>DAILY REPORTS</span>
+                    </div>
+                </div>
+            </a>
+            <div class="panel-body col-xs-12">
+
+                <div class="col-xs-6">
+
+                </div>
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        <li class="list-group-item workflow-link" data-workflow-status="Pending">Pending</li>
+                        <li class="list-group-item list-group-item-success">Reviewed</li>
+                        <li class="list-group-item">Approved</li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-12">
+                    <hr />
+                </div>
+            </div>
+        </div>
     </div>
 </div>

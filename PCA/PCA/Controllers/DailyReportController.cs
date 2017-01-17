@@ -16,11 +16,19 @@ namespace PCA.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
 
+
+        public ActionResult WorkflowRedirect(int project, string status)
+        {
+            Session["DailyReportProject"] = project;
+            Session["DailyReportStatus"] = status;
+
+            return RedirectToAction("Index");
+
+        }
+
         // GET: DailyReport
         public ActionResult Index()
         {
-
-            
             //Get current project
             var systemController = DependencyResolver.Current.GetService<SystemController>();
             // -----------
