@@ -12,7 +12,7 @@
 }
 
 <!-- Daily Report Container -->
-<div class="panel panel-default panelShadow col-xs-12 col-md-7">
+<div class="panel panel-default panelShadow col-xs-12 col-md-8 col-md-offset-2">
     <!-- Daily Report Header -->
     <div class="panel-heading col-xs-12">
         <div class="headingElements col-xs-12">
@@ -58,6 +58,7 @@
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Project</th>
                         <th>Summary</th>
                         <th>Status</th>
                     </tr>
@@ -69,8 +70,9 @@
                         <tr id="@report.DateString" class="LinkButton dailyReportRow" data-status="@report.Status" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
                             data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId"
                             data-link-button-5="/DailyReport/WorkFlow/@report.DailyReportId"
-                            data-date="@report.DateString" data-totalHours="@report.TotalHours">
+                            data-date="@report.DateString">
                             <td>@report.DateString</td>
+                            <td>@report.Name</td>
                             <td>@report.Summary</td>
                             <td>@report.Status</td>
                         </tr>
@@ -80,7 +82,7 @@
         </div>
     </div>
 </div>
-
+@*
 <!-- Analytics Panel -->
 <div class="panel panel-default panelShadow col-xs-12 col-md-4 col-md-offset-1">
     <div class="panel-heading col-xs-12">
@@ -90,13 +92,11 @@
             </div>
     </div>
     <div class="panel-body">
-        @*
         <div class="col-xs-12 col-md-10 col-md-offset-1">
             <canvas id="dailyReportCanvas" width="400" height="400" data-weekreport-1="@ViewBag.DailyReportAnalWeekDay1"
                     data-weekreport-2="@ViewBag.DailyReportAnalWeekDay2" data-weekreport-3="@ViewBag.DailyReportAnalWeekDay3"
                     data-weekreport-4="@ViewBag.DailyReportAnalWeekDay4" data-weekreport-5="@ViewBag.DailyReportAnalWeekDay5"
                     data-weekreport-6="@ViewBag.DailyReportAnalWeekDay6" data-weekreport-7="@ViewBag.DailyReportAnalWeekDay7"></canvas>
         </div>
-        *@
     </div>
-</div>
+</div>*@

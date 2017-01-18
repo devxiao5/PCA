@@ -5,11 +5,6 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
 }
-@section sideNavDailyReport
-{
-    sideNavItemSelected
-}
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

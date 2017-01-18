@@ -19,10 +19,6 @@ td, tr, tbody{
     padding-top: 1px;
 }
 
-.WorkflowSelected{
-    background-color: #90EE90;
-}
-
 .workflow-item{
     background-color: #064979;
 }
@@ -33,4 +29,16 @@ td, tr, tbody{
 
 .workflow-link:hover{
     cursor: pointer;
+}
+
+.workflow-div{
+    height: 325px;
+}
+
+.workflow-panel{
+    height:100%;
+}
+
+.workflow-panel-body{
+    padding-top: 5%; /* https://css-tricks.com/centering-css-complete-guide/ */
 }

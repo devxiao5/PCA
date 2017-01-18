@@ -32,35 +32,47 @@ namespace PCA.Controllers
             @ViewBag.CurrentUserId = currentList.ElementAt(0);
             @ViewBag.CurrentUserName = currentList.ElementAt(1);
 
-            var drpending = (from drp in db.DailyReport
-                             where drp.Status == "Pending"
-                             select drp).Count();
-
-            var drapproved = (from dr in db.DailyReport
-                             where dr.Status == "Approved"
-                             select dr).Count();
-
-            var budpending = (from i in db.Budgets
-                              where (i.Status == "Pending")
-                              select i).Count();
-
-            var budapproved = (from i in db.Budgets
-                               where (i.Status == "Approved")
-                               select i).Count();
+            // Queries
+            var viewModelInformation = from report in db.DailyReport
+                                       select new
+                                       {
+                                           report.ProjectId,
+                                           report.DailyReportId,
+                                           report.Status
+                                       };
 
             var projects = (from p in db.Projects
                             select p);
 
-
+            // Count for workflow
             DashboardViewModel vm = new DashboardViewModel();
-            vm.DailyReportPending = drpending;
-            vm.DailyReportApproved = drapproved;
-            vm.BudgetPending = budpending;
-            vm.BudgetApproved = budapproved;
+            int drp = 0;
+            int drr = 0;
+            int dra = 0;
+
+            foreach (var r in viewModelInformation)
+            {
+                switch (r.Status)
+                {
+                    case "Pending":
+                        drp += 1;
+                        break;
+
+                    case "Reviewed":
+                        drr += 1;
+                        break;
+
+                    case "Approved":
+                        dra += 1;
+                        break;
+                }
+
+                vm.DailyReportPending = drp;
+                vm.DailyReportReviewed = drr;
+                vm.DailyReportApproved = dra;
+            }
+            
             ViewBag.ProjectList = projects;
-
-
-
 
             return View(vm);
         }

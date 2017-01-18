@@ -6,12 +6,18 @@
     height: 100vh;
 }
 
+#menubar{
+    background-color: #064979;
+    box-shadow: inset 0px -5px 10px #05304E;
+    height: 50px;
+}
+
 .panel > .panel-heading{
     padding-top: 5px;
     padding-bottom: 8px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #1c2541;
+    background-color: #222;
     color: white;
     font-size: 0.7em;
     height: 50px;
