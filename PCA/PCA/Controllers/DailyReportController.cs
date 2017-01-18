@@ -17,7 +17,7 @@ namespace PCA.Controllers
 
 
 
-        public ActionResult WorkflowRedirect(int project, string status)
+        public ActionResult WorkflowRedirect(string project, string status)
         {
             Session["DailyReportProject"] = project;
             Session["DailyReportStatus"] = status;
