@@ -11,74 +11,76 @@
     <script src="~/Scripts/DailyReport.js"></script>
 }
 
-<!-- Daily Report Container -->
-<div class="panel panel-default panelShadow col-xs-12 col-md-8 col-md-offset-2">
-    <!-- Daily Report Header -->
-    <div class="panel-heading col-xs-12">
-        <div class="headingElements col-xs-12">
-            <div class="col-xs-4 headingLeft">
-                <a href="/DailyReport/Select" class="btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-menu-left"></span> Back
-                </a>
-            </div>
-            <span class="headingText col-xs-4">Daily Reports</span>
-            <div class="headingRight col-xs-4">
-                <a href="/DailyReport/Create" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New</a>
+<div class="col-xs-12 col-md-12">
+    <!-- Daily Report Container -->
+    <div class="panel panel-default col-xs-12">
+        <!-- Daily Report Header -->
+        <div class="panel-heading col-xs-12">
+            <div class="headingElements col-xs-12">
+                <div class="col-xs-4 headingLeft">
+                    <a href="/DailyReport/Select" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-menu-left"></span> Back
+                    </a>
+                </div>
+                <span class="headingText col-xs-4">Daily Reports</span>
+                <div class="headingRight col-xs-4">
+                    <a href="/DailyReport/Create" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New</a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Daily Report Body -->
-    <div class="panel-body col-xs-12">
+        <!-- Daily Report Body -->
+        <div class="panel-body col-xs-12">
 
-        <!-- Filters -->
-        <div class="well col-xs-12">
-            <div class="col-xs-6">
-                Project:<br /> @ViewBag.currentProject
+            <!-- Filters -->
+            <div class="well col-xs-12">
+                <div class="col-xs-6">
+                    Project:<br /> @ViewBag.currentProject
+                </div>
+                <div class="col-xs-6">
+                    Status:<br /> @ViewBag.currentStatus
+                </div>
+
             </div>
-            <div class="col-xs-6">
-                Status:<br /> @ViewBag.currentStatus
+
+
+            <!-- Link Buttons -->
+            <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
+                <a id="LinkButton1" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Work</a>
+                <a id="LinkButton2" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+                <a id="LinkButton3" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+                <a id="LinkButton4" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span> Pictures</a>
+                <a id="LinkButton5" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort"></span> Workflow</a>
             </div>
-            
-        </div>
 
-
-        <!-- Link Buttons -->
-        <div id="LinkButtonGroup" class="col-xs-12" role="group" aria-label="...">
-            <a id="LinkButton1" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span> Work</a>
-            <a id="LinkButton2" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-            <a id="LinkButton3" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-            <a id="LinkButton4" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-picture"></span> Pictures</a>
-            <a id="LinkButton5" href="" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort"></span> Workflow</a>
-        </div>
-
-        <!-- Daily Report DataTables -->
-        <div id="TableWrapper" class="col-xs-12">
-            <table id="Sort1" class="display col-xs-12 Sort1 table table-striped">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Project</th>
-                        <th>Summary</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Daily Reports -->
-                    @foreach (var report in Model)
-                    {
-                        <tr id="@report.DateString" class="LinkButton dailyReportRow" data-status="@report.Status" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
-                            data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId"
-                            data-link-button-5="/DailyReport/WorkFlow/@report.DailyReportId"
-                            data-date="@report.DateString">
-                            <td>@report.DateString</td>
-                            <td>@report.Name</td>
-                            <td>@report.Summary</td>
-                            <td>@report.Status</td>
+            <!-- Daily Report DataTables -->
+            <div id="TableWrapper" class="col-xs-12">
+                <table id="Sort1" class="display col-xs-12 Sort1 table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Project</th>
+                            <th>Summary</th>
+                            <th>Status</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <!-- Daily Reports -->
+                        @foreach (var report in Model)
+                        {
+                            <tr id="@report.DateString" class="LinkButton dailyReportRow" data-status="@report.Status" data-link-button-1="/DailyReport/Detail/@report.DailyReportId" data-link-button-2="/DailyReport/Edit/@report.DailyReportId"
+                                data-link-button-3="/DailyReport/Delete/@report.DailyReportId" data-link-button-4="/DailyReport/PictureIndex/@report.DailyReportId"
+                                data-link-button-5="/DailyReport/WorkFlow/@report.DailyReportId"
+                                data-date="@report.DateString">
+                                <td>@report.DateString</td>
+                                <td>@report.Name</td>
+                                <td>@report.Summary</td>
+                                <td>@report.Status</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

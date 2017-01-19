@@ -52,3 +52,21 @@ td, tr, tbody{
 
 
 }
+
+.dashboard-heading{
+    text-align: center;
+    font-weight: 600;
+    color: #001f4d;
+}
+
+hr{
+    margin: 0.5em;
+}
+
+.list-group{
+    padding-top: 2em;
+}
+
+#links {
+    margin-top: 2em;
+}

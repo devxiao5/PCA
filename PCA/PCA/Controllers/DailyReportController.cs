@@ -198,7 +198,7 @@ namespace PCA.Controllers
             int currentUserId = Convert.ToInt32(Session["UserId"]);
             ViewBag.currentProject = currentProjectNum;
 
-            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             return View();
         }
 
@@ -207,7 +207,7 @@ namespace PCA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DailyReportId,Date,Summary,ProjectId")] DailyReport dailyReport)
+        public ActionResult Create([Bind(Include = "DailyReportId,Date,Summary,IsDelay,DelayType,DelayDescription,ProjectId")] DailyReport dailyReport)
         {
             // Sessions
             int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
@@ -222,7 +222,7 @@ namespace PCA.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProjectId = new SelectList(db.Projects.Where(p => p.ProjectId == currentProjectNum), "ProjectId", "Name");
+            ViewBag.ProjectId = new SelectList(db.Projects, "ProjectId", "Name");
             return View(dailyReport);
         }
 

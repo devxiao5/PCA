@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_LayoutForm.cshtml";
     ViewBag.Title = "Create";
 }
-@section sideNavDailyReport
-{
-    sideNavItemSelected
-}
 @section headerLeft
 {
     <a href="/DailyReport/" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-menu-left"></span> Back</a>
@@ -20,6 +16,14 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectId, "Project", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -37,10 +41,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectId, "ProjectId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsDelay, new { @class= "control-label col-md-2"})
+            <div class="col-md-10"> 
+                @Html.CheckBoxFor(model => model.IsDelay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsDelay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DelayType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProjectId", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DelayType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DelayType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DelayDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DelayDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DelayDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 

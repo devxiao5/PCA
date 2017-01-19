@@ -23,6 +23,16 @@ namespace PCA.Models
         [StringLength(1000)]
         public string Summary { get; set; }
 
+
+        public bool IsDelay { get; set; }
+
+        [StringLength(25)]
+        public string DelayType { get; set; }
+
+        [StringLength(1000)]
+        public string DelayDescription { get; set; }
+
+
         [StringLength(255)]
         public string Status { get; set; }
 

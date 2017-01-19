@@ -7,7 +7,8 @@
 }
 
 #menubar{
-    background-color: #ccc;
+    background-color: #002F74;
+    box-shadow: inset 0px -10px 0px #001f4d;
 
     height: 55px;
     /*border-top-width: 2px;
@@ -26,11 +27,13 @@
     padding-bottom: 8px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: #003;
-    color: white;
+    background-color: #eee;
+    color: #555;
     font-size: 0.7em;
-    height: 50px;
-    padding-top: 15px;
+    font-weight: 600;
+    height: 40px;
+    padding-top: 10px;
+    font-family: Arial;
 }
 
 .panel > .panel-heading:hover{
@@ -45,12 +48,12 @@
 }
 
 .main{
-    border-left: solid 3px #666;
-    border-right: solid 3px #666;
+    border-left: solid 5px #001f4d;
+    border-right: solid 5px #001f4d;
     height: 100vh;
     background-repeat: repeat;
     background-color: #eee;
-    box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 20px 15px rgba(0, 0, 20, 0.5);
     max-width: 1400px;
 
 }
@@ -241,9 +244,9 @@
 
 .panelShadow > .panel-heading{
     background-image: none;
-    background-color: #064979;
+    /*background-color: #064979;
     color: white;
-    box-shadow: inset 0px -5px 0px #05304E;
+    box-shadow: inset 0px -5px 0px #05304E;*/
 }
 
 .panelShadow {

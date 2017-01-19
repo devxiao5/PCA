@@ -344,6 +344,10 @@
     <Compile Include="Migrations\201701101747086_contracrbcomodel.Designer.cs">
       <DependentUpon>201701101747086_contracrbcomodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701191821536_1-19-2017dailyreportdelay.cs" />
+    <Compile Include="Migrations\201701191821536_1-19-2017dailyreportdelay.Designer.cs">
+      <DependentUpon>201701191821536_1-19-2017dailyreportdelay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
@@ -712,6 +716,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701101747086_contracrbcomodel.resx">
       <DependentUpon>201701101747086_contracrbcomodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701191821536_1-19-2017dailyreportdelay.resx">
+      <DependentUpon>201701191821536_1-19-2017dailyreportdelay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
