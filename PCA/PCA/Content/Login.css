@@ -7,3 +7,11 @@
 #login {
     margin-top: 10%;
 }
+
+.panel-heading{
+    text-align: center;
+}
+
+.panel > .panel-heading{
+    font-size: 1em;
+}
