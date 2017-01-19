@@ -26,12 +26,10 @@ namespace PCA.Controllers
         // Displays list of budget items and budget information 
         public ActionResult Index()
         {
-            // PCA Net Dependencies v1.0 - current project, etc
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = currentList.ElementAt(1);
-            int currentProjectNumber = int.Parse(ViewBag.CurrentProjectNumber);
+            // Dependencies v0.1
+            int currentProjectNumber = Convert.ToInt32(Session["DailyReportProject"]);
+            string currentStatus = Session["DailyReportStatus"].ToString();
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
 
             // Declarations
             double runningPhaseTotal = 0; // Total of each budget per phase
@@ -452,7 +450,20 @@ namespace PCA.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Budget/Select
+        public ActionResult Select()
+        {
+            ViewBag.Status = new List<SelectListItem>()
+            {
+                new SelectListItem() { Text="Pending", Value="Pending" },
+                new SelectListItem() { Text="Approved", Value="Approved" },
+            };
+            List<SelectListItem> projectList = new SelectList(db.Projects, "ProjectId", "Name").ToList();
+            projectList.Insert(0, (new SelectListItem { Text = "All", Value = "0" }));
+            ViewBag.ProjectId = projectList;
 
+            return View();
+        }
 
 
 

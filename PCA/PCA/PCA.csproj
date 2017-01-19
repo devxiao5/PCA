@@ -408,6 +408,7 @@
     <Content Include="Content\Images\mirrored_squares.png" />
     <Content Include="Content\Images\pcalogo.png" />
     <Content Include="Content\Images\Plann_LetterHead.png" />
+    <Content Include="Content\Images\random_grey_variations.png" />
     <Content Include="Content\Images\whiteblue.gif" />
     <Content Include="Content\Images\whiteblue2x.gif" />
     <Content Include="Content\Layout117.css" />

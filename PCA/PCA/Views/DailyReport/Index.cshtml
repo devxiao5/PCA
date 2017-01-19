@@ -22,7 +22,7 @@
                         <span class="glyphicon glyphicon-menu-left"></span> Back
                     </a>
                 </div>
-                <span class="headingText col-xs-4">Daily Reports</span>
+                <span class="headingText col-xs-4">DAILY REPORTS</span>
                 <div class="headingRight col-xs-4">
                     <a href="/DailyReport/Create" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> New</a>
                 </div>
@@ -33,14 +33,28 @@
         <div class="panel-body col-xs-12">
 
             <!-- Filters -->
-            <div class="well col-xs-12">
+            <div class="col-xs-12">
                 <div class="col-xs-6">
-                    Project:<br /> @ViewBag.currentProject
-                </div>
-                <div class="col-xs-6">
-                    Status:<br /> @ViewBag.currentStatus
+                    <div class="text-center">
+                        <h5>
+                            <b>Project</b>
+                        </h5> @{ var proj = ViewBag.currentProject; } @{ if (proj == 0)
+                                { @Html.Raw("All") }
+                                    else { @Html.Raw(@ViewBag.currentProject) }  }
+
+                        
+                    </div>
                 </div>
 
+                <div class="col-xs-6">
+                    <div class="text-center">
+                        <h5><b>Status</b></h5> @ViewBag.currentStatus
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <hr />
+                </div>
             </div>
 
 
@@ -62,6 +76,7 @@
                             <th>Project</th>
                             <th>Summary</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +91,15 @@
                                 <td>@report.Name</td>
                                 <td>@report.Summary</td>
                                 <td>@report.Status</td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                        <a id="LinkButton1" href="/DailyReport/Detail/@report.DailyReportId" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-road"></span></a>
+                                        <a id="LinkButton2" href="/DailyReport/Edit/@report.DailyReportId" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a id="LinkButton3" href="/DailyReport/Delete/@report.DailyReportId" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a id="LinkButton5" href="/DailyReport/WorkFlow/@report.DailyReportId" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort"></span></a>
+                                    </div>
+
+                                </td>
                             </tr>
                         }
                     </tbody>

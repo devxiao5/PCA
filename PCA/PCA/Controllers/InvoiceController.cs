@@ -18,19 +18,14 @@ namespace PCA.Controllers
         // GET: Invoice
         public ActionResult Index()
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            //---------------------------
-            // Declarations
-            int currentProjectNumber = ViewBag.CurrentProjectNumber;
+            // Sessions
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             var invoices = from invoice in db.Invoices
                            join cont in db.Contractors on invoice.ContractorId equals cont.ContractorId
-                           where invoice.ProjectId == currentProjectNumber
+                           where invoice.ProjectId == currentProjectNum
                            select new { invoice.InvoiceId, cont.ContractorId, cont.Name, invoice.TotalAmount, invoice.DateOfInvoice, invoice.Status };
 
             List<InvoiceIndexViewModel> invoiceView = new List<InvoiceIndexViewModel>();
