@@ -16,13 +16,10 @@ namespace PCA.Controllers
         // GET: Report
         public ActionResult Index()
         {
-            //Get current project
-            var systemController = DependencyResolver.Current.GetService<SystemController>();
-            systemController.Get();
-            var currentList = systemController.Get();
-            ViewBag.CurrentProjectString = currentList.ElementAt(0);
-            ViewBag.CurrentProjectNumber = int.Parse(currentList.ElementAt(1));
-            // -----------
+            // Sessions
+            int currentProjectNum = Convert.ToInt32(Session["DailyReportProject"]);
+            int currentUserId = Convert.ToInt32(Session["UserId"]);
+            ViewBag.currentProject = currentProjectNum;
 
             return View();
         }

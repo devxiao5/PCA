@@ -12,159 +12,161 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
     <script src="~/Scripts/DataTablesCustomization.js"></script>
     <script src="~/Scripts/PCA.js"></script>
-    <script src="~/Scripts/Dashboard.js"></script>
+    @*<script src="~/Scripts/Dashboard.js"></script>*@
 }
 
 <div class="row" id="workflow-row">
-    <!-- BUDGETS -->
-    <div class="col-xs-6 col-md-3 workflow-div">
-        <div class="panel panel-default col-xs-12 workflow-panel">
-            <!--<a href="/Budget/" class="panel-heading col-xs-12">
-                <div class="headingElements">
-                    <div class="col-xs-4"></div>
-                    <div class="headingText col-xs-4">
-                        <span>BUDGETS</span>
+    <div id="workflow-column" class="col-xs-12 col-md-3">
+        <!-- BUDGETS -->
+        <div class="col-xs-12 workflow-div">
+            <div class="panel panel-default col-xs-12 workflow-panel">
+                <a href="/Budget/" class="panel-heading col-xs-12">
+                    <div class="headingElements">
+                        <div class="col-xs-4"></div>
+                        <div class="headingText col-xs-4">
+                            <span>BUDGETS</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="panel-body col-xs-12 workflow-panel-body">
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item">Pending</li>
+                            <li class="list-group-item list-group-item-success">Reviewed</li>
+                            <li class="list-group-item">Approved</li>
+                        </ul>
                     </div>
                 </div>
-            </a>-->
+            </div>
+        </div>
 
-            <div class="panel-body col-xs-12 workflow-panel-body">
-                <div class="col-xs-12">
-                    <span class="glyphicon glyphicon-usd"></span>
-                    <span class="dashboard-heading">BUDGETS</span>
-                    <hr />
+        <!-- CONTRACTS -->
+        <div class="col-xs-12 workflow-div">
+            <div class="panel panel-default col-xs-12 workflow-panel">
+                <div class="panel-heading col-xs-12">
+                    <div class="headingElements">
+                        <div class="col-xs-4"></div>
+                        <div class="headingText col-xs-4">
+                            <span>CONTRACTS</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-xs-6">
+                <div class="panel-body col-xs-12 workflow-panel-body">
 
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item">Pending</li>
+                            <li class="list-group-item list-group-item-success">Reviewed</li>
+                            <li class="list-group-item">Approved</li>
+                            <li class="list-group-item">Routed</li>
+                            <li class="list-group-item">Posted</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">Pending</li>
-                        <li class="list-group-item list-group-item-success">Reviewed</li>
-                        <li class="list-group-item">Approved</li>
-                    </ul>
+            </div>
+        </div>
+
+        <!-- INVOCES -->
+        <div class="col-xs-12 workflow-div">
+            <div class="panel panel-default col-xs-12 workflow-panel">
+                <div class="panel-heading col-xs-12">
+                    <div class="headingElements">
+                        <div class="col-xs-4"></div>
+                        <div class="headingText col-xs-4">
+                            <span>INVOICES</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body col-xs-12 workflow-panel-body">
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item">Pending</li>
+                            <li class="list-group-item list-group-item-success">Posted</li>
+                            <li class="list-group-item">Reviewed</li>
+                            <li class="list-group-item">Approved</li>
+                            <li class="list-group-item">Released</li>
+                            <li class="list-group-item">Paid</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DAILY REPORTS -->
+        <div class="col-xs-12 workflow-div">
+            <div class="panel panel-default col-xs-12 workflow-panel">
+                <a href="/DailyReport/Select" class="panel-heading col-xs-12">
+                    <div class="headingElements">
+                        <div class="col-xs-2"></div>
+                        <div class="headingText col-xs-8">
+                            <span>DAILY REPORTS</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="panel-body col-xs-12 workflow-panel-body">
+
+
+
+                    @{
+                        string drp = "";
+                        string drr = "";
+                        string dra = "";
+                        if (Model.DailyReportPending > 0) { drp = "list-group-item-success  workflow-link"; }
+                        if (Model.DailyReportReviewed > 0) { drr = "list-group-item-success  workflow-link"; }
+                        if (Model.DailyReportApproved > 0) { dra = "list-group-item-success  workflow-link"; }
+                    }
+
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            <li class="list-group-item @drp" data-workflow-status="Pending" data-workflow-type="dr">Pending</li>
+                            <li class="list-group-item @drr" data-workflow-status="Reviewed" data-workflow-type="dr">Reviewed</li>
+                            <li class="list-group-item @dra" data-workflow-status="Approved" data-workflow-type="dr">Approved</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CONTRACTS -->
-    <div class="col-xs-6 col-md-3 workflow-div">
-        <div class="panel panel-default col-xs-12 workflow-panel">
-            <!--<div class="panel-heading col-xs-12">
-                <div class="headingElements">
-                    <div class="col-xs-4"></div>
-                    <div class="headingText col-xs-4">
-                        <span>CONTRACTS</span>
-                    </div>
-                </div>
-            </div>-->
-            <div class="panel-body col-xs-12 workflow-panel-body">
-                <div class="col-xs-12">
-                    <div class="dashboard-heading">CONTRACTS</div>
-                    <hr />
-                </div>
-                <div class="col-xs-6">
-
-                </div>
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">Pending</li>
-                        <li class="list-group-item list-group-item-success">Reviewed</li>
-                        <li class="list-group-item">Approved</li>
-                        <li class="list-group-item">Routed</li>
-                        <li class="list-group-item">Posted</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- INVOCES -->
-    <div class="col-xs-6 col-md-3 workflow-div">
-        <div class="panel panel-default col-xs-12 workflow-panel">
-            <!-- <div class="panel-heading col-xs-12">
-                <div class="headingElements">
-                    <div class="col-xs-4"></div>
-                    <div class="headingText col-xs-4">
-                        <span>INVOICES</span>
-                    </div>
-                </div>
-            </div>-->
-            <div class="panel-body col-xs-12 workflow-panel-body">
-                <div class="col-xs-12">
-                    <div class="dashboard-heading">INVOICES</div>
-                    <hr />
-                </div>
-                <div class="col-xs-6">
-
-                </div>
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item">Pending</li>
-                        <li class="list-group-item list-group-item-success">Posted</li>
-                        <li class="list-group-item">Reviewed</li>
-                        <li class="list-group-item">Approved</li>
-                        <li class="list-group-item">Released</li>
-                        <li class="list-group-item">Paid</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- DAILY REPORTS -->
-    <div class="col-xs-6 col-md-3 workflow-div">
-        <div class="panel panel-default col-xs-12 workflow-panel">
-            <a href="/DailyReport/Select" class="panel-heading col-xs-12">
-                <div class="headingElements">
-                    <div class="col-xs-2"></div>
-                    <div class="headingText col-xs-8">
-                        <span>DAILY REPORTS</span>
-                    </div>
-                </div>
-            </a>
-            <div class="panel-body col-xs-12 workflow-panel-body">
-
-
-
-                @{
-                    string drp = "";
-                    string drr = "";
-                    string dra = "";
-                    if (Model.DailyReportPending > 0) { drp = "list-group-item-success  workflow-link"; }
-                    if (Model.DailyReportReviewed > 0) { drr = "list-group-item-success  workflow-link"; }
-                    if (Model.DailyReportApproved > 0) { dra = "list-group-item-success  workflow-link"; }
-                }
-
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item @drp" data-workflow-status="Pending">Pending</li>
-                        <li class="list-group-item @drr" data-workflow-status="Reviewed">Reviewed</li>
-                        <li class="list-group-item @dra" data-workflow-status="Approved">Approved</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div id="links" class="col-xs-12">
+    <div id="links" class="col-xs-8">
         <div class="panel panel-default col-xs-12">
-            <!-- <div class="panel-heading col-xs-12">
+            <div class="panel-heading col-xs-12">
                 <div class="headingElements">
                     <div class="col-xs-4"></div>
                     <div class="headingText col-xs-4">
-                        <span>PROJECT</span>
+                        <span>Workflow Items</span>
                     </div>
                 </div>
-            </div>-->
+            </div>
             <div class="panel-body col-xs-12">
-                <div class="col-xs-12">
-                    <span class="glyphicon glyphicon-duplicate"></span>
-                    <span class="dashboard-heading">LINKS</span>
-                    <hr />
+                <div id="workflow-table">
+                    <script language="JavaScript" type="text/javascript">
+                        $(document).ready(function () {
+                            $(".list-group-item").click(function () {
+                                switch ($(this).text()) {
+
+                                    case "Pending":
+                                        @{
+                                            var dash = DependencyResolver.Current.GetService<PCA.Controllers.DashboardController>();
+                                            var drPending = dash.DailyReport("Pending");
+
+                                            @: $('#workflow-table').html("<table id ='wf-table' class='table table-striped'><thead><tr><th>Project</th><th>Summary</th><th>Delay</th></tr></thead><tbody>");
+
+                                            foreach (var r in drPending)
+                                            {
+                                                @: $('#wf-table').append("<tr><td>" + @r.DailyReportId + "</td><td>" + "@r.Summary" + "</td><td>" + "@r.IsDelay" + "</td></tr>");
+                                            }
+                                             
+                                         }
+                                        $('#wf-table').append('</tbody></table>');
+                                        break;
+
+                                }
+
+                            })
+                        });
+                    </script>
+
                 </div>
             </div>
         </div>

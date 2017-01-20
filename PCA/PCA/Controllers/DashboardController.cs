@@ -118,5 +118,17 @@ namespace PCA.Controllers
             return View(list);
 
         }
+
+        public List<DailyReport> DailyReport(string status)
+        {
+            // Queries
+            List<DailyReport> reports = new List<DailyReport>(from report in db.DailyReport
+                                                              where report.Status == status
+                                                                select report);
+
+            return reports;
+        }
+
+
     }
 }

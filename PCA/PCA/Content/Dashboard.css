@@ -1,25 +1,4 @@
-﻿.table, .table > tbody > tr > td {
-    border:2px solid #333;
-    font-size: 1em;
-    font-weight: 400;
-    text-align: center;
-}
-
-td:hover{
-    background-color: #ccc;
-}
-
-.table{
-    box-shadow: 0px 0px 5px #555;
-    min-height: 25px;
-}
-
-td, tr, tbody{
-    padding: 0px;
-    padding-top: 1px;
-}
-
-.workflow-item{
+﻿.workflow-item{
     background-color: #064979;
 }
 
@@ -27,32 +6,22 @@ td, tr, tbody{
     cursor: pointer;
 }
 
-.workflow-div{
-    height: 325px;
-}
-
 .workflow-panel{
     height:100%;
 }
 
 .workflow-panel-body{
-    padding-top: 5%; /* https://css-tricks.com/centering-css-complete-guide/ */
+    padding: 0px;
 }
 
 .list-group-item{
     text-align: center;
     font-size: 1.15em;
-    height: 30px;
+    height: 25px;
     font-family: Arial;
-    padding-top: 0.4em;
+    padding-top: 0.25em;
 
 
-}
-
-.dashboard-heading{
-    text-align: center;
-    font-weight: 600;
-    color: #001f4d;
 }
 
 hr{
@@ -60,9 +29,25 @@ hr{
 }
 
 .list-group{
-    padding-top: 2em;
+    padding: 0px;
+    margin: 0px;
 }
 
-#links {
-    margin-top: 2em;
+#workflow-column{
+    background-color: #ddd;
+    padding: 0px;
+    padding-top: 1em;
+}
+
+#links{
+    margin-top: 1em;
+}
+
+#Body {
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.workflow-panel-body > div{
+    padding: 0px;
 }

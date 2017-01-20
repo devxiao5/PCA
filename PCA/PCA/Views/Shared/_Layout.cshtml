@@ -17,6 +17,7 @@
 <!-- End Head -->
 <!-- Body -->
 <body>
+    @Scripts.Render("~/bundles/jquery")
     <div class="container-fluid backdrop">
 
 
@@ -31,11 +32,11 @@
                     </div>
                 </a>
             </div>
-            <div id="menubar" class="row">
+            <!--<div id="menubar" class="row">
                     <div class="col-xs-12">
 
                     </div>
-                </div>
+                </div>-->
             <!-- End Header Bar -->
             <div id="BodyContainer" class="container-fluid">
                 <div id="ContentRow" class="row">
@@ -56,7 +57,7 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
