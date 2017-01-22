@@ -6,22 +6,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link href="~/Content/Layout.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Cabin" rel="stylesheet">
     @RenderSection("css", false)
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css" />
 </head>
 <!-- End Head -->
 <!-- Body -->
 <body>
     @Scripts.Render("~/bundles/jquery")
-    <div class="container-fluid backdrop">
-
-
-        <!-- Header Bar -->
+    <!-- <div class="container-fluid backdrop"> -->
         <div class="container-fluid main">
             <div id="rowLogo" class="row">
                 <a href="/Dashboard/Index">
@@ -55,14 +53,15 @@
 
 
         </div>
-    </div>
+   
 
-    
+
     @Scripts.Render("~/bundles/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+    
     <script src="~/Scripts/Layout.js"></script>
-    <script src="~/Scripts/PCA.js"></script>
+    <script src="~/Scripts/PCA.js"></script>    
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
 </body>
 </html>

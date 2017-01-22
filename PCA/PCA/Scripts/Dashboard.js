@@ -1,4 +1,14 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
+    $('.list-group-item-success').click(function () {
+        $('#wf-table').DataTable();
+    })
+});
+
+
+
+/* $(document).ready(function () {
     $(".workflow-link").click(function () {
         var linktextstatus = $(this).attr("data-workflow-status");
         window.location.replace("/DailyReport/WorkflowRedirect?project=0" + "&status=" + linktextstatus);
@@ -11,7 +21,7 @@ $(document).ready(function () {
         alert($(this).attr("class"));
         var workflowListItemType = $(this).attr("data-workflow-type");
         var status = $(this).text;
-        
+
         switch (workflowListItemType) {
             case "dr":
                 function GetDailyReports(status) {
@@ -30,4 +40,6 @@ $(document).ready(function () {
                 break;
         }
     })
-})
+});*/
+
+

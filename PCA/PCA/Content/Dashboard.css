@@ -51,3 +51,12 @@ hr{
 .workflow-panel-body > div{
     padding: 0px;
 }
+
+#workflow{
+    background-color: #999;
+}
+
+#dash-header{
+    background-color: white;
+    height: 150px;
+}

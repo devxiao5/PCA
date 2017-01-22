@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using PCA.Models;
 using PCA.ViewModels;
 using System.Data.Entity;
+using Newtonsoft.Json;
 
 namespace PCA.Controllers
 {
@@ -119,14 +120,15 @@ namespace PCA.Controllers
 
         }
 
-        public List<DailyReport> DailyReport(string status)
+        public JsonResult DailyReport(string status)
         {
-            // Queries
+
             List<DailyReport> reports = new List<DailyReport>(from report in db.DailyReport
                                                               where report.Status == status
                                                                 select report);
 
-            return reports;
+
+           return Json(reports, JsonRequestBehavior.AllowGet);
         }
 
 

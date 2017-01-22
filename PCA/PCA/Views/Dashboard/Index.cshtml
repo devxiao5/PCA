@@ -1,22 +1,27 @@
 ﻿@model PCA.ViewModels.DashboardViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section css
 {
     <link href="~/Content/Dashboard.css" rel="stylesheet" />
-}
-@section scripts
-{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
-    <script src="~/Scripts/DataTablesCustomization.js"></script>
-    <script src="~/Scripts/PCA.js"></script>
-    @*<script src="~/Scripts/Dashboard.js"></script>*@
+    
 }
 
-<div class="row" id="workflow-row">
-    <div id="workflow-column" class="col-xs-12 col-md-3">
+@section scripts
+{
+    <script src="~/Scripts/Dashboard.js"></script>
+}
+<div id="dash-header" class="row">
+    <p>Test</p>
+</div>
+
+
+<div class="row" id="workflow">
+    <div id="workflow-column" class="col-xs-12 col-md-2">
         <!-- BUDGETS -->
         <div class="col-xs-12 workflow-div">
             <div class="panel panel-default col-xs-12 workflow-panel">
@@ -128,7 +133,7 @@
         </div>
     </div>
 
-    <div id="links" class="col-xs-8">
+    <div id="links" class="col-xs-10">
         <div class="panel panel-default col-xs-12">
             <div class="panel-heading col-xs-12">
                 <div class="headingElements">
@@ -149,18 +154,50 @@
                                         @{
                                             var dash = DependencyResolver.Current.GetService<PCA.Controllers.DashboardController>();
                                             var drPending = dash.DailyReport("Pending");
+                                            @: $('#workflow-table').empty();
+                                            @: alert('test1');
+                                            @: $('#workflow-table').html("<table id ='wf-table' class='table table-striped'><thead><tr><th>Project</th><th data-field='summary' data-sortable='true'>Summary</th><th data-field='delay' data-sortable='true'>Delay</th></tr></thead><tbody>");
 
-                                            @: $('#workflow-table').html("<table id ='wf-table' class='table table-striped'><thead><tr><th>Project</th><th>Summary</th><th>Delay</th></tr></thead><tbody>");
+                                            @*{
+                                                @: $('#wf-table').append("<tr><td>" + @r.DailyReportId + "</td><td>" + "@r.Summary.Replace('"', ' ')" + "</td><td>" + "@r.IsDelay" + "</td></tr>");
+                                                                                    }*@
 
-                                            foreach (var r in drPending)
-                                            {
-                                                @: $('#wf-table').append("<tr><td>" + @r.DailyReportId + "</td><td>" + "@r.Summary" + "</td><td>" + "@r.IsDelay" + "</td></tr>");
-                                            }
-                                             
                                          }
                                         $('#wf-table').append('</tbody></table>');
                                         break;
 
+                                    case "Reviewed":
+                                        @{
+                                            var drReviewed = dash.DailyReport("Reviewed");
+                                            @: $('#workflow-table').empty();
+                                            @: $('#workflow-table').html("<table id ='wf-table' class='table table-striped'><thead><tr><th>Project</th><th data-field='summary' data-sortable='true'>Summary</th><th data-field='delay' data-sortable='true'>Delay</th></tr></thead><tbody>");
+                                            @: alert('test2');
+                                            @*foreach (var r in drReviewed)
+                                            {
+                                                @: $('#wf-table').append("<tr><td>" + @r.DailyReportId + "</td><td>" + "@r.Summary.Replace('"', ' ')" + "</td><td>" + "@r.IsDelay" + "</td></tr>");
+                                            }
+                                                *@
+                                        }
+                                        $('#wf-table').append('</tbody></table>');
+                                        break;
+
+                                    case "Approved":
+                                        alert("test");
+                                        jQuery.ajax({
+                                            data: { "status": "Approved" },
+                                            url: "/Dashboard/DailyReport",
+                                            type: 'GET',
+                                            dataType: 'json',
+                                            success: function (data) {
+                                                jQuery('#workflow-table').empty();
+                                                jQuery('#workflow-table').html("<table id ='wf-table' class='table table-striped'><thead><tr><th>Project</th><th data-field='summary' data-sortable='true'>Summary</th><th data-field='delay' data-sortable='true'>Delay</th></tr></thead><tbody>");
+                                                jQuery(data).each(function (index, item) {
+                                                    jQuery('#wf-table').append("<tr><td>" + item.DailyReportId + "</td><td>" + item.Summary + "</td><td>" + item.IsDelay + "</td></tr>");
+                                                })
+                                            }
+                                        })
+                                        jQuery('#wf-table').append('</tbody></table>');
+                                        break;
                                 }
 
                             })
